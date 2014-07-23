@@ -65,7 +65,7 @@ Good next steps would be to:
 
 State: This code is tested and has worked well in a range of
 settings. I did just tease it out of a couple of projects which were
-using it, and this repository (on initial commit) will be untested. I
-expect I'll run into problems with names (it was called modulefs in
-systems) and directories (which were also a little project-specific)
-until I've pushed, tested, debugged, etc.
+using it, so there may be issues associated with this, but it does
+appear to work. Much of the codebase could use a cleanup -- it's not
+pretty. I also cannot commit to long-term interface stability (but 
+older versions ought to continue to work). . 
