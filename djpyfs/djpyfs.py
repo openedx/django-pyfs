@@ -103,10 +103,11 @@ def get_osfs(namespace):
 
 def get_s3fs(namespace):
     ''' Helper method to get_filesystem for a file system on S3 '''
+    global key_id, key_secret
     fullpath = namespace
     if 'prefix' in djfs_settings: 
         fullpath = os.path.join(djfs_settings['prefix'], fullpath)
-    s3fs = S3FS(djfs_settings['bucket'], fullpath)
+    s3fs = S3FS(djfs_settings['bucket'], fullpath, aws_access_key=key_id, aws_secret_key=key_secret)
 
     def get_s3_url(self, filename, timeout=60):
         global s3conn
