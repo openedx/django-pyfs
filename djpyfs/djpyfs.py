@@ -112,10 +112,10 @@ def get_s3fs(namespace):
     def get_s3_url(self, filename, timeout=60):
         global s3conn
         try: 
-            return s3conn.generate_s3_url(timeout, 'GET', bucket = djfs_settings['bucket'], key = filename)
+            return s3conn.generate_url(timeout, 'GET', bucket = djfs_settings['bucket'], key = os.path.join(fullpath, filename))
         except: # If connection has timed out
             s3conn = S3Connection()
-            return s3conn.generate_s3_url(timeout, 'GET', bucket = djfs_settings['bucket'], key = filename)
+            return s3conn.generate_url(timeout, 'GET', bucket = djfs_settings['bucket'], key = os.path.join(fullpath, filename))
 
     s3fs = patch_fs(s3fs, namespace, get_s3_url)
     return s3fs
