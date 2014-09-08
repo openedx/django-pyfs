@@ -34,8 +34,8 @@ elif djfs_settings['type'] == 's3fs':
     from fs.s3fs import S3FS
     from boto.s3.connection import S3Connection
     from boto.s3.key import Key
-    key_id = djfs_settings.get('AWS_ACCESS_KEY_ID', None)
-    key_secret = djfs_settings.get('AWS_SECRET_ACCESS_KEY', None)
+    key_id = djfs_settings.get('aws_access_key_id', None)
+    key_secret = djfs_settings.get('aws_secret_access_key', None)
     s3conn = S3Connection(aws_access_key_id=key_id, aws_secret_access_key=key_secret)
 else: 
     raise AttributeError("Bad filesystem: "+str(djfs_settings['type']))
