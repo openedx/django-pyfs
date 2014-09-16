@@ -41,8 +41,9 @@ class FSExpirations(models.Model):
         f.expiration = expiration_time
         f.save()
 
-    module = models.CharField(max_length=500) # Defines the namespace
-    filename = models.CharField(max_length=500) # Filename within the namespace
+    
+    module = models.CharField(max_length=382)  # Defines the namespace
+    filename = models.CharField(max_length=382)  # Filename within the namespace
     expires = models.BooleanField() # Does it expire? 
     expiration = models.DateTimeField(db_index = True) 
 
