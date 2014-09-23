@@ -36,7 +36,7 @@ elif djfs_settings['type'] == 's3fs':
     from boto.s3.key import Key
     key_id = djfs_settings.get('aws_access_key_id', None)
     key_secret = djfs_settings.get('aws_secret_access_key', None)
-    s3conn = S3Connection(aws_access_key_id=key_id, aws_secret_access_key=key_secret)
+    s3conn = None
 else: 
     raise AttributeError("Bad filesystem: "+str(djfs_settings['type']))
 
@@ -112,9 +112,11 @@ def get_s3fs(namespace):
     def get_s3_url(self, filename, timeout=60):
         global s3conn
         try: 
+            if not s3conn:
+                s3conn = S3Connection(aws_access_key_id=key_id, aws_secret_access_key=key_secret)
             return s3conn.generate_url(timeout, 'GET', bucket = djfs_settings['bucket'], key = os.path.join(fullpath, filename))
-        except: # If connection has timed out
-            s3conn = S3Connection()
+        except:  # Retry on error; typically, if the connection has timed out, but the broad except covers all errors.
+            s3conn = S3Connection(aws_access_key_id=key_id, aws_secret_access_key=key_secret)
             return s3conn.generate_url(timeout, 'GET', bucket = djfs_settings['bucket'], key = os.path.join(fullpath, filename))
 
     s3fs = patch_fs(s3fs, namespace, get_s3_url)
