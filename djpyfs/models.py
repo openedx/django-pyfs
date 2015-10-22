@@ -55,6 +55,7 @@ class FSExpirations(models.Model):
         return cls.objects.filter(expires=True, expiration__lte = expiration_lte)
 
     class Meta:
+        app_label = 'djpyfs'
         unique_together = (("module","filename"))
         # We'd like to create an index first on expiration than on expires (so we can
         # search for objects where expires=True and expiration is before now).
