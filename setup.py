@@ -8,7 +8,7 @@ def read(fname):
 
 setup(
     name='django-pyfs',
-    version='1.0.3',
+    version='1.0.3a',
     description='Django pyfilesystem integration',
     author='Piotr Mitros',
     author_email='pmitros@edx.org',
