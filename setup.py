@@ -3,7 +3,7 @@
 from distutils.core import setup
 
 setup(name='django-pyfs',
-      version='1.0',
+      version='1.0.3',
       description='Django pyfilesystem integration',
       author='Piotr Mitros',
       author_email='pmitros@edx.org',
