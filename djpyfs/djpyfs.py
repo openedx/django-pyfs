@@ -17,6 +17,7 @@ import os.path
 import types
 
 from django.conf import settings
+from fs.osfs import OSFS
 
 from models import FSExpirations
 
@@ -28,17 +29,8 @@ else:
                      'directory_root' : 'django-pyfs/static/django-pyfs', 
                      'url_root' : '/static/django-pyfs'}
 
-if djfs_settings['type'] == 'osfs':
-    from fs.osfs import OSFS
-elif djfs_settings['type'] == 's3fs':
-    from fs.s3fs import S3FS
-    from boto.s3.connection import S3Connection
-    from boto.s3.key import Key
-    key_id = djfs_settings.get('aws_access_key_id', None)
-    key_secret = djfs_settings.get('aws_secret_access_key', None)
-    s3conn = None
-else: 
-    raise AttributeError("Bad filesystem: "+str(djfs_settings['type']))
+s3conn = None
+
 
 def get_filesystem(namespace):
     ''' Returns a pyfilesystem for static module storage. 
@@ -103,7 +95,14 @@ def get_osfs(namespace):
 
 def get_s3fs(namespace):
     ''' Helper method to get_filesystem for a file system on S3 '''
-    global key_id, key_secret
+    # These imports are temporary to get to a place where we can test while not incurring a boto dependency... yet.
+    from fs.s3fs import S3FS
+    from boto.s3.connection import S3Connection
+
+    key_id = djfs_settings.get('aws_access_key_id', None)
+    key_secret = djfs_settings.get('aws_secret_access_key', None)
+    s3conn = None
+
     fullpath = namespace
     if 'prefix' in djfs_settings: 
         fullpath = os.path.join(djfs_settings['prefix'], fullpath)
