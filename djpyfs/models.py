@@ -55,21 +55,13 @@ class FSExpirations(models.Model):
         return cls.objects.filter(expires=True, expiration__lte = expiration_lte)
 
     class Meta:
+        app_label = 'djpyfs'
         unique_together = (("module","filename"))
-        ## FIXME: We'd like to create an index first on expiration than on expires (so we can 
-        ## search for objects where expires=True and expiration is before now). Django 1.5 
-        ## supports this, but 1.4 does not. 
-        ## 
-        ## I'm putting this in in preparation for 1.5. This is
-        ## slightly redundant, since documentation is unclear about
-        ## order of the joint index.
-        ##
-        ## When 1.5 comes out, we can drop the index on expiration. 
-        if django.get_version()>='1.5':
-            index_together = [
-                ["expires","expiration"], 
-                ["expiration","expires"]
-                ]
+        # We'd like to create an index first on expiration than on expires (so we can
+        # search for objects where expires=True and expiration is before now).
+        index_together = [
+            ["expiration", "expires"],
+            ]
 
     def __str__(self):
         if self.expires: 
