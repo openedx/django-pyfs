@@ -10,8 +10,9 @@ filesystem.
 task can garbage-collect those objects. 
 
 '''
+from __future__ import absolute_import
+from future.builtins import str
 
-import json
 import os
 import os.path
 import types
@@ -19,7 +20,7 @@ import types
 from django.conf import settings
 from fs.osfs import OSFS
 
-from models import FSExpirations
+from .models import FSExpirations
 
 
 if hasattr(settings, 'DJFS'):

@@ -1,5 +1,9 @@
+from __future__ import absolute_import, unicode_literals
+from future.builtins import range
+
 import shutil
 import os
+import sys
 import unittest
 
 import boto
@@ -8,7 +12,7 @@ from django.utils import timezone
 from fs.memoryfs import MemoryFS
 from moto import mock_s3
 
-import djpyfs
+from . import djpyfs
 from .models import FSExpirations
 
 
@@ -95,8 +99,8 @@ class OsfsTest(TestCase):
         }
 
         self.namespace = 'unitttest'
-        self.test_dir_name = u'unit_test_dir'
-        self.test_file_name = u'unit_test_file'
+        self.test_dir_name = 'unit_test_dir'
+        self.test_file_name = 'unit_test_file'
         self.relative_path_to_test_file = os.path.join(self.test_dir_name, self.test_file_name)
         self.full_test_path = os.path.join(djpyfs.djfs_settings['directory_root'], self.namespace)
 
@@ -155,7 +159,7 @@ class OsfsTest(TestCase):
         fs.makedir(self.test_dir_name)
 
         with fs.open(self.relative_path_to_test_file, 'w') as f:
-            f.write(u'foo')
+            f.write('foo')
 
         expected_url = os.path.join(djpyfs.djfs_settings['url_root'], self.namespace, self.relative_path_to_test_file)
         self.assertEqual(fs.get_url(self.relative_path_to_test_file), expected_url)
@@ -184,8 +188,8 @@ class S3Test(TestCase):
         }
 
         self.namespace = 'unitttest'
-        self.test_dir_name = u'unit_test_dir'
-        self.test_file_name = u'unit_test_file'
+        self.test_dir_name = 'unit_test_dir'
+        self.test_file_name = 'unit_test_file'
         self.relative_path_to_test_file = os.path.join(self.test_dir_name, self.test_file_name)
         self.full_test_path = os.path.join(djpyfs.djfs_settings['directory_root'], self.namespace)
 
@@ -247,11 +251,17 @@ class S3Test(TestCase):
         fs.makedir(self.test_dir_name)
 
         with fs.open(self.relative_path_to_test_file, 'w') as f:
-            f.write(u'foo')
+            f.write('foo')
 
-        expected_url_prefix = "https://{}.s3.amazonaws.com/{}/{}".format(
-            djpyfs.djfs_settings['bucket'], self.namespace, self.relative_path_to_test_file
-        )
+        # For some reason the Py3 version of get_url returns a port in this test, while the Py2 version does not.
+        if sys.version_info[0] == 2:
+            expected_url_prefix = "https://{}.s3.amazonaws.com/{}/{}".format(
+                djpyfs.djfs_settings['bucket'], self.namespace, self.relative_path_to_test_file
+            )
+        else:
+            expected_url_prefix = "https://{}.s3.amazonaws.com:443/{}/{}".format(
+                djpyfs.djfs_settings['bucket'], self.namespace, self.relative_path_to_test_file
+            )
 
         self.assertTrue(fs.get_url(self.relative_path_to_test_file).startswith(expected_url_prefix))
 

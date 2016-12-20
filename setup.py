@@ -9,4 +9,9 @@ setup(name='django-pyfs',
       author_email='pmitros@edx.org',
       url='http://mitros.org/p/',
       packages=['djpyfs'],
+      install_requires=[
+          'setuptools',
+          'future',
+          'boto'
+      ],
      )
