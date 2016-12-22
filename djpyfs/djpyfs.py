@@ -24,7 +24,7 @@ from .models import FSExpirations
 
 
 if hasattr(settings, 'DJFS'):
-    djfs_settings = settings.DJFS
+    djfs_settings = settings.DJFS  #pragma: no cover
 else:
     djfs_settings = {'type' : 'osfs',
                      'directory_root' : 'django-pyfs/static/django-pyfs', 
@@ -49,7 +49,7 @@ def get_filesystem(namespace):
 
 def expire_objects():
     ''' Remove all obsolete objects from the file systems. Untested. '''
-    objects = sorted(FSExpirations.expired(), key=lambda x:x.module)
+    objects = sorted(FSExpirations.expired(), key=lambda x: x.module)
     fs = None
     module = None
     for o in objects:
@@ -91,7 +91,7 @@ def get_osfs(namespace):
     if not os.path.exists(full_path):
         os.makedirs(full_path)
     osfs = OSFS(full_path)
-    osfs = patch_fs(osfs, namespace, lambda self, filename, timeout=0:os.path.join(djfs_settings['url_root'], namespace, filename))
+    osfs = patch_fs(osfs, namespace, lambda self, filename, timeout=0: os.path.join(djfs_settings['url_root'], namespace, filename))
     return osfs
 
 def get_s3fs(namespace):
@@ -121,4 +121,3 @@ def get_s3fs(namespace):
 
     s3fs = patch_fs(s3fs, namespace, get_s3_url)
     return s3fs
-

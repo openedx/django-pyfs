@@ -1,0 +1,3 @@
+# Packages needed in order to run tox.
+# Installed by Travis and dev environments.
+tox==2.5.0

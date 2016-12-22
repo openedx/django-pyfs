@@ -1,10 +1,11 @@
 from __future__ import absolute_import, unicode_literals
 from future.builtins import range
+from past.builtins import basestring
 
 import shutil
 import os
 import sys
-import unittest
+from io import StringIO
 
 import boto
 from django.test import TestCase
@@ -24,6 +25,7 @@ class FSExpirationsTest(TestCase):
         self.expire_secs = 1
         self.expire_days = 0
         self.create_time = timezone.now()
+        self.module = "unittest"
 
     def tearDown(self):
         self.fs.close()
@@ -35,13 +37,13 @@ class FSExpirationsTest(TestCase):
         # In the first create_expiration, it does not exist. Second loop it is updating the existing row.
         for _ in range(2):
             FSExpirations.create_expiration(
-                self.fs, self.test_file_path, self.expire_secs, self.expire_days, self.expires
+                self.module, self.test_file_path, self.expire_secs, self.expire_days, self.expires
             )
 
             self.assertEqual(FSExpirations.objects.all().count(), 1)
 
             fse = FSExpirations.objects.first()
-            self.assertEqual(fse.module, self.fs.__str__())
+            self.assertEqual(fse.module, self.module)
             self.assertEqual(fse.filename, self.test_file_path)
             self.assertEqual(fse.expires, self.expires)
 
@@ -56,9 +58,7 @@ class FSExpirationsTest(TestCase):
         expire_secs = 0
         expire_days = 0
 
-        FSExpirations.create_expiration(
-            self.fs, self.test_file_path, expire_secs, expire_days, self.expires
-        )
+        FSExpirations.create_expiration(self.module, self.test_file_path, expire_secs, expire_days, self.expires)
 
         self.assertEqual(FSExpirations.objects.all().count(), 1)
         fse = FSExpirations.objects.first()
@@ -80,78 +80,127 @@ class FSExpirationsTest(TestCase):
         expire_secs = 30
         expire_days = 0
         FSExpirations.create_expiration(
-            self.fs, self.test_file_path, expire_secs, expire_days, self.expires
+            self.module, self.test_file_path, expire_secs, expire_days, self.expires
         )
 
         # Make sure there is 1 expiration pending, but nothing currently expired
         self.assertEqual(FSExpirations.objects.all().count(), 1)
         self.assertEqual(len(FSExpirations.expired()), 0)
 
+    def test_str(self):
+        # First check the unexpired version of the string
+        fse = FSExpirations(
+            module=self.module, filename=self.test_file_path, expiration=self.create_time, expires=False
+        )
+        fse2 = FSExpirations(
+            module=self.module, filename=self.test_file_path, expiration=self.create_time, expires=True
+        )
 
-class OsfsTest(TestCase):
+        for f in (fse, fse2):
+            # Don't really care what __str__ is, just that it returns a string of some variety and doesn't error
+            # Using basestring from the past here to try to be clear about
+            try:
+                result = f.__str__()
+                self.assertTrue(isinstance(result, basestring))
+            except Exception as e:
+                self.fail("__str__ raised an exception! {}".format(e))
+
+
+class _BaseFs(TestCase):
+    djfs_settings = None
+
     def setUp(self):
-        # Monkey patch djpyfs settings to force osfs. Should really be a mock.patch, but I couldn't get it to work.
+        if self.djfs_settings is None:
+            raise NotImplementedError("Each filesystem subclass needs an appropriate djfs_settings!")
+
+        # Monkey patch djpyfs settings to force settings to whatever the inheriting class is testing
         self.orig_djpyfs_settings = djpyfs.djfs_settings
-        djpyfs.djfs_settings = {
-            'type': 'osfs',
-            'directory_root': 'django-pyfs/static/django-pyfs-test',
-            'url_root': '/static/django-pyfs-test'
-        }
+        djpyfs.djfs_settings = self.djfs_settings
 
         self.namespace = 'unitttest'
+        self.secondary_namespace = 'unittest_2'
         self.test_dir_name = 'unit_test_dir'
         self.test_file_name = 'unit_test_file'
-        self.relative_path_to_test_file = os.path.join(self.test_dir_name, self.test_file_name)
-        self.full_test_path = os.path.join(djpyfs.djfs_settings['directory_root'], self.namespace)
+        self.secondary_test_file_name = 'unit_test_file_2'
+        self.uncreated_test_file_name = 'do_not_create'
 
-        # If anything is left from last run, try to clean it
-        shutil.rmtree(self.full_test_path, ignore_errors=True)
+        self.relative_path_to_test_file = os.path.join(self.test_dir_name, self.test_file_name)
+        self.relative_path_to_secondary_test_file = os.path.join(self.test_dir_name, self.secondary_test_file_name)
+        self.relative_path_to_uncreated_test_file = os.path.join(self.test_dir_name, self.uncreated_test_file_name)
+
+        self.full_test_path = os.path.join(djpyfs.djfs_settings['directory_root'], self.namespace)
+        self.secondary_full_test_path = os.path.join(djpyfs.djfs_settings['directory_root'], self.secondary_namespace)
+
+        # We test against just the beginning of the returned url since S3 will have changing query params appended.
+        self.expected_url_prefix = os.path.join(
+            djpyfs.djfs_settings['url_root'], self.namespace, self.relative_path_to_test_file
+        )
+
+        self._setUp()
 
     def tearDown(self):
         # Restore original settings
         djpyfs.djfs_settings = self.orig_djpyfs_settings
 
-        # Clean up temp files
-        shutil.rmtree(self.full_test_path, ignore_errors=True)
+        self._tearDown()
 
-    def test_osfs_get_osfs(self):
+    def _setUp(self):
         """
-        Exercises getting the fs by type directly by checking that we get a usable fs back.
+        Allow subclasses to do any work they need to here after base setup
         """
-        fs = djpyfs.get_osfs(self.namespace)
-        fs.makedir(self.test_dir_name)
-        fs.getinfo(self.test_dir_name)
-        fs.removedir(self.test_dir_name)
+        pass
+
+    def _tearDown(self):
+        """
+        Allow subclasses to do any work they need to here after base setup
+        """
+        pass
 
     def test_get_filesystem(self):
-        """
-        Exercises getting the fs by generic interface by checking that we get a usable fs back.
-        """
         # Testing that using the default retrieval also gives us a usable osfs
         fs = djpyfs.get_filesystem(self.namespace)
         fs.makedir(self.test_dir_name)
         fs.getinfo(self.test_dir_name)
         fs.removedir(self.test_dir_name)
 
-    @unittest.skip("Does not currently work, looks like an issue with namespacing.")
     def test_expire_objects(self):
-        """
-        Exercises filesystem expirations
-        """
-        fs = djpyfs.get_filesystem(self.namespace)
-        fs.makedir(self.test_dir_name)
-
-        self.assertEqual(fs.create(self.relative_path_to_test_file), True)
-
-        # Create an instant expiration
         expire_secs = 0
         expire_days = 0
-        FSExpirations.create_expiration(fs, self.relative_path_to_test_file, expire_secs, expire_days, True)
 
-        # Expire, should delete the file
+        # Need to create two different namespaces with at least two files and at least one file that doesn't exist to
+        # fully exercise expire_objects. They all have to be part of the same run, thus this overly complicated hoo-ha.
+        fs1 = djpyfs.get_filesystem(self.namespace)
+        fs2 = djpyfs.get_filesystem(self.secondary_namespace)
+
+        for curr_fs in (fs1, fs2):
+            curr_fs.makedir(self.test_dir_name)
+
+            foo = StringIO("foo")
+            curr_fs.setcontents(self.relative_path_to_test_file, foo, 'utf-8', 'strict')
+            curr_fs.setcontents(self.relative_path_to_secondary_test_file, foo, 'utf-8', 'strict')
+
+            self.assertTrue(curr_fs.exists(self.relative_path_to_test_file))
+            self.assertTrue(curr_fs.exists(self.relative_path_to_secondary_test_file))
+            self.assertFalse(curr_fs.exists(self.relative_path_to_uncreated_test_file))
+
+            # Create an instant expiration for all 3 files
+            curr_fs.expire(self.relative_path_to_test_file, expire_secs, expire_days)
+            curr_fs.expire(self.relative_path_to_secondary_test_file, expire_secs, expire_days)
+            curr_fs.expire(self.relative_path_to_uncreated_test_file, expire_secs, expire_days)
+
+        self.assertEqual(FSExpirations.objects.all().count(), 6)
+
+        # Expire, should delete the files that exist and do nothing for the one that doesn't
         djpyfs.expire_objects()
 
-        self.assertEqual(fs.exists(self.relative_path_to_test_file), False)
+        self.assertFalse(fs1.exists(self.relative_path_to_test_file))
+        self.assertFalse(fs1.exists(self.relative_path_to_secondary_test_file))
+        self.assertFalse(fs1.exists(self.relative_path_to_uncreated_test_file))
+
+        self.assertFalse(fs2.exists(self.relative_path_to_test_file))
+        self.assertFalse(fs2.exists(self.relative_path_to_secondary_test_file))
+        self.assertFalse(fs2.exists(self.relative_path_to_uncreated_test_file))
+
         self.assertEqual(FSExpirations.objects.all().count(), 0)
 
     def test_get_url(self):
@@ -161,8 +210,14 @@ class OsfsTest(TestCase):
         with fs.open(self.relative_path_to_test_file, 'w') as f:
             f.write('foo')
 
-        expected_url = os.path.join(djpyfs.djfs_settings['url_root'], self.namespace, self.relative_path_to_test_file)
-        self.assertEqual(fs.get_url(self.relative_path_to_test_file), expected_url)
+        self.assertTrue(fs.exists(self.relative_path_to_test_file))
+        self.assertTrue(fs.get_url(self.relative_path_to_test_file).startswith(self.expected_url_prefix))
+
+    def test_get_url_does_not_exist(self):
+        # Current behavior is that even if a file doesn't exist you can get a URL for it
+        fs = djpyfs.get_filesystem(self.namespace)
+        self.assertFalse(fs.exists(self.relative_path_to_test_file))
+        self.assertTrue(fs.get_url(self.relative_path_to_test_file).startswith(self.expected_url_prefix))
 
     def test_patch_fs(self):
         """
@@ -173,102 +228,126 @@ class OsfsTest(TestCase):
         self.assertTrue(callable(getattr(fs, 'get_url')))
 
 
-class S3Test(TestCase):
-    @mock_s3
-    def setUp(self):
-        # Monkey patch djpyfs settings to force s3fs. Should really be a mock.patch, but I couldn't get it to work.
-        self.orig_djpyfs_settings = djpyfs.djfs_settings
-        djpyfs.djfs_settings = {
-            'type': 's3fs',
-            'directory_root': 'django-pyfs/static/django-pyfs-test',
-            'url_root': '/static/django-pyfs-test',
-            'aws_access_key_id': 'foo',
-            'aws_secret_access_key': 'bar',
-            'bucket': 'test_bucket'
-        }
+class BadFileSystemTestInh(_BaseFs):
+    """
+    Test filesystem class that uses an unknown filesystem type to make sure all methods return consistently. Wraps
+    all BaseFs tests to catch the exception.
+    """
+    djfs_settings = {
+        'type': 'bogusfs',
+        'directory_root': 'django-pyfs/static/django-pyfs-test',
+        'url_root': '/static/django-pyfs-test'
+    }
 
-        self.namespace = 'unitttest'
-        self.test_dir_name = 'unit_test_dir'
-        self.test_file_name = 'unit_test_file'
-        self.relative_path_to_test_file = os.path.join(self.test_dir_name, self.test_file_name)
-        self.full_test_path = os.path.join(djpyfs.djfs_settings['directory_root'], self.namespace)
+    def test_get_filesystem(self):
+        with self.assertRaises(AttributeError):
+            super(BadFileSystemTestInh, self).test_get_filesystem()
 
-    def tearDown(self):
-        # Restore original settings
-        djpyfs.djfs_settings = self.orig_djpyfs_settings
+    def test_expire_objects(self):
+        with self.assertRaises(AttributeError):
+            super(BadFileSystemTestInh, self).test_expire_objects()
 
-    def _setupS3(self):
+    def test_get_url(self):
+        with self.assertRaises(AttributeError):
+            super(BadFileSystemTestInh, self).test_get_url()
+
+    def test_get_url_does_not_exist(self):
+        with self.assertRaises(AttributeError):
+            super(BadFileSystemTestInh, self).test_get_url_does_not_exist()
+
+    def test_patch_fs(self):
+        with self.assertRaises(AttributeError):
+            super(BadFileSystemTestInh, self).test_patch_fs()
+
+
+class OsfsTest(_BaseFs):
+    """
+    Tests the OSFS implementation.
+    """
+    djfs_settings = {
+        'type': 'osfs',
+        'directory_root': 'django-pyfs/static/django-pyfs-test',
+        'url_root': '/static/django-pyfs-test'
+    }
+
+    def _cleanDirs(self):
+        # If anything is left from last run, try to clean it
+        shutil.rmtree(self.full_test_path, ignore_errors=True)
+        shutil.rmtree(self.secondary_full_test_path, ignore_errors=True)
+
+    def _setUp(self):
+        self._cleanDirs()
+
+    def _tearDown(self):
+        self._cleanDirs()
+
+
+class S3Test(_BaseFs):
+    """
+    Tests the S3FS implementation, without a prefix
+    """
+    djfs_settings = {
+        'type': 's3fs',
+        'directory_root': 'django-pyfs/static/django-pyfs-test',
+        'url_root': '/static/django-pyfs-test',
+        'aws_access_key_id': 'foo',
+        'aws_secret_access_key': 'bar',
+        'bucket': 'test_bucket'
+    }
+
+    def _setUp(self):
+        # For some reason the Py3 version of get_url returns a port in this test, while the Py2 version does not.
+        if sys.version_info[0] == 2:
+            self.expected_url_prefix = "https://{}.s3.amazonaws.com/{}/{}".format(
+                djpyfs.djfs_settings['bucket'], self.namespace, self.relative_path_to_test_file
+            )
+        else:
+            self.expected_url_prefix = "https://{}.s3.amazonaws.com:443/{}/{}".format(
+                djpyfs.djfs_settings['bucket'], self.namespace, self.relative_path_to_test_file
+            )
+
+        self._setUpS3()
+
+
+    def _setUpS3(self):
+        # Start mocking S3
+        self.mock_s3 = mock_s3()
+        self.mock_s3.start()
+
         # Create our fake bucket in fake s3
         self.conn = boto.connect_s3()
         self.conn.create_bucket(djpyfs.djfs_settings['bucket'])
 
-    @mock_s3
-    def test_osfs_get_osfs(self):
-        self._setupS3()
+    def _tearDown(self):
+        self.mock_s3.stop()
 
-        # Testing that we get back a usable osfs
-        fs = djpyfs.get_s3fs(self.namespace)
-        fs.makedir(self.test_dir_name)
-        fs.getinfo(self.test_dir_name)
-        fs.removedir(self.test_dir_name)
 
-    @mock_s3
-    def test_get_filesystem(self):
-        self._setupS3()
+class S3TestPrefix(S3Test):
+    """
+    Same as S3Test above, but includes a prefix.
+    """
 
-        # Testing that using the default retrieval also gives us a usable osfs
-        fs = djpyfs.get_filesystem(self.namespace)
-        fs.makedir(self.test_dir_name)
-        fs.getinfo(self.test_dir_name)
-        fs.removedir(self.test_dir_name)
+    djfs_settings = {
+        'type': 's3fs',
+        'directory_root': 'django-pyfs/static/django-pyfs-test',
+        'url_root': '/static/django-pyfs-test',
+        'aws_access_key_id': 'foo',
+        'aws_secret_access_key': 'bar',
+        'bucket': 'test_bucket',
+        'prefix': 'prefix'
+    }
 
-    @unittest.skip("Does not currently work, looks like an issue with namespacing.")
-    def test_expire_objects(self):
-        self._setupS3()
-
-        fs = djpyfs.get_filesystem(self.namespace)
-        fs.makedir(self.test_dir_name)
-
-        # Create our test file
-        self.assertEqual(fs.create(self.relative_path_to_test_file), True)
-
-        # Create an instant expiration
-        expire_secs = 0
-        expire_days = 0
-        FSExpirations.create_expiration(fs, self.relative_path_to_test_file, expire_secs, expire_days, True)
-
-        # Expire, should delete the file
-        djpyfs.expire_objects()
-
-        self.assertEqual(fs.exists(self.relative_path_to_test_file), False)
-        self.assertEqual(FSExpirations.objects.all().count(), 0)
-
-    @mock_s3
-    def test_get_url(self):
-        self._setupS3()
-
-        fs = djpyfs.get_filesystem(self.namespace)
-        fs.makedir(self.test_dir_name)
-
-        with fs.open(self.relative_path_to_test_file, 'w') as f:
-            f.write('foo')
-
+    def _setUp(self):
         # For some reason the Py3 version of get_url returns a port in this test, while the Py2 version does not.
         if sys.version_info[0] == 2:
-            expected_url_prefix = "https://{}.s3.amazonaws.com/{}/{}".format(
-                djpyfs.djfs_settings['bucket'], self.namespace, self.relative_path_to_test_file
+            self.expected_url_prefix = "https://{}.s3.amazonaws.com/{}/{}/{}".format(
+                djpyfs.djfs_settings['bucket'], djpyfs.djfs_settings['prefix'],
+                self.namespace, self.relative_path_to_test_file
             )
         else:
-            expected_url_prefix = "https://{}.s3.amazonaws.com:443/{}/{}".format(
-                djpyfs.djfs_settings['bucket'], self.namespace, self.relative_path_to_test_file
+            self.expected_url_prefix = "https://{}.s3.amazonaws.com:443/{}/{}/{}".format(
+                djpyfs.djfs_settings['bucket'], djpyfs.djfs_settings['prefix'],
+                self.namespace, self.relative_path_to_test_file
             )
 
-        self.assertTrue(fs.get_url(self.relative_path_to_test_file).startswith(expected_url_prefix))
-
-    @mock_s3
-    def test_patch_fs(self):
-        self._setupS3()
-
-        fs = djpyfs.get_filesystem(self.namespace)
-        self.assertTrue(callable(getattr(fs, 'expire')))
-        self.assertTrue(callable(getattr(fs, 'get_url')))
+        self._setUpS3()

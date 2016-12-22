@@ -54,3 +54,11 @@ docs/_build/
 
 # Emacs backups
 *~
+
+# PyCharm config
+.idea/
+
+# Paths generated in testing
+django-pyfs/
+example/db.sql
+example/sample/static/

@@ -1,2 +1,2 @@
-git+https://github.com/KyleJamesWalker/pyfilesystem.git#egg=fs==0.5.1-dev
+git+https://github.com/edx/pyfilesystem.git@bmedx/s3fs-py3-support#egg=fs==0.5.5a1
 future==0.16.0

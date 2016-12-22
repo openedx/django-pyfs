@@ -11,7 +11,7 @@ arrow = ["11011",
          "11011", 
          "11011", 
          "10001"]
-arrow = [map(int, x) for x in arrow]
+arrow = [list(map(int, x)) for x in arrow]
 
 
 def index(_):
