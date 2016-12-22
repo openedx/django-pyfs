@@ -1,0 +1,3 @@
+include README.md
+recursive-include djpyfs *py
+recursive-include example *py

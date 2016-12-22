@@ -52,5 +52,5 @@ coverage.xml
 # Sphinx documentation
 docs/_build/
 
-# PyCharm
-.idea/
+# Emacs backups
+*~

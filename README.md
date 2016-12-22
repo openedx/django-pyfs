@@ -22,7 +22,7 @@ expire after a few minutes. Another use case was memoization.
 
 Note that expired files are not automatically removed. To remove them,
 call `expire_objects()`. In our system, we had a cron job do
-this. Celery, manual removals, etc. are all options. 
+this for a while. Celery, manual removals, etc. are all options. 
 
 To configure a django-pyfs to use static files, set a parameter in
 Django settings: 
@@ -63,9 +63,7 @@ Good next steps would be to:
 * Add better test support. Django does nice things with resetting 
   DBs to a know state for testing. It'd be nice to do the same here. 
 
-State: This code is tested and has worked well in a range of
-settings. I did just tease it out of a couple of projects which were
-using it, so there may be issues associated with this, but it does
-appear to work. Much of the codebase could use a cleanup -- it's not
-pretty. I also cannot commit to long-term interface stability (but 
-older versions ought to continue to work). . 
+State: This code is tested and has worked well in a range of settings,
+and is currently deployed on edx.org. However, it doesn't have test
+cases and similar, so can't be considered truly production-ready. The
+expiration functionality, in particular, we are not using right now.
