@@ -17,7 +17,7 @@ setup(
     author='Piotr Mitros',
     author_email='pmitros@edx.org',
     packages=['djpyfs'],
-    license="AGPLv3",
+    license="Apache 2.0",
     url="https://github.com/edx/django-pyfs",
     long_description=ld,
     classifiers=[
