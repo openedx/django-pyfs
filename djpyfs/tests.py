@@ -1,10 +1,10 @@
 from __future__ import absolute_import, unicode_literals
-from future.builtins import range
-from past.builtins import basestring
+import six
 
 import shutil
 import os
 import sys
+import unittest
 from io import StringIO
 
 import boto
@@ -98,10 +98,9 @@ class FSExpirationsTest(TestCase):
 
         for f in (fse, fse2):
             # Don't really care what __str__ is, just that it returns a string of some variety and doesn't error
-            # Using basestring from the past here to try to be clear about
             try:
                 result = f.__str__()
-                self.assertTrue(isinstance(result, basestring))
+                self.assertTrue(isinstance(result, six.string_types))
             except Exception as e:
                 self.fail("__str__ raised an exception! {}".format(e))
 
@@ -111,7 +110,7 @@ class _BaseFs(TestCase):
 
     def setUp(self):
         if self.djfs_settings is None:
-            raise NotImplementedError("Each filesystem subclass needs an appropriate djfs_settings!")
+            raise unittest.SkipTest("Skipping test on base class.")
 
         # Monkey patch djpyfs settings to force settings to whatever the inheriting class is testing
         self.orig_djpyfs_settings = djpyfs.djfs_settings
@@ -136,25 +135,9 @@ class _BaseFs(TestCase):
             djpyfs.djfs_settings['url_root'], self.namespace, self.relative_path_to_test_file
         )
 
-        self._setUp()
-
     def tearDown(self):
         # Restore original settings
         djpyfs.djfs_settings = self.orig_djpyfs_settings
-
-        self._tearDown()
-
-    def _setUp(self):
-        """
-        Allow subclasses to do any work they need to here after base setup
-        """
-        pass
-
-    def _tearDown(self):
-        """
-        Allow subclasses to do any work they need to here after base setup
-        """
-        pass
 
     def test_get_filesystem(self):
         # Testing that using the default retrieval also gives us a usable osfs
@@ -275,10 +258,12 @@ class OsfsTest(_BaseFs):
         shutil.rmtree(self.full_test_path, ignore_errors=True)
         shutil.rmtree(self.secondary_full_test_path, ignore_errors=True)
 
-    def _setUp(self):
+    def setUp(self):
+        super(OsfsTest, self).setUp()
         self._cleanDirs()
 
-    def _tearDown(self):
+    def tearDown(self):
+        super(OsfsTest, self).tearDown()
         self._cleanDirs()
 
 
@@ -295,7 +280,9 @@ class S3Test(_BaseFs):
         'bucket': 'test_bucket'
     }
 
-    def _setUp(self):
+    def setUp(self):
+        super(S3Test, self).setUp()
+
         # For some reason the Py3 version of get_url returns a port in this test, while the Py2 version does not.
         if sys.version_info[0] == 2:
             self.expected_url_prefix = "https://{}.s3.amazonaws.com/{}/{}".format(
@@ -308,7 +295,6 @@ class S3Test(_BaseFs):
 
         self._setUpS3()
 
-
     def _setUpS3(self):
         # Start mocking S3
         self.mock_s3 = mock_s3()
@@ -318,8 +304,9 @@ class S3Test(_BaseFs):
         self.conn = boto.connect_s3()
         self.conn.create_bucket(djpyfs.djfs_settings['bucket'])
 
-    def _tearDown(self):
+    def tearDown(self):
         self.mock_s3.stop()
+        super(S3Test, self).tearDown()
 
 
 class S3TestPrefix(S3Test):
@@ -337,7 +324,9 @@ class S3TestPrefix(S3Test):
         'prefix': 'prefix'
     }
 
-    def _setUp(self):
+    def setUp(self):
+        super(S3TestPrefix, self).setUp()
+
         # For some reason the Py3 version of get_url returns a port in this test, while the Py2 version does not.
         if sys.version_info[0] == 2:
             self.expected_url_prefix = "https://{}.s3.amazonaws.com/{}/{}/{}".format(

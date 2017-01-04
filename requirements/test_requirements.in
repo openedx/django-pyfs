@@ -1,0 +1,12 @@
+# Additional requirements for unit tests, you must also run the main requirements.txt.
+boto==2.45.0
+moto==0.4.30
+pytest==3.0.5
+pytest-django==3.1.2
+codecov==2.0.5
+
+# For the sample app
+pypng==0.0.18
+
+# Uncomment if you want to run the tests standalone. Tox will test against multiple versions by default.
+# Django>=1.8

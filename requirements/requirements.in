@@ -1,0 +1,5 @@
+# This requirement breaks pip-tools, but the requirements are unchanged from master. It is possible to temporarily
+# change this to fs for updating pinned versions, then change it back after, but you will have to hand edit the
+# resulting requirements.txt to replace this url since it contains changes necessary for Python 3.
+git+https://github.com/edx/pyfilesystem.git@bmedx/s3fs-py3-support#egg=fs==0.5.5a1
+six==1.10.0

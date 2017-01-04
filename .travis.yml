@@ -1,16 +1,25 @@
 language: python
+
 python:
  - '2.7'
  - '3.5'
+
+env:
+  - DJANGO="1.8"
+  - DJANGO="1.9"
+  - DJANGO="1.10"
+
 sudo: false
+
 branches:
   only:
   - master
+
 install:
-- pip install -r requirements/tox.txt
-- pip install tox-travis
+- pip install -r requirements/tox_requirements.txt
+
 script:
 - tox
+
 after_success:
-- pip install coveralls
-- coveralls
+- codecov

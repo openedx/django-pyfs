@@ -11,7 +11,6 @@ task can garbage-collect those objects.
 
 '''
 from __future__ import absolute_import
-from future.builtins import str
 
 import os
 import os.path
@@ -96,7 +95,8 @@ def get_osfs(namespace):
 
 def get_s3fs(namespace):
     ''' Helper method to get_filesystem for a file system on S3 '''
-    # These imports are temporary to get to a place where we can test while not incurring a boto dependency... yet.
+    # Our test suite does not presume Amazon S3, and we would prefer not to have a global import so that we can run
+    # tests without requiring boto. These will become global when and if we include S3/boto in our test suite.
     from fs.s3fs import S3FS
     from boto.s3.connection import S3Connection
 
