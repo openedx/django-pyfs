@@ -7,13 +7,14 @@
 argparse==1.4.0           # via codecov
 boto==2.45.0
 codecov==2.0.5
-coverage==4.3.1           # via codecov
+coverage==4.3.1           # via codecov, pytest-cov
 httpretty==0.8.10         # via moto
 jinja2==2.8.1             # via moto
 markupsafe==0.23          # via jinja2
 moto==0.4.30
 py==1.4.32                # via pytest
 pypng==0.0.18
+pytest-cov==2.4.0
 pytest-django==3.1.2
 pytest==3.0.5
 python-dateutil==2.6.0    # via moto
