@@ -22,4 +22,5 @@ script:
   - tox
 
 after_success:
+  - ls -latr
   - bash <(curl -s https://codecov.io/bash)
