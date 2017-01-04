@@ -1,6 +1,7 @@
 [run]
 branch = True
 source = djpyfs
+data_file = .coverage
 omit = djpyfs/tests.py
 
 [report]
