@@ -1,3 +1,4 @@
+from future.builtins import map
 import png
 
 from django.http import HttpResponse
@@ -10,14 +11,17 @@ arrow = ["11011",
          "11011", 
          "11011", 
          "10001"]
-arrow = [map(int, x) for x in arrow]
+arrow = [list(map(int, x)) for x in arrow]
 
-def index(request):
+
+def index(_):
     fs = djpyfs.get_filesystem("sample")
     f = fs.open("uparrow.png", "wb")
-    png.Writer(len(arrow[0]), len(arrow), greyscale = True, bitdepth = 1).write(f, arrow)
+    png.Writer(len(arrow[0]), len(arrow), greyscale=True, bitdepth=1).write(f, arrow)
     f.close()
 
     url = fs.get_url("uparrow.png")
 
-    return HttpResponse("<html><body>Hello, world. You're at the polls index. <img src=\"{source}\"> </body></html>".format(source=url))
+    return HttpResponse(
+        "<html><body>Hello, world. You're at the test index. <img src=\"{source}\"> </body></html>".format(source=url)
+    )

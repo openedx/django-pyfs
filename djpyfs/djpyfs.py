@@ -10,35 +10,27 @@ filesystem.
 task can garbage-collect those objects. 
 
 '''
+from __future__ import absolute_import
 
-import json
 import os
 import os.path
 import types
 
 from django.conf import settings
+from fs.osfs import OSFS
 
-from models import FSExpirations
+from .models import FSExpirations
 
 
 if hasattr(settings, 'DJFS'):
-    djfs_settings = settings.DJFS
+    djfs_settings = settings.DJFS  #pragma: no cover
 else:
     djfs_settings = {'type' : 'osfs',
                      'directory_root' : 'django-pyfs/static/django-pyfs', 
                      'url_root' : '/static/django-pyfs'}
 
-if djfs_settings['type'] == 'osfs':
-    from fs.osfs import OSFS
-elif djfs_settings['type'] == 's3fs':
-    from fs.s3fs import S3FS
-    from boto.s3.connection import S3Connection
-    from boto.s3.key import Key
-    key_id = djfs_settings.get('aws_access_key_id', None)
-    key_secret = djfs_settings.get('aws_secret_access_key', None)
-    s3conn = None
-else: 
-    raise AttributeError("Bad filesystem: "+str(djfs_settings['type']))
+s3conn = None
+
 
 def get_filesystem(namespace):
     ''' Returns a pyfilesystem for static module storage. 
@@ -56,7 +48,7 @@ def get_filesystem(namespace):
 
 def expire_objects():
     ''' Remove all obsolete objects from the file systems. Untested. '''
-    objects = sorted(FSExpirations.expired(), key=lambda x:x.module)
+    objects = sorted(FSExpirations.expired(), key=lambda x: x.module)
     fs = None
     module = None
     for o in objects:
@@ -98,12 +90,20 @@ def get_osfs(namespace):
     if not os.path.exists(full_path):
         os.makedirs(full_path)
     osfs = OSFS(full_path)
-    osfs = patch_fs(osfs, namespace, lambda self, filename, timeout=0:os.path.join(djfs_settings['url_root'], namespace, filename))
+    osfs = patch_fs(osfs, namespace, lambda self, filename, timeout=0: os.path.join(djfs_settings['url_root'], namespace, filename))
     return osfs
 
 def get_s3fs(namespace):
     ''' Helper method to get_filesystem for a file system on S3 '''
-    global key_id, key_secret
+    # Our test suite does not presume Amazon S3, and we would prefer not to have a global import so that we can run
+    # tests without requiring boto. These will become global when and if we include S3/boto in our test suite.
+    from fs.s3fs import S3FS
+    from boto.s3.connection import S3Connection
+
+    key_id = djfs_settings.get('aws_access_key_id', None)
+    key_secret = djfs_settings.get('aws_secret_access_key', None)
+    s3conn = None
+
     fullpath = namespace
     if 'prefix' in djfs_settings: 
         fullpath = os.path.join(djfs_settings['prefix'], fullpath)
@@ -121,4 +121,3 @@ def get_s3fs(namespace):
 
     s3fs = patch_fs(s3fs, namespace, get_s3_url)
     return s3fs
-
