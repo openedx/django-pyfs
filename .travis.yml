@@ -16,7 +16,7 @@ branches:
   - master
 
 install:
-  - pip install -r requirements/tox_requirements.txt
+  - pip install -r requirements/test_requirements.txt
 
 script:
   - tox
