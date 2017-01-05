@@ -23,4 +23,5 @@ script:
 
 after_success:
   - ls -latr
+  - coverage xml -i
   - bash <(curl -s https://codecov.io/bash)
