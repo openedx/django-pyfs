@@ -38,7 +38,7 @@ S3CONN = None
 def get_filesystem(namespace):
     """
     Returns a patched pyfilesystem for static module storage based on
-    `djfs_settings`.
+    `DJFS_SETTINGS`.
     """
     if DJFS_SETTINGS['type'] == 'osfs':
         return get_osfs(namespace)

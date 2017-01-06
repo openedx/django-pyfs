@@ -316,7 +316,7 @@ class S3Test(_BaseFs):
         self.conn.create_bucket(djpyfs.DJFS_SETTINGS['bucket'])
 
     # This test is only relevant for S3. Generate some fake errors to make
-    # sure we over the retry code.
+    # sure we cover the retry code.
     def test_get_url_retry(self):
         with mock.patch("boto.s3.connection.S3Connection.generate_url") as mock_exception:
             mock_exception.side_effect = AttributeError("test mock exception")
