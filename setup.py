@@ -34,5 +34,5 @@ setup(
         "Topic :: Software Development :: Libraries :: Python Modules",
         "License :: OSI Approved :: Apache Software License",
     ],
-    install_requires=['fs', 'six'],
+    install_requires=['fs', 'boto', 'six'],
 )

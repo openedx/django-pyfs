@@ -5,13 +5,16 @@
 #    pip-compile --output-file requirements/test_requirements.txt requirements/test_requirements.in
 #
 argparse==1.4.0           # via codecov
-boto==2.45.0
+boto==2.45.0              # via moto
 codecov==2.0.5
 coverage==4.3.1           # via codecov, pytest-cov
+funcsigs==1.0.2           # via mock
 httpretty==0.8.10         # via moto
 jinja2==2.8.1             # via moto
 markupsafe==0.23          # via jinja2
+mock==2.0.0
 moto==0.4.30
+pbr==1.10.0               # via mock
 pluggy==0.4.0             # via tox
 py==1.4.32                # via pytest, tox
 pypng==0.0.18
@@ -21,7 +24,7 @@ pytest==3.0.5
 python-dateutil==2.6.0    # via moto
 pytz==2016.10             # via moto
 requests==2.12.4          # via codecov, moto
-six==1.10.0               # via moto, python-dateutil
+six==1.10.0               # via mock, moto, python-dateutil
 tox==2.5.0
 virtualenv==15.1.0        # via tox
 werkzeug==0.11.15         # via moto
