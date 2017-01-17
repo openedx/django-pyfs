@@ -38,7 +38,11 @@ S3CONN = None
 def get_filesystem(namespace):
     """
     Returns a patched pyfilesystem for static module storage based on
-    `DJFS_SETTINGS`.
+    `DJFS_SETTINGS`. See `patch_fs` documentation for additional details.
+
+    The file system will have two additional properties:
+      1) get_url: A way to get a URL for a static file download
+      2) expire: A way to expire files (so they are automatically destroyed)
     """
     if DJFS_SETTINGS['type'] == 'osfs':
         return get_osfs(namespace)
