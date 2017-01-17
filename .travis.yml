@@ -23,3 +23,13 @@ script:
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
+
+deploy:
+  provider: pypi
+  user: edx
+  password:
+    secure: "rXk3zjCNHdRE9Q9gawz6KBcL+3aXY+TkxPVKHdJgQCHsX6T5ZmUIQCmKVAz9pRstzpOe4rLSNEjIfdMerPb8Aeto46LGjm1/AJ5HjPqqvu5c9PzJ/HSCKLjIwa6JBr2EBPf3b98kwi9h3aub/jX81bOvqGBamSdzQ4GbFnTfqP8QX3WEk2ANLQVUTe3w1Qw6e1pdbOAGRGUZf1iAMMlm690jjuZdqDVL92haRKrmFgy1ToIc/OSKn8o1PXIn1YWY+vg9kO0xsbfDUcZ1eAV15cQobf5+9nB0g+RsuI76tyZ1ZyHQaMsWgwD6tbQOWt4b6/PYs9spLfEbb+UZcU1MycXMHfJbOiGHuq1D//VgoxzJzLZKD6uYncWmOk/OlMYdmQqIdi9tvBFncnitkmLwV91dIfXVFPNrmiYfK207b62SVaxRH3CKFPUp2UrSi8r0bM9ud33PcT8KdW+2Z9tcwbkc46UTodqtbLFQnvbyhROTqooLiwfeFfy60g9/qfdsgGpkt1XgMs8c7vuix5qkuB9KYjSVGBdNUazIWg9PVCW510TJXxal1rc+NQBB3SWa2hozkFgrvmTtRds4lSU+FgkiKpSf3MGIYKugLjYDFrrmfPqjIPbaKdkdOxv30cWUJZ+/kS/N8aUlohbjbov0tgNpoJ3RlreE/34y85Sm8Pc="
+  distributions: sdist bdist_wheel
+  on:
+    tags: true
+    condition: '$TOXENV = django110'
