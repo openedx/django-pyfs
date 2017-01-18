@@ -32,4 +32,5 @@ deploy:
   distributions: sdist bdist_wheel
   on:
     tags: true
-    condition: $TOXENV == "django110" && $TRAVIS_PYTHON_VERSION == "2.7"
+    python: "2.7"
+    condition: '$TOXENV == django110'
