@@ -8,6 +8,7 @@ import unittest
 from io import StringIO
 
 import boto
+import mock
 from django.test import TestCase
 from django.utils import timezone
 from fs.memoryfs import MemoryFS
@@ -34,7 +35,8 @@ class FSExpirationsTest(TestCase):
         """
         Exercises FSExpirations.create_expiration() with an existing expiration
         """
-        # In the first create_expiration, it does not exist. Second loop it is updating the existing row.
+        # In the first create_expiration, it does not exist. Second loop it is
+        # updating the existing row.
         for _ in range(2):
             FSExpirations.create_expiration(
                 self.module, self.test_file_path, self.expire_secs, self.expire_days, self.expires
@@ -83,7 +85,8 @@ class FSExpirationsTest(TestCase):
             self.module, self.test_file_path, expire_secs, expire_days, self.expires
         )
 
-        # Make sure there is 1 expiration pending, but nothing currently expired
+        # Make sure there is 1 expiration pending, but nothing currently
+        # expired
         self.assertEqual(FSExpirations.objects.all().count(), 1)
         self.assertEqual(len(FSExpirations.expired()), 0)
 
@@ -97,7 +100,8 @@ class FSExpirationsTest(TestCase):
         )
 
         for f in (fse, fse2):
-            # Don't really care what __str__ is, just that it returns a string of some variety and doesn't error
+            # Don't really care what __str__ is, just that it returns a string
+            # of some variety and doesn't error
             try:
                 result = f.__str__()
                 self.assertTrue(isinstance(result, six.string_types))
@@ -112,9 +116,10 @@ class _BaseFs(TestCase):
         if self.djfs_settings is None:
             raise unittest.SkipTest("Skipping test on base class.")
 
-        # Monkey patch djpyfs settings to force settings to whatever the inheriting class is testing
-        self.orig_djpyfs_settings = djpyfs.djfs_settings
-        djpyfs.djfs_settings = self.djfs_settings
+        # Monkey patch djpyfs settings to force settings to whatever the
+        # inheriting class is testing
+        self.orig_djpyfs_settings = djpyfs.DJFS_SETTINGS
+        djpyfs.DJFS_SETTINGS = self.djfs_settings
 
         self.namespace = 'unitttest'
         self.secondary_namespace = 'unittest_2'
@@ -127,17 +132,18 @@ class _BaseFs(TestCase):
         self.relative_path_to_secondary_test_file = os.path.join(self.test_dir_name, self.secondary_test_file_name)
         self.relative_path_to_uncreated_test_file = os.path.join(self.test_dir_name, self.uncreated_test_file_name)
 
-        self.full_test_path = os.path.join(djpyfs.djfs_settings['directory_root'], self.namespace)
-        self.secondary_full_test_path = os.path.join(djpyfs.djfs_settings['directory_root'], self.secondary_namespace)
+        self.full_test_path = os.path.join(djpyfs.DJFS_SETTINGS['directory_root'], self.namespace)
+        self.secondary_full_test_path = os.path.join(djpyfs.DJFS_SETTINGS['directory_root'], self.secondary_namespace)
 
-        # We test against just the beginning of the returned url since S3 will have changing query params appended.
+        # We test against just the beginning of the returned url since S3 will
+        # have changing query params appended.
         self.expected_url_prefix = os.path.join(
-            djpyfs.djfs_settings['url_root'], self.namespace, self.relative_path_to_test_file
+            djpyfs.DJFS_SETTINGS['url_root'], self.namespace, self.relative_path_to_test_file
         )
 
     def tearDown(self):
         # Restore original settings
-        djpyfs.djfs_settings = self.orig_djpyfs_settings
+        djpyfs.DJFS_SETTINGS = self.orig_djpyfs_settings
 
     def test_get_filesystem(self):
         # Testing that using the default retrieval also gives us a usable osfs
@@ -150,8 +156,10 @@ class _BaseFs(TestCase):
         expire_secs = 0
         expire_days = 0
 
-        # Need to create two different namespaces with at least two files and at least one file that doesn't exist to
-        # fully exercise expire_objects. They all have to be part of the same run, thus this overly complicated hoo-ha.
+        # Need to create two different namespaces with at least two files and
+        # at least one file that doesn't exist to fully exercise expire_
+        # objects. They all have to be part of the same run, thus this overly
+        # complicated hoo-ha.
         fs1 = djpyfs.get_filesystem(self.namespace)
         fs2 = djpyfs.get_filesystem(self.secondary_namespace)
 
@@ -173,7 +181,8 @@ class _BaseFs(TestCase):
 
         self.assertEqual(FSExpirations.objects.all().count(), 6)
 
-        # Expire, should delete the files that exist and do nothing for the one that doesn't
+        # Expire, should delete the files that exist and do nothing for the
+        # one that doesn't
         djpyfs.expire_objects()
 
         self.assertFalse(fs1.exists(self.relative_path_to_test_file))
@@ -197,14 +206,15 @@ class _BaseFs(TestCase):
         self.assertTrue(fs.get_url(self.relative_path_to_test_file).startswith(self.expected_url_prefix))
 
     def test_get_url_does_not_exist(self):
-        # Current behavior is that even if a file doesn't exist you can get a URL for it
+        # Current behavior is that even if a file doesn't exist you can get a
+        # URL for it
         fs = djpyfs.get_filesystem(self.namespace)
         self.assertFalse(fs.exists(self.relative_path_to_test_file))
         self.assertTrue(fs.get_url(self.relative_path_to_test_file).startswith(self.expected_url_prefix))
 
     def test_patch_fs(self):
         """
-        Simple check to make sure the filesystem is getting patched as expected.
+        Simple check to make sure the filesystem is patched as expected.
         """
         fs = djpyfs.get_filesystem(self.namespace)
         self.assertTrue(callable(getattr(fs, 'expire')))
@@ -213,8 +223,8 @@ class _BaseFs(TestCase):
 
 class BadFileSystemTestInh(_BaseFs):
     """
-    Test filesystem class that uses an unknown filesystem type to make sure all methods return consistently. Wraps
-    all BaseFs tests to catch the exception.
+    Test filesystem class that uses an unknown filesystem type to make sure all
+    methods return consistently. Wraps all BaseFs tests to catch the exception.
     """
     djfs_settings = {
         'type': 'bogusfs',
@@ -269,7 +279,7 @@ class OsfsTest(_BaseFs):
 
 class S3Test(_BaseFs):
     """
-    Tests the S3FS implementation, without a prefix
+    Tests the S3FS implementation, without a prefix.
     """
     djfs_settings = {
         'type': 's3fs',
@@ -283,14 +293,15 @@ class S3Test(_BaseFs):
     def setUp(self):
         super(S3Test, self).setUp()
 
-        # For some reason the Py3 version of get_url returns a port in this test, while the Py2 version does not.
+        # For some reason the Py3 version of get_url returns a port in this
+        # test, while the Py2 version does not.
         if sys.version_info[0] == 2:
             self.expected_url_prefix = "https://{}.s3.amazonaws.com/{}/{}".format(
-                djpyfs.djfs_settings['bucket'], self.namespace, self.relative_path_to_test_file
+                djpyfs.DJFS_SETTINGS['bucket'], self.namespace, self.relative_path_to_test_file
             )
         else:
             self.expected_url_prefix = "https://{}.s3.amazonaws.com:443/{}/{}".format(
-                djpyfs.djfs_settings['bucket'], self.namespace, self.relative_path_to_test_file
+                djpyfs.DJFS_SETTINGS['bucket'], self.namespace, self.relative_path_to_test_file
             )
 
         self._setUpS3()
@@ -302,7 +313,17 @@ class S3Test(_BaseFs):
 
         # Create our fake bucket in fake s3
         self.conn = boto.connect_s3()
-        self.conn.create_bucket(djpyfs.djfs_settings['bucket'])
+        self.conn.create_bucket(djpyfs.DJFS_SETTINGS['bucket'])
+
+    # This test is only relevant for S3. Generate some fake errors to make
+    # sure we cover the retry code.
+    def test_get_url_retry(self):
+        with mock.patch("boto.s3.connection.S3Connection.generate_url") as mock_exception:
+            mock_exception.side_effect = AttributeError("test mock exception")
+            fs = djpyfs.get_filesystem(self.namespace)
+
+            with self.assertRaises(AttributeError):
+                fs.get_url(self.relative_path_to_test_file).startswith(self.expected_url_prefix)
 
     def tearDown(self):
         self.mock_s3.stop()
@@ -327,15 +348,16 @@ class S3TestPrefix(S3Test):
     def setUp(self):
         super(S3TestPrefix, self).setUp()
 
-        # For some reason the Py3 version of get_url returns a port in this test, while the Py2 version does not.
+        # For some reason the Py3 version of get_url returns a port in this
+        # test, while the Py2 version does not.
         if sys.version_info[0] == 2:
             self.expected_url_prefix = "https://{}.s3.amazonaws.com/{}/{}/{}".format(
-                djpyfs.djfs_settings['bucket'], djpyfs.djfs_settings['prefix'],
+                djpyfs.DJFS_SETTINGS['bucket'], djpyfs.DJFS_SETTINGS['prefix'],
                 self.namespace, self.relative_path_to_test_file
             )
         else:
             self.expected_url_prefix = "https://{}.s3.amazonaws.com:443/{}/{}/{}".format(
-                djpyfs.djfs_settings['bucket'], djpyfs.djfs_settings['prefix'],
+                djpyfs.DJFS_SETTINGS['bucket'], djpyfs.DJFS_SETTINGS['prefix'],
                 self.namespace, self.relative_path_to_test_file
             )
 

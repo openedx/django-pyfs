@@ -59,9 +59,6 @@ Good next steps would be to:
 * Allow Django storages to act as a back-end for pyfilesystem
 * Allow django-pyfs to act as a back-end for Django storages
 * Support more types of pyfilesystems (esp. in-memory would be nice)
-* General code cleanup, documentation, test cases, etc. 
-* Add better test support. Django does nice things with resetting 
-  DBs to a know state for testing. It'd be nice to do the same here. 
 
 State: This code is tested and has worked well in a range of settings,
 and is currently deployed on edx.org. However, it doesn't have test
