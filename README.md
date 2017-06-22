@@ -56,6 +56,7 @@ implementation is very Django-specific.
 
 Good next steps would be to:
 
+* Upgrade to use PyFilesystem2 when it supports S3
 * Allow Django storages to act as a back-end for pyfilesystem
 * Allow django-pyfs to act as a back-end for Django storages
 * Support more types of pyfilesystems (esp. in-memory would be nice)
