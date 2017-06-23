@@ -12,10 +12,6 @@ env:
 
 sudo: false
 
-branches:
-  only:
-  - master
-
 install:
   - pip install -r requirements/test_requirements.txt
 
@@ -33,3 +29,4 @@ deploy:
   distributions: sdist bdist_wheel
   on:
     tags: true
+    all_branches: true
