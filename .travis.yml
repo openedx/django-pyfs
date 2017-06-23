@@ -34,4 +34,4 @@ deploy:
   on:
     tags: true
     python: "2.7"
-    condition: '$TOXENV == django110'
+    condition: '$TOXENV == django111'
