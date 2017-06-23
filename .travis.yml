@@ -33,5 +33,3 @@ deploy:
   distributions: sdist bdist_wheel
   on:
     tags: true
-    python: "2.7"
-    condition: '$TOXENV == django111'
