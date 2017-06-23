@@ -12,10 +12,6 @@ env:
 
 sudo: false
 
-branches:
-  only:
-  - master
-
 install:
   - pip install -r requirements/test_requirements.txt
 
