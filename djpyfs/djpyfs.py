@@ -5,8 +5,8 @@ functionality:
 1) Django configuration. This can go to Amazon S3 or a static
 filesystem.
 2) The ability to get URLs for objects stored on the filesystem.
-3) The ability to create objects with a limited lifetime. A 
-task can garbage-collect those objects. 
+3) The ability to create objects with a limited lifetime. A
+task can garbage-collect those objects.
 """
 
 from __future__ import absolute_import
@@ -20,14 +20,12 @@ from django.conf import settings
 from fs.osfs import OSFS
 from fs.s3fs import S3FS
 
-from .models import FSExpirations
-
 
 if hasattr(settings, 'DJFS'):
     DJFS_SETTINGS = settings.DJFS  # pragma: no cover
 else:
     DJFS_SETTINGS = {'type': 'osfs',
-                     'directory_root': 'django-pyfs/static/django-pyfs', 
+                     'directory_root': 'django-pyfs/static/django-pyfs',
                      'url_root': '/static/django-pyfs'}
 
 # Global to hold the active S3 connection. Prevents needing to reconnect
@@ -56,6 +54,7 @@ def expire_objects():
     """
     Remove all obsolete objects from the file systems.
     """
+    from .models import FSExpirations
     objects = sorted(FSExpirations.expired(), key=lambda x: x.module)
     fs = None
     module = None
@@ -97,6 +96,7 @@ def patch_fs(fs, namespace, url_method):
         Returns:
             None
         """
+        from .models import FSExpirations
         FSExpirations.create_expiration(namespace, filename, seconds, days=days, expires=expires)
 
     fs.expire = types.MethodType(expire, fs)
@@ -153,7 +153,7 @@ def get_s3fs(namespace):
         """
         global S3CONN
 
-        try: 
+        try:
             if not S3CONN:
                 S3CONN = S3Connection(aws_access_key_id=key_id, aws_secret_access_key=key_secret)
             return S3CONN.generate_url(
