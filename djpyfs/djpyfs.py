@@ -18,7 +18,7 @@ import types
 from boto.s3.connection import S3Connection
 from django.conf import settings
 from fs.osfs import OSFS
-from fs.s3fs import S3FS
+from fs_s3fs import S3FS
 
 
 if hasattr(settings, 'DJFS'):
@@ -133,7 +133,7 @@ def get_s3fs(namespace):
 
     if 'prefix' in DJFS_SETTINGS:
         fullpath = os.path.join(DJFS_SETTINGS['prefix'], fullpath)
-    s3fs = S3FS(DJFS_SETTINGS['bucket'], fullpath, aws_access_key=key_id, aws_secret_key=key_secret)
+    s3fs = S3FS(DJFS_SETTINGS['bucket'], fullpath, aws_secret_access_key=key_id, aws_access_key_id=key_secret)
 
     def get_s3_url(self, filename, timeout=60):
         """

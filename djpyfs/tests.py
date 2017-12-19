@@ -166,9 +166,9 @@ class _BaseFs(TestCase):
         for curr_fs in (fs1, fs2):
             curr_fs.makedir(self.test_dir_name)
 
-            foo = StringIO("foo")
-            curr_fs.setcontents(self.relative_path_to_test_file, foo, 'utf-8', 'strict')
-            curr_fs.setcontents(self.relative_path_to_secondary_test_file, foo, 'utf-8', 'strict')
+            foo = 'foo'
+            curr_fs.settext(self.relative_path_to_test_file, foo, 'utf-8', 'strict')
+            curr_fs.settext(self.relative_path_to_secondary_test_file, foo, 'utf-8', 'strict')
 
             self.assertTrue(curr_fs.exists(self.relative_path_to_test_file))
             self.assertTrue(curr_fs.exists(self.relative_path_to_secondary_test_file))
