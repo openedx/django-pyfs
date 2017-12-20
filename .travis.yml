@@ -13,7 +13,7 @@ env:
 sudo: false
 
 install:
-  - pip install -r requirements/test_requirements.txt
+  - pip install -r requirements/travis.txt
 
 script:
   - tox

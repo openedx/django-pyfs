@@ -12,7 +12,7 @@ else:
 
 setup(
     name='django-pyfs',
-    version='1.0.7',
+    version='2.0',
     description='Django pyfilesystem integration',
     author='Piotr Mitros',
     author_email='pmitros@edx.org',
@@ -35,5 +35,5 @@ setup(
         "Topic :: Software Development :: Libraries :: Python Modules",
         "License :: OSI Approved :: Apache Software License",
     ],
-    install_requires=['fs', 'boto', 'six', 'django'],
+    install_requires=['fs', 'fs-s3fs', 'six', 'django'],
 )
