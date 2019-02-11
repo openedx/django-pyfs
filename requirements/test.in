@@ -6,3 +6,4 @@ pypng==0.0.18  # For the sample app
 pytest         # Test runner
 pytest-django  # pytest extension for better Django support
 pytest-cov     # pytest extension for code coverage statistics
+google_compute_engine
