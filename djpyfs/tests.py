@@ -1,14 +1,17 @@
-from __future__ import absolute_import, unicode_literals
-import six
+"""
+Database models for django-pyfs
+"""
 
-import shutil
+from __future__ import absolute_import, unicode_literals
+
 import os
+import shutil
 import sys
 import unittest
-from io import StringIO
 
 import boto
 import mock
+import six
 from django.test import TestCase
 from django.utils import timezone
 from fs.memoryfs import MemoryFS
@@ -19,7 +22,9 @@ from .models import FSExpirations
 
 
 class FSExpirationsTest(TestCase):
+    """ Tests for FSExpirations"""
     def setUp(self):
+        super(FSExpirationsTest, self).setUp()
         self.fs = MemoryFS()
         self.test_file_path = '/foo/bar'
         self.expires = True
@@ -29,6 +34,7 @@ class FSExpirationsTest(TestCase):
         self.module = "unittest"
 
     def tearDown(self):
+        super(FSExpirationsTest, self).tearDown()
         self.fs.close()
 
     def test_create_expiration_exists(self):
@@ -105,14 +111,17 @@ class FSExpirationsTest(TestCase):
             try:
                 result = f.__str__()
                 self.assertTrue(isinstance(result, six.string_types))
-            except Exception as e:
+            except Exception as e:  # pylint: disable=broad-except
                 self.fail("__str__ raised an exception! {}".format(e))
 
 
+# pylint: disable=literal-used-as-attribute
 class _BaseFs(TestCase):
+    """Tests for BaseFs"""
     djfs_settings = None
 
     def setUp(self):
+        super(_BaseFs, self).setUp()
         if self.djfs_settings is None:
             raise unittest.SkipTest("Skipping test on base class.")
 
@@ -143,6 +152,7 @@ class _BaseFs(TestCase):
 
     def tearDown(self):
         # Restore original settings
+        super(_BaseFs, self).tearDown()
         djpyfs.DJFS_SETTINGS = self.orig_djpyfs_settings
 
     def test_get_filesystem(self):
@@ -152,6 +162,7 @@ class _BaseFs(TestCase):
         fs.getinfo(self.test_dir_name)
         fs.removedir(self.test_dir_name)
 
+    # pylint: disable=no-member
     def test_expire_objects(self):
         expire_secs = 0
         expire_days = 0
@@ -166,7 +177,7 @@ class _BaseFs(TestCase):
         for curr_fs in (fs1, fs2):
             curr_fs.makedir(self.test_dir_name)
 
-            foo = 'foo'
+            foo = 'foo'  # pylint: disable=blacklisted-name
             curr_fs.settext(self.relative_path_to_test_file, foo, 'utf-8', 'strict')
             curr_fs.settext(self.relative_path_to_secondary_test_file, foo, 'utf-8', 'strict')
 
@@ -217,10 +228,11 @@ class _BaseFs(TestCase):
         Simple check to make sure the filesystem is patched as expected.
         """
         fs = djpyfs.get_filesystem(self.namespace)
-        self.assertTrue(callable(getattr(fs, 'expire')))
-        self.assertTrue(callable(getattr(fs, 'get_url')))
+        self.assertTrue(callable(getattr(fs, 'expire')))   # pylint: disable=literal-used-as-attribute
+        self.assertTrue(callable(getattr(fs, 'get_url')))  # pylint: disable=literal-used-as-attribute
 
 
+# pylint: disable=test-inherits-tests; literal-used-as-attribute
 class BadFileSystemTestInh(_BaseFs):
     """
     Test filesystem class that uses an unknown filesystem type to make sure all
@@ -253,6 +265,7 @@ class BadFileSystemTestInh(_BaseFs):
             super(BadFileSystemTestInh, self).test_patch_fs()
 
 
+# pylint: disable=test-inherits-tests
 class OsfsTest(_BaseFs):
     """
     Tests the OSFS implementation.
@@ -277,6 +290,7 @@ class OsfsTest(_BaseFs):
         self._cleanDirs()
 
 
+# pylint: disable=test-inherits-tests
 class S3Test(_BaseFs):
     """
     Tests the S3FS implementation, without a prefix.
@@ -307,6 +321,8 @@ class S3Test(_BaseFs):
         self._setUpS3()
 
     def _setUpS3(self):
+        """setup class"""
+
         # Start mocking S3
         self.mock_s3 = mock_s3()
         self.mock_s3.start()
@@ -330,6 +346,7 @@ class S3Test(_BaseFs):
         super(S3Test, self).tearDown()
 
 
+# pylint: disable=test-inherits-tests
 class S3TestPrefix(S3Test):
     """
     Same as S3Test above, but includes a prefix.

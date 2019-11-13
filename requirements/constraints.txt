@@ -1,0 +1,16 @@
+# Version constraints for pip installation.
+#
+# This file doesn't install any packages. It specifies version constraints
+# that will be applied if a package is needed.
+#
+# When pinning something here, please provide an explanation of why.  Ideally,
+# link to other information that will help people in the future to remove the
+# pin when possible.  Writing an issue against the offending project and
+# linking to it here is good.
+
+# futures is part of the builtin python in python3
+futures ; python_version == "2.7"
+
+# boto3 and moto latest versions are not compatible (moto hasn't been updated properly to work with latest version of
+# boto3 and it's underlying dependencies) with each other and causing tests failures.
+fs-s3fs<0.1.6
