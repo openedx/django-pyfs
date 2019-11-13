@@ -1,5 +1,6 @@
 # Core requirements for using this package
 
+-c constraints.txt
 
 Django>=1.11                      # The web application framework this package enhances
 fs>=2.0.1                         # Filesystem API for Python

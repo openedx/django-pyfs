@@ -1,5 +1,6 @@
 # Additional requirements for development of this application
 
+-c constraints.txt
 
 pip-tools                 # Requirements file management
 tox                       # virtualenv management for tests
