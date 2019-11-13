@@ -5,5 +5,4 @@
 Django>=1.11                      # The web application framework this package enhances
 fs>=2.0.1                         # Filesystem API for Python
 fs-s3fs                           # Amazon S3 support for the fs package
-futures; python_version == "2.7"  # Transitive dependency, listed here to preserve the environment marker
 six==1.10.0                       # Utilities to enable Python 2 & 3 support
