@@ -9,6 +9,7 @@ if os.path.exists(fname):
     ld = open(fname).read()
 else:
     ld = "Django pyfilesystem integration"
+# change for testing
 
 setup(
     name='django-pyfs',
