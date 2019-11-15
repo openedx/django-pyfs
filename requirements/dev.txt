@@ -6,21 +6,17 @@
 #
 appdirs==1.4.3            # via fs
 backports.os==0.1.1       # via fs
-boto3==1.10.17            # via fs-s3fs
-botocore==1.13.17         # via boto3, s3transfer
+boto3==1.4.8              # via fs-s3fs
 click==7.0                # via pip-tools
 configparser==4.0.2       # via importlib-metadata
 contextlib2==0.6.0.post1  # via importlib-metadata
 django==1.11.26
-docutils==0.15.2          # via botocore
 enum34==1.1.6             # via fs
 filelock==3.0.12          # via tox
-fs-s3fs==1.1.1
-fs==2.4.11
+fs-s3fs==0.1.5
+fs==2.0.27
 future==0.18.2            # via backports.os
-futures==3.3.0 ; python_version == "2.7"
 importlib-metadata==0.23  # via pluggy, tox
-jmespath==0.9.4           # via boto3, botocore
 more-itertools==5.0.0     # via zipp
 packaging==19.2           # via tox
 pathlib2==2.3.5           # via importlib-metadata
@@ -28,16 +24,13 @@ pip-tools==4.2.0
 pluggy==0.13.0            # via tox
 py==1.8.0                 # via tox
 pyparsing==2.4.5          # via packaging
-python-dateutil==2.8.0    # via botocore
 pytz==2019.3              # via django, fs
-s3transfer==0.2.1         # via boto3
 scandir==1.10.0           # via pathlib2
 six==1.10.0
 toml==0.10.0              # via tox
 tox-battery==0.5.1
 tox==3.14.1
 typing==3.7.4.1           # via fs
-urllib3==1.25.7           # via botocore
 virtualenv==16.7.7        # via tox
 zipp==0.6.0               # via importlib-metadata
 

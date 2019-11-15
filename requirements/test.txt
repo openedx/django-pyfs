@@ -8,26 +8,22 @@ appdirs==1.4.3            # via fs
 atomicwrites==1.3.0       # via pytest
 attrs==19.3.0             # via pytest
 backports.os==0.1.1       # via fs
-boto3==1.10.17            # via fs-s3fs
+boto3==1.4.8              # via fs-s3fs
 boto==2.49.0              # via moto
-botocore==1.13.17         # via boto3, s3transfer
 certifi==2019.9.11        # via requests
 chardet==3.0.4            # via requests
 configparser==4.0.2       # via importlib-metadata
 contextlib2==0.6.0.post1  # via importlib-metadata
 coverage==4.5.4           # via pytest-cov
-docutils==0.15.2          # via botocore
 enum34==1.1.6             # via fs
-fs-s3fs==1.1.1
-fs==2.4.11
+fs-s3fs==0.1.5
+fs==2.0.27
 funcsigs==1.0.2           # via mock, pytest
 future==0.18.2            # via backports.os
-futures==3.3.0 ; python_version == "2.7"
 httpretty==0.8.10         # via moto
 idna==2.8                 # via requests
 importlib-metadata==0.23  # via pluggy, pytest
 jinja2==2.10.3            # via moto
-jmespath==0.9.4           # via boto3, botocore
 markupsafe==1.1.1         # via jinja2
 mock==3.0.5
 more-itertools==5.0.0     # via pytest, zipp
@@ -41,14 +37,13 @@ pypng==0.0.18
 pytest-cov==2.8.1
 pytest-django==3.7.0
 pytest==4.6.6
-python-dateutil==2.8.0    # via botocore, moto
+python-dateutil==2.8.1    # via moto
 pytz==2019.3              # via django, fs, moto
 requests==2.22.0          # via moto
-s3transfer==0.2.1         # via boto3
 scandir==1.10.0           # via pathlib2
 six==1.10.0
 typing==3.7.4.1           # via fs
-urllib3==1.25.7           # via botocore, requests
+urllib3==1.25.7           # via requests
 wcwidth==0.1.7            # via pytest
 werkzeug==0.16.0          # via moto
 xmltodict==0.12.0         # via moto
