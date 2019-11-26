@@ -8,6 +8,7 @@ filesystem.
 3) The ability to create objects with a limited lifetime. A
 task can garbage-collect those objects.
 """
+# pylint: disable=W6100
 
 from __future__ import absolute_import
 
@@ -19,7 +20,6 @@ from boto.s3.connection import S3Connection
 from django.conf import settings
 from fs.osfs import OSFS
 from fs_s3fs import S3FS
-
 
 if hasattr(settings, 'DJFS'):
     DJFS_SETTINGS = settings.DJFS  # pragma: no cover
@@ -79,7 +79,8 @@ def patch_fs(fs, namespace, url_method):
     Returns:
         obj: Patched filesystem instance
     """
-    def expire(self, filename, seconds, days=0, expires=True):
+
+    def expire(self, filename, seconds, days=0, expires=True):  # pylint: disable=unused-argument
         """
         Set the lifespan of a file on the filesystem.
 
@@ -135,7 +136,7 @@ def get_s3fs(namespace):
         fullpath = os.path.join(DJFS_SETTINGS['prefix'], fullpath)
     s3fs = S3FS(DJFS_SETTINGS['bucket'], fullpath, aws_secret_access_key=key_id, aws_access_key_id=key_secret)
 
-    def get_s3_url(self, filename, timeout=60):
+    def get_s3_url(self, filename, timeout=60):  # pylint: disable=unused-argument
         """
         Patch method to returns a signed S3 url for the given filename
 

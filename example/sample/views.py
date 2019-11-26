@@ -4,7 +4,7 @@ import png
 from django.http import HttpResponse
 from djpyfs import djpyfs
 
-arrow = ["11011", 
+arrow = ["11011",
          "10001", 
          "00000", 
          "11011", 

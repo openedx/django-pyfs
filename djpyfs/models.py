@@ -1,9 +1,15 @@
+"""
+Database models for django-pyfs
+"""
+# pylint: disable=W6100
 import os
 
 from django.db import models
 from django.utils import timezone
+from django.utils.encoding import python_2_unicode_compatible
 
 
+@python_2_unicode_compatible
 class FSExpirations(models.Model):
     """
     Model to handle expiring temporary files.
@@ -72,7 +78,7 @@ class FSExpirations(models.Model):
         ]
 
     def __str__(self):
-        if self.expires: 
-            return "{} Expires {}".format(os.path.join(self.module, self.filename), str(self.expiration))
+        if self.expires:
+            return u"{} Expires {}".format(os.path.join(self.module, self.filename), str(self.expiration))
         else:
-            return "{} Permanent ({})".format(os.path.join(self.module, self.filename), str(self.expiration))
+            return u"{} Permanent ({})".format(os.path.join(self.module, self.filename), str(self.expiration))
