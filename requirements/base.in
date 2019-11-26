@@ -2,7 +2,7 @@
 
 -c constraints.txt
 
-django>=1.8,<2.0                  # The web application framework this package enhances
+django>=1.11                      # The web application framework this package enhances
 fs>=2.0.1                         # Filesystem API for Python
 fs-s3fs                           # Amazon S3 support for the fs package
-six==1.10.0                       # Utilities to enable Python 2 & 3 support
+six                               # Utilities to enable Python 2 & 3 support

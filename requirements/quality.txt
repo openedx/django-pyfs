@@ -52,7 +52,7 @@ pluggy==0.13.1
 py==1.8.0
 pycodestyle==2.5.0
 pydocstyle==3.0.0
-pygments==2.4.2           # via readme-renderer
+pygments==2.5.1           # via readme-renderer
 pylint-celery==0.3        # via edx-lint
 pylint-django==0.11.1     # via edx-lint
 pylint-plugin-utils==0.6  # via pylint-celery, pylint-django
