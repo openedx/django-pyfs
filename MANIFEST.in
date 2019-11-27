@@ -1,3 +1,5 @@
 include README.md
+include requirements/base.in
+include requirements/test.in
 recursive-include djpyfs *py
 recursive-include example *py
