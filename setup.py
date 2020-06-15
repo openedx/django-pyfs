@@ -46,7 +46,7 @@ def load_requirements(*requirements_paths):
 
 setup(
     name='django-pyfs',
-    version='2.1',
+    version='2.2',
     description='Django pyfilesystem integration',
     author='Piotr Mitros',
     author_email='pmitros@edx.org',
@@ -58,15 +58,11 @@ setup(
     classifiers=[
         "Development Status :: 4 - Beta",
         "Framework :: Django",
-        "Framework :: Django :: 1.11",
-        'Framework :: Django :: 2.0',
-        'Framework :: Django :: 2.1',
         'Framework :: Django :: 2.2',
         "Programming Language :: Python",
-        "Programming Language :: Python :: 2",
-        "Programming Language :: Python :: 2.7",
         "Programming Language :: Python :: 3",
         "Programming Language :: Python :: 3.5",
+        "Programming Language :: Python :: 3.8",
         "Topic :: Software Development :: Libraries :: Python Modules",
         "License :: OSI Approved :: Apache Software License",
     ],

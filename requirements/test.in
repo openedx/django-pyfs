@@ -3,7 +3,7 @@
 -c constraints.txt
 
 mock           # For setup of testing corner cases
-moto==0.4.30   # For mocking the boto3 Amazon S3 API
+moto           # For mocking the boto3 Amazon S3 API
 pypng==0.0.18  # For the sample app
 pytest         # Test runner
 pytest-django  # pytest extension for better Django support

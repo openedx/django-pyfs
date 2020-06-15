@@ -8,8 +8,6 @@ filesystem.
 3) The ability to create objects with a limited lifetime. A
 task can garbage-collect those objects.
 """
-# pylint: disable=W6100
-
 from __future__ import absolute_import
 
 import os
@@ -20,6 +18,7 @@ from boto.s3.connection import S3Connection
 from django.conf import settings
 from fs.osfs import OSFS
 from fs_s3fs import S3FS
+from .models import FSExpirations
 
 if hasattr(settings, 'DJFS'):
     DJFS_SETTINGS = settings.DJFS  # pragma: no cover
@@ -54,7 +53,6 @@ def expire_objects():
     """
     Remove all obsolete objects from the file systems.
     """
-    from .models import FSExpirations
     objects = sorted(FSExpirations.expired(), key=lambda x: x.module)
     fs = None
     module = None
@@ -97,7 +95,6 @@ def patch_fs(fs, namespace, url_method):
         Returns:
             None
         """
-        from .models import FSExpirations
         FSExpirations.create_expiration(namespace, filename, seconds, days=days, expires=expires)
 
     fs.expire = types.MethodType(expire, fs)

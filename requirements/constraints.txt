@@ -8,9 +8,8 @@
 # pin when possible.  Writing an issue against the offending project and
 # linking to it here is good.
 
-# futures is part of the builtin python in python3
-futures ; python_version == "2.7"
+# stay on lts release
+django<2.3
 
-# boto3 and moto latest versions are not compatible (moto hasn't been updated properly to work with latest version of
-# boto3 and it's underlying dependencies) with each other and causing tests failures.
-fs-s3fs<0.1.6
+# edx-lint requires wrapt<1.12.0
+wrapt<1.12.0

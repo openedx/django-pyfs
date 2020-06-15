@@ -1,7 +1,6 @@
 """
 Database models for django-pyfs
 """
-# pylint: disable=W6100
 import os
 
 from django.db import models
@@ -67,7 +66,7 @@ class FSExpirations(models.Model):
         expiration_lte = timezone.now()
         return cls.objects.filter(expires=True, expiration__lte=expiration_lte)
 
-    class Meta(object):
+    class Meta:
         app_label = 'djpyfs'
         unique_together = (("module", "filename"),)
         # We'd like to create an index first on expiration than on expires (so
