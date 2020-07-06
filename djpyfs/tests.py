@@ -6,16 +6,14 @@ from __future__ import absolute_import, unicode_literals
 
 import os
 import shutil
-import sys
 import unittest
 
-import boto
+import boto3
 import mock
-import six
 from django.test import TestCase
 from django.utils import timezone
-from fs.memoryfs import MemoryFS
 from moto import mock_s3
+from fs.memoryfs import MemoryFS
 
 from . import djpyfs
 from .models import FSExpirations
@@ -110,12 +108,11 @@ class FSExpirationsTest(TestCase):
             # of some variety and doesn't error
             try:
                 result = f.__str__()
-                self.assertTrue(isinstance(result, six.string_types))
+                self.assertTrue(isinstance(result, str))
             except Exception as e:  # pylint: disable=broad-except
                 self.fail("__str__ raised an exception! {}".format(e))
 
 
-# pylint: disable=literal-used-as-attribute
 class _BaseFs(TestCase):
     """Tests for BaseFs"""
     djfs_settings = None
@@ -162,7 +159,6 @@ class _BaseFs(TestCase):
         fs.getinfo(self.test_dir_name)
         fs.removedir(self.test_dir_name)
 
-    # pylint: disable=no-member
     def test_expire_objects(self):
         expire_secs = 0
         expire_days = 0
@@ -307,16 +303,9 @@ class S3Test(_BaseFs):
     def setUp(self):
         super(S3Test, self).setUp()
 
-        # For some reason the Py3 version of get_url returns a port in this
-        # test, while the Py2 version does not.
-        if sys.version_info[0] == 2:
-            self.expected_url_prefix = "https://{}.s3.amazonaws.com/{}/{}".format(
-                djpyfs.DJFS_SETTINGS['bucket'], self.namespace, self.relative_path_to_test_file
-            )
-        else:
-            self.expected_url_prefix = "https://{}.s3.amazonaws.com:443/{}/{}".format(
-                djpyfs.DJFS_SETTINGS['bucket'], self.namespace, self.relative_path_to_test_file
-            )
+        self.expected_url_prefix = "https://{}.s3.amazonaws.com:443/{}/{}".format(
+            djpyfs.DJFS_SETTINGS['bucket'], self.namespace, self.relative_path_to_test_file
+        )
 
         self._setUpS3()
 
@@ -328,8 +317,8 @@ class S3Test(_BaseFs):
         self.mock_s3.start()
 
         # Create our fake bucket in fake s3
-        self.conn = boto.connect_s3()
-        self.conn.create_bucket(djpyfs.DJFS_SETTINGS['bucket'])
+        self.conn = boto3.resource('s3')
+        self.conn.create_bucket(Bucket=djpyfs.DJFS_SETTINGS['bucket'])
 
     # This test is only relevant for S3. Generate some fake errors to make
     # sure we cover the retry code.
@@ -365,17 +354,9 @@ class S3TestPrefix(S3Test):
     def setUp(self):
         super(S3TestPrefix, self).setUp()
 
-        # For some reason the Py3 version of get_url returns a port in this
-        # test, while the Py2 version does not.
-        if sys.version_info[0] == 2:
-            self.expected_url_prefix = "https://{}.s3.amazonaws.com/{}/{}/{}".format(
-                djpyfs.DJFS_SETTINGS['bucket'], djpyfs.DJFS_SETTINGS['prefix'],
-                self.namespace, self.relative_path_to_test_file
-            )
-        else:
-            self.expected_url_prefix = "https://{}.s3.amazonaws.com:443/{}/{}/{}".format(
-                djpyfs.DJFS_SETTINGS['bucket'], djpyfs.DJFS_SETTINGS['prefix'],
-                self.namespace, self.relative_path_to_test_file
-            )
+        self.expected_url_prefix = "https://{}.s3.amazonaws.com:443/{}/{}/{}".format(
+            djpyfs.DJFS_SETTINGS['bucket'], djpyfs.DJFS_SETTINGS['prefix'],
+            self.namespace, self.relative_path_to_test_file
+        )
 
         self._setUpS3()
