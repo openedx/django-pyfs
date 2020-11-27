@@ -3,7 +3,7 @@
 import os
 from setuptools import setup
 
-fname = os.path.join(os.path.dirname(__file__), "README.md")
+fname = os.path.join(os.path.dirname(__file__), "README.rst")
 
 if os.path.exists(fname):
     ld = open(fname).read()
@@ -54,7 +54,7 @@ setup(
     license="Apache 2.0",
     url="https://github.com/edx/django-pyfs",
     long_description=ld,
-    long_description_content_type='text/markdown',
+    long_description_content_type='text/x-rst',
     classifiers=[
         "Development Status :: 4 - Beta",
         "Framework :: Django",
