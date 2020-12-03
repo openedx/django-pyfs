@@ -5,10 +5,8 @@ import os
 
 from django.db import models
 from django.utils import timezone
-from django.utils.encoding import python_2_unicode_compatible
 
 
-@python_2_unicode_compatible
 class FSExpirations(models.Model):
     """
     Model to handle expiring temporary files.

@@ -1,9 +1,15 @@
+===========
 django-pyfs
 ===========
+
+|pypi-badge| |ci-badge| |codecov-badge| |pyversions-badge|
+|license-badge|
 
 A Django module which extends pyfilesystem2 with several methods to
 make it convenient for web use. Specifically, it extends pyfilesystem2
 with two methods:
+
+.. code-block::
 
     fs.get_url(filename, timeout=0)
 
@@ -11,7 +17,9 @@ This will return a externally-usable URL to the resource. If
 timeout>0, the URL may stop working after that period (in
 seconds). Details are implementation-dependent. On Amazon S3, this is
 a secure URL, which is only available for that period. For a static
-filesystem, the URLs are unsecure and permanent. 
+filesystem, the URLs are unsecure and permanent.
+
+.. code-block::
 
     fs.expire(filename, seconds, days, expires=True)
 
@@ -21,38 +29,44 @@ lifetime of those images was a single web request, so we set them to
 expire after a few minutes. Another use case was memoization.
 
 Note that expired files are not automatically removed. To remove them,
-call `expire_objects()`. In our system, we had a cron job do
-this for a while. Celery, manual removals, etc. are all options. 
+call ``expire_objects()``. In our system, we had a cron job do
+this for a while. Celery, manual removals, etc. are all options.
 
 To configure a django-pyfs to use static files, set a parameter in
-Django settings: 
+Django settings:
+
+.. code-block::
 
     DJFS = {'type' : 'osfs',
             'directory_root' : 'djpyfs/static/djpyfs',
             'url_root' : '/static/djpyfs'}
 
-Here, `directory_root` is where the files go. `url_root` is the URL
+Here, ``directory_root`` is where the files go. ``url_root`` is the URL
 base of where your web server is configured to serve them from.
 
-To use files on S3, you need `boto` installed. Then, 
+To use files on S3, you need ``boto`` installed. Then,
+
+.. code-block::
 
     DJFS = {'type' : 's3fs',
-            'bucket' : 'my-bucket', 
-            'prefix' : '/pyfs/' } 
+            'bucket' : 'my-bucket',
+            'prefix' : '/pyfs/' }
 
-`bucket` is your S3 bucket. `prefix` is optional, and gives a base
+``bucket`` is your S3 bucket. ``prefix`` is optional, and gives a base
 within that bucket.
 
-To get your filesystem, call: 
+To get your filesystem, call:
+
+.. code-block::
 
     def get_filesystem(namespace)
 
 Each module should pass a unique namespace. These will typically
-correspond to subdirectories within the filesystem. 
+correspond to subdirectories within the filesystem.
 
 The django-pyfs interface is designed as a generic (non-Django
 specific) extension to pyfilesystem2. However, the specific
-implementation is very Django-specific. 
+implementation is very Django-specific.
 
 Good next steps would be to:
 
@@ -62,3 +76,23 @@ Good next steps would be to:
 
 State: This code is tested and has worked well in a range of settings,
 and is currently deployed on edx.org.
+
+.. |pypi-badge| image:: https://img.shields.io/pypi/v/django-pyfs.svg
+    :target: https://pypi.python.org/pypi/django-pyfs/
+    :alt: PyPI
+
+.. |ci-badge| image:: https://github.com/edx/django-pyfs/workflows/PythonCI/badge.svg?branch=master
+    :target: https://github.com/edx/django-pyfs/actions?query=workflow%3A%22Python+CI%22
+    :alt: Github CI
+
+.. |codecov-badge| image:: http://codecov.io/github/edx/django-pyfs/coverage.svg?branch=master
+    :target: http://codecov.io/github/edx/django-pyfs?branch=master
+    :alt: Codecov
+
+.. |pyversions-badge| image:: https://img.shields.io/pypi/pyversions/django-pyfs.svg
+    :target: https://pypi.python.org/pypi/django-pyfs
+    :alt: Supported Python versions
+
+.. |license-badge| image:: https://img.shields.io/github/license/edx/django-pyfs.svg
+    :target: https://github.com/edx/django-pyfs/blob/master/LICENSE.txt
+    :alt: License
