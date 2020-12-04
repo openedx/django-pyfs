@@ -81,7 +81,7 @@ and is currently deployed on edx.org.
     :target: https://pypi.python.org/pypi/django-pyfs/
     :alt: PyPI
 
-.. |ci-badge| image:: https://github.com/edx/django-pyfs/workflows/PythonCI/badge.svg?branch=master
+.. |ci-badge| image:: https://github.com/edx/django-pyfs/workflows/Python%20CI/badge.svg?branch=master
     :target: https://github.com/edx/django-pyfs/actions?query=workflow%3A%22Python+CI%22
     :alt: Github CI
 
