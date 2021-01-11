@@ -23,5 +23,5 @@ def index(_):
     url = fs.get_url("uparrow.png")
 
     return HttpResponse(
-        "<html><body>Hello, world. You're at the test index. <img src=\"{source}\"> </body></html>".format(source=url)
+        f"<html><body>Hello, world. You're at the test index. <img src=\"{url}\"> </body></html>"
     )
