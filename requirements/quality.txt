@@ -29,7 +29,7 @@ backports.functools-lru-cache==1.6.1
     # via caniusepython3
 bleach==3.2.1
     # via readme-renderer
-boto3==1.16.51
+boto3==1.16.57
     # via
     #   -r requirements/test.txt
     #   aws-sam-translator
@@ -39,7 +39,7 @@ boto==2.49.0
     # via
     #   -r requirements/test.txt
     #   moto
-botocore==1.19.51
+botocore==1.19.57
     # via
     #   -r requirements/test.txt
     #   aws-xray-sdk
@@ -56,7 +56,7 @@ cffi==1.14.4
     # via
     #   -r requirements/test.txt
     #   cryptography
-cfn-lint==0.44.3
+cfn-lint==0.44.4
     # via
     #   -r requirements/test.txt
     #   moto
@@ -81,7 +81,6 @@ cryptography==3.3.1
     #   -r requirements/test.txt
     #   moto
     #   python-jose
-    #   secretstorage
     #   sshpubkeys
 decorator==4.4.2
     # via
@@ -91,7 +90,7 @@ distlib==0.3.1
     # via caniusepython3
 django==2.2.17
     # via
-    #   -c requirements/constraints.txt
+    #   -c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
     #   -r requirements/test.txt
 docker==4.4.1
     # via
@@ -109,7 +108,7 @@ edx-lint==1.6
     # via -r requirements/quality.in
 fs-s3fs==1.1.1
     # via -r requirements/test.txt
-fs==2.4.11
+fs==2.4.12
     # via
     #   -r requirements/test.txt
     #   fs-s3fs
@@ -130,10 +129,6 @@ isort==5.7.0
     # via
     #   -r requirements/quality.in
     #   pylint
-jeepney==0.6.0
-    # via
-    #   keyring
-    #   secretstorage
 jinja2==2.11.2
     # via
     #   -r requirements/test.txt
@@ -151,7 +146,7 @@ jsonpatch==1.28
     # via
     #   -r requirements/test.txt
     #   cfn-lint
-jsonpickle==1.4.2
+jsonpickle==1.5.0
     # via
     #   -r requirements/test.txt
     #   aws-xray-sdk
@@ -199,7 +194,7 @@ packaging==20.8
     #   bleach
     #   caniusepython3
     #   pytest
-pkginfo==1.6.1
+pkginfo==1.7.0
     # via twine
 pluggy==0.13.1
     # via
@@ -222,7 +217,7 @@ pycparser==2.20
     #   cffi
 pydocstyle==5.1.1
     # via -r requirements/quality.in
-pygments==2.7.3
+pygments==2.7.4
     # via readme-renderer
 pylint-celery==0.3
     # via edx-lint
@@ -248,7 +243,7 @@ pyrsistent==0.17.3
     # via
     #   -r requirements/test.txt
     #   jsonschema
-pytest-cov==2.10.1
+pytest-cov==2.11.0
     # via -r requirements/test.txt
 pytest-django==4.1.0
     # via -r requirements/test.txt
@@ -272,7 +267,7 @@ pytz==2020.5
     #   django
     #   fs
     #   moto
-pyyaml==5.3.1
+pyyaml==5.4
     # via
     #   -r requirements/test.txt
     #   cfn-lint
@@ -300,12 +295,10 @@ rsa==4.7
     # via
     #   -r requirements/test.txt
     #   python-jose
-s3transfer==0.3.3
+s3transfer==0.3.4
     # via
     #   -r requirements/test.txt
     #   boto3
-secretstorage==3.3.0
-    # via keyring
 six==1.15.0
     # via
     #   -r requirements/test.txt
@@ -362,9 +355,8 @@ werkzeug==1.0.1
     # via
     #   -r requirements/test.txt
     #   moto
-wrapt==1.11.2
+wrapt==1.12.1
     # via
-    #   -c requirements/constraints.txt
     #   -r requirements/test.txt
     #   astroid
     #   aws-xray-sdk
