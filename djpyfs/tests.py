@@ -2,14 +2,13 @@
 Database models for django-pyfs
 """
 
-from __future__ import absolute_import, unicode_literals
 
 import os
 import shutil
 import unittest
 
 import boto3
-import mock
+from unittest import mock
 from django.test import TestCase
 from django.utils import timezone
 from moto import mock_s3
@@ -22,7 +21,7 @@ from .models import FSExpirations
 class FSExpirationsTest(TestCase):
     """ Tests for FSExpirations"""
     def setUp(self):
-        super(FSExpirationsTest, self).setUp()
+        super().setUp()
         self.fs = MemoryFS()
         self.test_file_path = '/foo/bar'
         self.expires = True
@@ -32,7 +31,7 @@ class FSExpirationsTest(TestCase):
         self.module = "unittest"
 
     def tearDown(self):
-        super(FSExpirationsTest, self).tearDown()
+        super().tearDown()
         self.fs.close()
 
     def test_create_expiration_exists(self):
@@ -110,7 +109,7 @@ class FSExpirationsTest(TestCase):
                 result = f.__str__()
                 self.assertTrue(isinstance(result, str))
             except Exception as e:  # pylint: disable=broad-except
-                self.fail("__str__ raised an exception! {}".format(e))
+                self.fail(f"__str__ raised an exception! {e}")
 
 
 class _BaseFs(TestCase):
@@ -118,7 +117,7 @@ class _BaseFs(TestCase):
     djfs_settings = None
 
     def setUp(self):
-        super(_BaseFs, self).setUp()
+        super().setUp()
         if self.djfs_settings is None:
             raise unittest.SkipTest("Skipping test on base class.")
 
@@ -149,7 +148,7 @@ class _BaseFs(TestCase):
 
     def tearDown(self):
         # Restore original settings
-        super(_BaseFs, self).tearDown()
+        super().tearDown()
         djpyfs.DJFS_SETTINGS = self.orig_djpyfs_settings
 
     def test_get_filesystem(self):
@@ -242,23 +241,23 @@ class BadFileSystemTestInh(_BaseFs):
 
     def test_get_filesystem(self):
         with self.assertRaises(AttributeError):
-            super(BadFileSystemTestInh, self).test_get_filesystem()
+            super().test_get_filesystem()
 
     def test_expire_objects(self):
         with self.assertRaises(AttributeError):
-            super(BadFileSystemTestInh, self).test_expire_objects()
+            super().test_expire_objects()
 
     def test_get_url(self):
         with self.assertRaises(AttributeError):
-            super(BadFileSystemTestInh, self).test_get_url()
+            super().test_get_url()
 
     def test_get_url_does_not_exist(self):
         with self.assertRaises(AttributeError):
-            super(BadFileSystemTestInh, self).test_get_url_does_not_exist()
+            super().test_get_url_does_not_exist()
 
     def test_patch_fs(self):
         with self.assertRaises(AttributeError):
-            super(BadFileSystemTestInh, self).test_patch_fs()
+            super().test_patch_fs()
 
 
 # pylint: disable=test-inherits-tests
@@ -278,11 +277,11 @@ class OsfsTest(_BaseFs):
         shutil.rmtree(self.secondary_full_test_path, ignore_errors=True)
 
     def setUp(self):
-        super(OsfsTest, self).setUp()
+        super().setUp()
         self._cleanDirs()
 
     def tearDown(self):
-        super(OsfsTest, self).tearDown()
+        super().tearDown()
         self._cleanDirs()
 
 
@@ -301,7 +300,7 @@ class S3Test(_BaseFs):
     }
 
     def setUp(self):
-        super(S3Test, self).setUp()
+        super().setUp()
 
         self.expected_url_prefix = "https://{}.s3.amazonaws.com:443/{}/{}".format(
             djpyfs.DJFS_SETTINGS['bucket'], self.namespace, self.relative_path_to_test_file
@@ -332,7 +331,7 @@ class S3Test(_BaseFs):
 
     def tearDown(self):
         self.mock_s3.stop()
-        super(S3Test, self).tearDown()
+        super().tearDown()
 
 
 # pylint: disable=test-inherits-tests
@@ -352,7 +351,7 @@ class S3TestPrefix(S3Test):
     }
 
     def setUp(self):
-        super(S3TestPrefix, self).setUp()
+        super().setUp()
 
         self.expected_url_prefix = "https://{}.s3.amazonaws.com:443/{}/{}/{}".format(
             djpyfs.DJFS_SETTINGS['bucket'], djpyfs.DJFS_SETTINGS['prefix'],

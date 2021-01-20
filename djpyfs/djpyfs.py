@@ -8,7 +8,6 @@ filesystem.
 3) The ability to create objects with a limited lifetime. A
 task can garbage-collect those objects.
 """
-from __future__ import absolute_import
 
 import os
 import os.path

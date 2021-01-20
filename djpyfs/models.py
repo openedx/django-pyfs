@@ -76,6 +76,6 @@ class FSExpirations(models.Model):
 
     def __str__(self):
         if self.expires:
-            return u"{} Expires {}".format(os.path.join(self.module, self.filename), str(self.expiration))
+            return "{} Expires {}".format(os.path.join(self.module, self.filename), str(self.expiration))
         else:
-            return u"{} Permanent ({})".format(os.path.join(self.module, self.filename), str(self.expiration))
+            return "{} Permanent ({})".format(os.path.join(self.module, self.filename), str(self.expiration))
