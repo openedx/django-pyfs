@@ -8,17 +8,17 @@ appdirs==1.4.4
     # via
     #   fs
     #   virtualenv
-boto3==1.16.57
+boto3==1.17.73
     # via fs-s3fs
-botocore==1.19.57
+botocore==1.20.73
     # via
     #   boto3
     #   s3transfer
-click==7.1.2
+click==8.0.0
     # via pip-tools
 distlib==0.3.1
     # via virtualenv
-django==2.2.17
+django==2.2.23
     # via
     #   -c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
     #   -r requirements/base.in
@@ -28,7 +28,7 @@ filelock==3.0.12
     #   virtualenv
 fs-s3fs==1.1.1
     # via -r requirements/base.in
-fs==2.4.12
+fs==2.4.13
     # via
     #   -r requirements/base.in
     #   fs-s3fs
@@ -36,9 +36,11 @@ jmespath==0.10.0
     # via
     #   boto3
     #   botocore
-packaging==20.8
+packaging==20.9
     # via tox
-pip-tools==5.5.0
+pep517==0.10.0
+    # via pip-tools
+pip-tools==6.1.0
     # via -r requirements/dev.in
 pluggy==0.13.1
     # via tox
@@ -48,13 +50,13 @@ pyparsing==2.4.7
     # via packaging
 python-dateutil==2.8.1
     # via botocore
-pytz==2020.5
+pytz==2021.1
     # via
     #   django
     #   fs
-s3transfer==0.3.4
+s3transfer==0.4.2
     # via boto3
-six==1.15.0
+six==1.16.0
     # via
     #   fs
     #   fs-s3fs
@@ -64,16 +66,18 @@ six==1.15.0
 sqlparse==0.4.1
     # via django
 toml==0.10.2
-    # via tox
+    # via
+    #   pep517
+    #   tox
 tox-battery==0.6.1
     # via -r requirements/dev.in
-tox==3.21.2
+tox==3.23.1
     # via
     #   -r requirements/dev.in
     #   tox-battery
-urllib3==1.26.2
+urllib3==1.26.4
     # via botocore
-virtualenv==20.4.0
+virtualenv==20.4.6
     # via tox
 
 # The following packages are considered to be unsafe in a requirements file:
