@@ -7,8 +7,9 @@ import os
 import shutil
 import unittest
 
-import boto3
+
 from unittest import mock
+import boto3
 from django.test import TestCase
 from django.utils import timezone
 from moto import mock_s3
