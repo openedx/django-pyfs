@@ -2,7 +2,7 @@ name: Python CI
 
 on:
   push:
-    branches: [ master ]
+    branches: [master]
   pull_request:
     branches:
       - '**'
@@ -14,10 +14,10 @@ jobs:
       matrix:
         os: [ubuntu-20.04]
         python-version: ['3.8']
-        toxenv: ['django22', 'quality', 'django30', 'django31']
+        toxenv: [django22, quality, django30, django31, django32]
         exclude:
-          - python-version: "3.8"
-            toxenv: "quality"
+          - python-version: '3.8'
+            toxenv: quality
 
     steps:
     - name: checkout repo

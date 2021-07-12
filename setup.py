@@ -46,7 +46,7 @@ def load_requirements(*requirements_paths):
 
 setup(
     name='django-pyfs',
-    version='3.0',
+    version='3.1.0',
     description='Django pyfilesystem integration',
     author='Piotr Mitros',
     author_email='pmitros@edx.org',
@@ -59,6 +59,9 @@ setup(
         "Development Status :: 4 - Beta",
         "Framework :: Django",
         'Framework :: Django :: 2.2',
+        'Framework :: Django :: 3.0',
+        'Framework :: Django :: 3.1',
+        'Framework :: Django :: 3.2',
         "Programming Language :: Python",
         "Programming Language :: Python :: 3",
         "Programming Language :: Python :: 3.8",
