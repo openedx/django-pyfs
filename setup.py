@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 import os
+import re
 from setuptools import setup
 
 fname = os.path.join(os.path.dirname(__file__), "README.rst")
@@ -44,9 +45,26 @@ def load_requirements(*requirements_paths):
     return list(requirements)
 
 
+def get_version(*file_paths):
+    """
+    Extract the version string from the file at the given relative path fragments.
+    """
+    filename = os.path.join(os.path.dirname(__file__), *file_paths)
+    with open(filename, encoding='utf-8') as opened_file:
+        version_file = opened_file.read()
+        version_match = re.search(r"^__version__ = ['\"]([^'\"]*)['\"]",
+                                  version_file, re.M)
+    if version_match:
+        return version_match.group(1)
+    raise RuntimeError('Unable to find version string.')
+
+
+VERSION = get_version("djpyfs", "__init__.py")
+
+
 setup(
     name='django-pyfs',
-    version='3.1.0',
+    version=VERSION,
     description='Django pyfilesystem integration',
     author='Piotr Mitros',
     author_email='pmitros@edx.org',
