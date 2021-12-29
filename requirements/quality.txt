@@ -26,12 +26,12 @@ bleach==4.1.0
     # via readme-renderer
 boto==2.49.0
     # via -r requirements/test.txt
-boto3==1.20.23
+boto3==1.20.26
     # via
     #   -r requirements/test.txt
     #   fs-s3fs
     #   moto
-botocore==1.23.23
+botocore==1.23.26
     # via
     #   -r requirements/test.txt
     #   boto3
@@ -66,10 +66,11 @@ coverage[toml]==6.2
     # via
     #   -r requirements/test.txt
     #   pytest-cov
-cryptography==36.0.0
+cryptography==36.0.1
     # via
     #   -r requirements/test.txt
     #   moto
+    #   secretstorage
 distlib==0.3.4
     # via caniusepython3
 django==3.2.10
@@ -90,7 +91,7 @@ idna==3.3
     # via
     #   -r requirements/test.txt
     #   requests
-importlib-metadata==4.8.2
+importlib-metadata==4.10.0
     # via
     #   keyring
     #   twine
@@ -102,6 +103,10 @@ isort==5.10.1
     # via
     #   -r requirements/quality.in
     #   pylint
+jeepney==0.7.1
+    # via
+    #   keyring
+    #   secretstorage
 jinja2==3.0.3
     # via
     #   -r requirements/test.txt
@@ -114,7 +119,7 @@ jmespath==0.10.0
     #   botocore
 keyring==23.4.0
     # via twine
-lazy-object-proxy==1.6.0
+lazy-object-proxy==1.7.1
     # via astroid
 markupsafe==2.0.1
     # via
@@ -125,7 +130,7 @@ mccabe==0.6.1
     # via pylint
 mock==4.0.3
     # via -r requirements/test.txt
-moto==2.2.18
+moto==2.3.0
     # via -r requirements/test.txt
 packaging==21.3
     # via
@@ -137,7 +142,7 @@ pbr==5.8.0
     # via stevedore
 pkginfo==1.8.2
     # via twine
-platformdirs==2.4.0
+platformdirs==2.4.1
     # via pylint
 pluggy==1.0.0
     # via
@@ -201,7 +206,7 @@ pytz==2021.3
     #   moto
 pyyaml==6.0
     # via code-annotations
-readme-renderer==31.0
+readme-renderer==32.0
     # via twine
 requests==2.26.0
     # via
@@ -223,6 +228,8 @@ s3transfer==0.5.0
     # via
     #   -r requirements/test.txt
     #   boto3
+secretstorage==3.3.1
+    # via keyring
 six==1.16.0
     # via
     #   -r requirements/test.txt
@@ -247,7 +254,7 @@ toml==0.10.2
     #   -r requirements/test.txt
     #   pylint
     #   pytest
-tomli==1.2.2
+tomli==2.0.0
     # via
     #   -r requirements/test.txt
     #   coverage
