@@ -8,7 +8,7 @@ appdirs==1.4.4
     # via fs
 asgiref==3.4.1
     # via django
-attrs==21.2.0
+attrs==21.4.0
     # via pytest
 boto==2.49.0
     # via -r requirements/test.in
