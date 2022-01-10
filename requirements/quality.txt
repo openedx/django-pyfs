@@ -12,7 +12,7 @@ asgiref==3.4.1
     # via
     #   -r requirements/test.txt
     #   django
-astroid==2.9.1
+astroid==2.9.3
     # via
     #   pylint
     #   pylint-celery
@@ -26,12 +26,12 @@ bleach==4.1.0
     # via readme-renderer
 boto==2.49.0
     # via -r requirements/test.txt
-boto3==1.20.26
+boto3==1.20.31
     # via
     #   -r requirements/test.txt
     #   fs-s3fs
     #   moto
-botocore==1.23.26
+botocore==1.23.31
     # via
     #   -r requirements/test.txt
     #   boto3
@@ -47,7 +47,7 @@ cffi==1.15.0
     # via
     #   -r requirements/test.txt
     #   cryptography
-charset-normalizer==2.0.9
+charset-normalizer==2.0.10
     # via
     #   -r requirements/test.txt
     #   requests
@@ -73,7 +73,7 @@ cryptography==36.0.1
     #   secretstorage
 distlib==0.3.4
     # via caniusepython3
-django==3.2.10
+django==3.2.11
     # via
     #   -c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
     #   -r requirements/test.txt
@@ -130,7 +130,7 @@ mccabe==0.6.1
     # via pylint
 mock==4.0.3
     # via -r requirements/test.txt
-moto==2.3.0
+moto==2.3.1
     # via -r requirements/test.txt
 packaging==21.3
     # via
@@ -160,7 +160,7 @@ pycparser==2.21
     #   cffi
 pydocstyle==6.1.1
     # via -r requirements/quality.in
-pygments==2.11.1
+pygments==2.11.2
     # via readme-renderer
 pylint==2.12.2
     # via
@@ -208,7 +208,7 @@ pyyaml==6.0
     # via code-annotations
 readme-renderer==32.0
     # via twine
-requests==2.26.0
+requests==2.27.1
     # via
     #   -r requirements/test.txt
     #   caniusepython3
@@ -222,7 +222,7 @@ responses==0.16.0
     # via
     #   -r requirements/test.txt
     #   moto
-rfc3986==1.5.0
+rfc3986==2.0.0
     # via twine
 s3transfer==0.5.0
     # via
@@ -266,7 +266,7 @@ typing-extensions==4.0.1
     # via
     #   astroid
     #   pylint
-urllib3==1.26.7
+urllib3==1.26.8
     # via
     #   -r requirements/test.txt
     #   botocore

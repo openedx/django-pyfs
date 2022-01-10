@@ -12,11 +12,11 @@ attrs==21.4.0
     # via pytest
 boto==2.49.0
     # via -r requirements/test.in
-boto3==1.20.26
+boto3==1.20.31
     # via
     #   fs-s3fs
     #   moto
-botocore==1.23.26
+botocore==1.23.31
     # via
     #   boto3
     #   moto
@@ -25,7 +25,7 @@ certifi==2021.10.8
     # via requests
 cffi==1.15.0
     # via cryptography
-charset-normalizer==2.0.9
+charset-normalizer==2.0.10
     # via requests
 coverage[toml]==6.2
     # via pytest-cov
@@ -56,7 +56,7 @@ markupsafe==2.0.1
     #   moto
 mock==4.0.3
     # via -r requirements/test.in
-moto==2.3.0
+moto==2.3.1
     # via -r requirements/test.in
 packaging==21.3
     # via pytest
@@ -88,7 +88,7 @@ pytz==2021.3
     #   django
     #   fs
     #   moto
-requests==2.26.0
+requests==2.27.1
     # via
     #   moto
     #   responses
@@ -108,7 +108,7 @@ toml==0.10.2
     # via pytest
 tomli==2.0.0
     # via coverage
-urllib3==1.26.7
+urllib3==1.26.8
     # via
     #   botocore
     #   requests
