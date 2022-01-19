@@ -6,14 +6,13 @@ Database models for django-pyfs
 import os
 import shutil
 import unittest
-
-
 from unittest import mock
+
 import boto3
 from django.test import TestCase
 from django.utils import timezone
-from moto import mock_s3
 from fs.memoryfs import MemoryFS
+from moto import mock_s3
 
 from . import djpyfs
 from .models import FSExpirations
@@ -21,6 +20,7 @@ from .models import FSExpirations
 
 class FSExpirationsTest(TestCase):
     """ Tests for FSExpirations"""
+
     def setUp(self):
         super().setUp()
         self.fs = MemoryFS()
@@ -182,6 +182,7 @@ class _BaseFs(TestCase):
             self.assertFalse(curr_fs.exists(self.relative_path_to_uncreated_test_file))
 
             # Create an instant expiration for all 3 files
+            # pylint: disable=no-member
             curr_fs.expire(self.relative_path_to_test_file, expire_secs, expire_days)
             curr_fs.expire(self.relative_path_to_secondary_test_file, expire_secs, expire_days)
             curr_fs.expire(self.relative_path_to_uncreated_test_file, expire_secs, expire_days)
@@ -303,9 +304,8 @@ class S3Test(_BaseFs):
     def setUp(self):
         super().setUp()
 
-        self.expected_url_prefix = "https://{}.s3.amazonaws.com:443/{}/{}".format(
-            djpyfs.DJFS_SETTINGS['bucket'], self.namespace, self.relative_path_to_test_file
-        )
+        self.expected_url_prefix = (f"https://{djpyfs.DJFS_SETTINGS['bucket']}.s3.amazonaws.com:443/"
+                                    f"{self.namespace}/{self.relative_path_to_test_file}")
 
         self._setUpS3()
 
@@ -354,9 +354,7 @@ class S3TestPrefix(S3Test):
     def setUp(self):
         super().setUp()
 
-        self.expected_url_prefix = "https://{}.s3.amazonaws.com:443/{}/{}/{}".format(
-            djpyfs.DJFS_SETTINGS['bucket'], djpyfs.DJFS_SETTINGS['prefix'],
-            self.namespace, self.relative_path_to_test_file
-        )
-
+        self.expected_url_prefix = (f"https://{djpyfs.DJFS_SETTINGS['bucket']}.s3.amazonaws.com:443/"
+                                    f"{djpyfs.DJFS_SETTINGS['prefix']}/{self.namespace}/"
+                                    f"{self.relative_path_to_test_file}")
         self._setUpS3()

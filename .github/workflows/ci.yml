@@ -5,7 +5,7 @@ on:
     branches: [master]
   pull_request:
     branches:
-      - '**'
+    - '**'
 
 jobs:
   tests:
@@ -14,10 +14,7 @@ jobs:
       matrix:
         os: [ubuntu-20.04]
         python-version: ['3.8']
-        toxenv: [django22, quality, django30, django31, django32]
-        exclude:
-          - python-version: '3.8'
-            toxenv: quality
+        toxenv: [quality, django32, django40]
 
     steps:
     - name: checkout repo
@@ -39,7 +36,7 @@ jobs:
       run: tox
 
     - name: Run Coverage
-      if: matrix.python-version == '3.8' && matrix.toxenv=='django22'
+      if: matrix.python-version == '3.8' && matrix.toxenv=='django32'
       uses: codecov/codecov-action@v1
       with:
         flags: unittests
