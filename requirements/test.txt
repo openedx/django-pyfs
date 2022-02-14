@@ -12,11 +12,11 @@ attrs==21.4.0
     # via pytest
 boto==2.49.0
     # via -r requirements/test.in
-boto3==1.20.46
+boto3==1.20.54
     # via
     #   fs-s3fs
     #   moto
-botocore==1.23.46
+botocore==1.23.54
     # via
     #   boto3
     #   moto
@@ -25,16 +25,16 @@ certifi==2021.10.8
     # via requests
 cffi==1.15.0
     # via cryptography
-charset-normalizer==2.0.11
+charset-normalizer==2.0.12
     # via requests
-coverage[toml]==6.3
+coverage[toml]==6.3.1
     # via pytest-cov
 cryptography==36.0.1
     # via moto
     # via
     #   -c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
     #   -r requirements/base.in
-fs==2.4.14
+fs==2.4.15
     # via
     #   -r requirements/base.in
     #   fs-s3fs
@@ -56,7 +56,7 @@ markupsafe==2.0.1
     #   moto
 mock==4.0.3
     # via -r requirements/test.in
-moto==3.0.2
+moto==3.0.3
     # via -r requirements/test.in
 packaging==21.3
     # via pytest
@@ -70,7 +70,7 @@ pyparsing==3.0.7
     # via packaging
 pypng==0.0.21
     # via -r requirements/test.in
-pytest==6.2.5
+pytest==7.0.1
     # via
     #   -r requirements/test.in
     #   pytest-cov
@@ -92,28 +92,27 @@ requests==2.27.1
     # via
     #   moto
     #   responses
-responses==0.17.0
+responses==0.18.0
     # via moto
-s3transfer==0.5.0
+s3transfer==0.5.1
     # via boto3
 six==1.16.0
     # via
     #   fs
     #   fs-s3fs
     #   python-dateutil
-    #   responses
 sqlparse==0.4.2
     # via django
-toml==0.10.2
-    # via pytest
-tomli==2.0.0
-    # via coverage
+tomli==2.0.1
+    # via
+    #   coverage
+    #   pytest
 urllib3==1.26.8
     # via
     #   botocore
     #   requests
     #   responses
-werkzeug==2.0.2
+werkzeug==2.0.3
     # via moto
 xmltodict==0.12.0
     # via moto
