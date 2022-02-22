@@ -12,11 +12,11 @@ attrs==21.4.0
     # via pytest
 boto==2.49.0
     # via -r requirements/test.in
-boto3==1.20.54
+boto3==1.21.3
     # via
     #   fs-s3fs
     #   moto
-botocore==1.23.54
+botocore==1.24.3
     # via
     #   boto3
     #   moto
@@ -27,7 +27,7 @@ cffi==1.15.0
     # via cryptography
 charset-normalizer==2.0.12
     # via requests
-coverage[toml]==6.3.1
+coverage[toml]==6.3.2
     # via pytest-cov
 cryptography==36.0.1
     # via moto
@@ -50,13 +50,13 @@ jmespath==0.10.0
     # via
     #   boto3
     #   botocore
-markupsafe==2.0.1
+markupsafe==2.1.0
     # via
     #   jinja2
     #   moto
 mock==4.0.3
     # via -r requirements/test.in
-moto==3.0.3
+moto==3.0.4
     # via -r requirements/test.in
 packaging==21.3
     # via pytest
