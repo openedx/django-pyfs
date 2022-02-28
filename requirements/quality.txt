@@ -26,12 +26,12 @@ bleach==4.1.0
     # via readme-renderer
 boto==2.49.0
     # via -r requirements/test.txt
-boto3==1.21.3
+boto3==1.21.8
     # via
     #   -r requirements/test.txt
     #   fs-s3fs
     #   moto
-botocore==1.24.3
+botocore==1.24.8
     # via
     #   -r requirements/test.txt
     #   boto3
@@ -91,7 +91,7 @@ idna==3.3
     # via
     #   -r requirements/test.txt
     #   requests
-importlib-metadata==4.11.1
+importlib-metadata==4.11.2
     # via
     #   keyring
     #   twine
@@ -130,7 +130,7 @@ mccabe==0.6.1
     # via pylint
 mock==4.0.3
     # via -r requirements/test.txt
-moto==3.0.4
+moto==3.0.5
     # via -r requirements/test.txt
 packaging==21.3
     # via
@@ -196,7 +196,7 @@ python-dateutil==2.8.2
     #   -r requirements/test.txt
     #   botocore
     #   moto
-python-slugify==6.0.1
+python-slugify==6.1.1
     # via code-annotations
 pytz==2021.3
     # via
@@ -224,7 +224,7 @@ responses==0.18.0
     #   moto
 rfc3986==2.0.0
     # via twine
-s3transfer==0.5.1
+s3transfer==0.5.2
     # via
     #   -r requirements/test.txt
     #   boto3
@@ -255,7 +255,7 @@ tomli==2.0.1
     #   -r requirements/test.txt
     #   coverage
     #   pytest
-tqdm==4.62.3
+tqdm==4.63.0
     # via twine
 twine==3.8.0
     # via -r requirements/quality.in
