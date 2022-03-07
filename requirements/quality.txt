@@ -26,12 +26,12 @@ bleach==4.1.0
     # via readme-renderer
 boto==2.49.0
     # via -r requirements/test.txt
-boto3==1.21.8
+boto3==1.21.13
     # via
     #   -r requirements/test.txt
     #   fs-s3fs
     #   moto
-botocore==1.24.8
+botocore==1.24.13
     # via
     #   -r requirements/test.txt
     #   boto3
@@ -130,7 +130,7 @@ mccabe==0.6.1
     # via pylint
 mock==4.0.3
     # via -r requirements/test.txt
-moto==3.0.5
+moto==3.0.6
     # via -r requirements/test.txt
 packaging==21.3
     # via
@@ -206,7 +206,7 @@ pytz==2021.3
     #   moto
 pyyaml==6.0
     # via code-annotations
-readme-renderer==32.0
+readme-renderer==33.0
     # via twine
 requests==2.27.1
     # via
