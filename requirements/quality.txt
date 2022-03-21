@@ -26,12 +26,12 @@ bleach==4.1.0
     # via readme-renderer
 boto==2.49.0
     # via -r requirements/test.txt
-boto3==1.21.18
+boto3==1.21.22
     # via
     #   -r requirements/test.txt
     #   fs-s3fs
     #   moto
-botocore==1.24.18
+botocore==1.24.22
     # via
     #   -r requirements/test.txt
     #   boto3
@@ -66,7 +66,7 @@ coverage[toml]==6.3.2
     # via
     #   -r requirements/test.txt
     #   pytest-cov
-cryptography==36.0.1
+cryptography==36.0.2
     # via
     #   -r requirements/test.txt
     #   moto
@@ -112,7 +112,7 @@ jinja2==3.0.3
     #   -r requirements/test.txt
     #   code-annotations
     #   moto
-jmespath==0.10.0
+jmespath==1.0.0
     # via
     #   -r requirements/test.txt
     #   boto3
@@ -121,7 +121,7 @@ keyring==23.5.0
     # via twine
 lazy-object-proxy==1.7.1
     # via astroid
-markupsafe==2.1.0
+markupsafe==2.1.1
     # via
     #   -r requirements/test.txt
     #   jinja2
@@ -130,7 +130,7 @@ mccabe==0.6.1
     # via pylint
 mock==4.0.3
     # via -r requirements/test.txt
-moto==3.1.0
+moto==3.1.1
     # via -r requirements/test.txt
 packaging==21.3
     # via
@@ -182,7 +182,7 @@ pyparsing==3.0.7
     #   packaging
 pypng==0.0.21
     # via -r requirements/test.txt
-pytest==7.1.0
+pytest==7.1.1
     # via
     #   -r requirements/test.txt
     #   pytest-cov
@@ -198,7 +198,7 @@ python-dateutil==2.8.2
     #   moto
 python-slugify==6.1.1
     # via code-annotations
-pytz==2021.3
+pytz==2022.1
     # via
     #   -r requirements/test.txt
     #   django
@@ -218,7 +218,7 @@ requests==2.27.1
     #   twine
 requests-toolbelt==0.9.1
     # via twine
-responses==0.19.0
+responses==0.20.0
     # via
     #   -r requirements/test.txt
     #   moto
@@ -263,7 +263,7 @@ typing-extensions==4.1.1
     # via
     #   astroid
     #   pylint
-urllib3==1.26.8
+urllib3==1.26.9
     # via
     #   -r requirements/test.txt
     #   botocore
