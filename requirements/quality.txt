@@ -12,7 +12,7 @@ asgiref==3.5.0
     # via
     #   -r requirements/test.txt
     #   django
-astroid==2.11.2
+astroid==2.11.3
     # via
     #   pylint
     #   pylint-celery
@@ -26,12 +26,12 @@ bleach==5.0.0
     # via readme-renderer
 boto==2.49.0
     # via -r requirements/test.txt
-boto3==1.21.42
+boto3==1.21.46
     # via
     #   -r requirements/test.txt
     #   fs-s3fs
     #   moto
-botocore==1.24.42
+botocore==1.24.46
     # via
     #   -r requirements/test.txt
     #   boto3
@@ -132,7 +132,7 @@ mccabe==0.7.0
     # via pylint
 mock==4.0.3
     # via -r requirements/test.txt
-moto==3.1.5
+moto==3.1.6
     # via -r requirements/test.txt
 packaging==21.3
     # via
@@ -143,7 +143,7 @@ pbr==5.8.1
     # via stevedore
 pkginfo==1.8.2
     # via twine
-platformdirs==2.5.1
+platformdirs==2.5.2
     # via pylint
 pluggy==1.0.0
     # via
@@ -161,11 +161,11 @@ pycparser==2.21
     #   cffi
 pydocstyle==6.1.1
     # via -r requirements/quality.in
-pygments==2.11.2
+pygments==2.12.0
     # via
     #   readme-renderer
     #   rich
-pylint==2.13.5
+pylint==2.13.7
     # via
     #   edx-lint
     #   pylint-celery
@@ -185,7 +185,7 @@ pyparsing==3.0.8
     #   packaging
 pypng==0.0.21
     # via -r requirements/test.txt
-pytest==7.1.1
+pytest==7.1.2
     # via
     #   -r requirements/test.txt
     #   pytest-cov
@@ -209,7 +209,7 @@ pytz==2022.1
     #   moto
 pyyaml==6.0
     # via code-annotations
-readme-renderer==34.0
+readme-renderer==35.0
     # via twine
 requests==2.27.1
     # via
@@ -233,7 +233,7 @@ s3transfer==0.5.2
     # via
     #   -r requirements/test.txt
     #   boto3
-secretstorage==3.3.1
+secretstorage==3.3.2
     # via keyring
 six==1.16.0
     # via
