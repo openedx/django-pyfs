@@ -12,11 +12,11 @@ attrs==21.4.0
     # via pytest
 boto==2.49.0
     # via -r requirements/test.in
-boto3==1.22.4
+boto3==1.22.9
     # via
     #   fs-s3fs
     #   moto
-botocore==1.25.4
+botocore==1.25.9
     # via
     #   boto3
     #   moto
@@ -29,12 +29,12 @@ charset-normalizer==2.0.12
     # via requests
 coverage[toml]==6.3.2
     # via pytest-cov
-cryptography==37.0.1
+cryptography==37.0.2
     # via moto
     # via
     #   -c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
     #   -r requirements/base.in
-fs==2.4.15
+fs==2.4.16
     # via
     #   -r requirements/base.in
     #   fs-s3fs
@@ -56,7 +56,7 @@ markupsafe==2.1.1
     #   moto
 mock==4.0.3
     # via -r requirements/test.in
-moto==3.1.7
+moto==3.1.8
     # via -r requirements/test.in
 packaging==21.3
     # via pytest
@@ -86,7 +86,6 @@ python-dateutil==2.8.2
 pytz==2022.1
     # via
     #   django
-    #   fs
     #   moto
 requests==2.27.1
     # via
@@ -114,7 +113,7 @@ urllib3==1.26.9
     #   responses
 werkzeug==2.1.2
     # via moto
-xmltodict==0.12.0
+xmltodict==0.13.0
     # via moto
 
 # The following packages are considered to be unsafe in a requirements file:
