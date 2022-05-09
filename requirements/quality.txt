@@ -12,7 +12,7 @@ asgiref==3.5.1
     # via
     #   -r requirements/test.txt
     #   django
-astroid==2.11.3
+astroid==2.11.4
     # via
     #   pylint
     #   pylint-celery
@@ -26,12 +26,12 @@ bleach==5.0.0
     # via readme-renderer
 boto==2.49.0
     # via -r requirements/test.txt
-boto3==1.22.4
+boto3==1.22.9
     # via
     #   -r requirements/test.txt
     #   fs-s3fs
     #   moto
-botocore==1.25.4
+botocore==1.25.9
     # via
     #   -r requirements/test.txt
     #   boto3
@@ -66,7 +66,7 @@ coverage[toml]==6.3.2
     # via
     #   -r requirements/test.txt
     #   pytest-cov
-cryptography==37.0.1
+cryptography==37.0.2
     # via
     #   -r requirements/test.txt
     #   moto
@@ -83,7 +83,7 @@ docutils==0.18.1
     # via readme-renderer
 edx-lint==5.2.2
     # via -r requirements/quality.in
-fs==2.4.15
+fs==2.4.16
     # via
     #   -r requirements/test.txt
     #   fs-s3fs
@@ -132,14 +132,14 @@ mccabe==0.7.0
     # via pylint
 mock==4.0.3
     # via -r requirements/test.txt
-moto==3.1.7
+moto==3.1.8
     # via -r requirements/test.txt
 packaging==21.3
     # via
     #   -r requirements/test.txt
     #   caniusepython3
     #   pytest
-pbr==5.8.1
+pbr==5.9.0
     # via stevedore
 pkginfo==1.8.2
     # via twine
@@ -165,7 +165,7 @@ pygments==2.12.0
     # via
     #   readme-renderer
     #   rich
-pylint==2.13.7
+pylint==2.13.8
     # via
     #   edx-lint
     #   pylint-celery
@@ -205,7 +205,6 @@ pytz==2022.1
     # via
     #   -r requirements/test.txt
     #   django
-    #   fs
     #   moto
 pyyaml==6.0
     # via code-annotations
@@ -227,7 +226,7 @@ responses==0.20.0
     #   moto
 rfc3986==2.0.0
     # via twine
-rich==12.3.0
+rich==12.4.1
     # via twine
 s3transfer==0.5.2
     # via
@@ -279,9 +278,9 @@ werkzeug==2.1.2
     # via
     #   -r requirements/test.txt
     #   moto
-wrapt==1.14.0
+wrapt==1.14.1
     # via astroid
-xmltodict==0.12.0
+xmltodict==0.13.0
     # via
     #   -r requirements/test.txt
     #   moto
