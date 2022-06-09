@@ -26,12 +26,12 @@ bleach==5.0.0
     # via readme-renderer
 boto==2.49.0
     # via -r requirements/test.txt
-boto3==1.24.2
+boto3==1.24.5
     # via
     #   -r requirements/test.txt
     #   fs-s3fs
     #   moto
-botocore==1.27.2
+botocore==1.27.5
     # via
     #   -r requirements/test.txt
     #   boto3
@@ -81,7 +81,7 @@ django==3.2.13
     #   -r requirements/test.txt
 docutils==0.18.1
     # via readme-renderer
-edx-lint==5.2.2
+edx-lint==5.2.3
     # via -r requirements/quality.in
 fs==2.4.16
     # via
@@ -105,10 +105,6 @@ isort==5.10.1
     # via
     #   -r requirements/quality.in
     #   pylint
-jeepney==0.8.0
-    # via
-    #   keyring
-    #   secretstorage
 jinja2==3.1.2
     # via
     #   -r requirements/test.txt
@@ -119,7 +115,7 @@ jmespath==1.0.0
     #   -r requirements/test.txt
     #   boto3
     #   botocore
-keyring==23.5.1
+keyring==23.6.0
     # via twine
 lazy-object-proxy==1.7.1
     # via astroid
@@ -141,7 +137,7 @@ packaging==21.3
     #   pytest
 pbr==5.9.0
     # via stevedore
-pkginfo==1.8.2
+pkginfo==1.8.3
     # via twine
 platformdirs==2.5.2
     # via pylint
@@ -165,7 +161,7 @@ pygments==2.12.0
     # via
     #   readme-renderer
     #   rich
-pylint==2.14.0
+pylint==2.14.1
     # via
     #   edx-lint
     #   pylint-celery
@@ -232,8 +228,6 @@ s3transfer==0.6.0
     # via
     #   -r requirements/test.txt
     #   boto3
-secretstorage==3.3.2
-    # via keyring
 six==1.16.0
     # via
     #   -r requirements/test.txt
