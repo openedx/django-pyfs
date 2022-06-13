@@ -70,7 +70,6 @@ cryptography==37.0.2
     # via
     #   -r requirements/test.txt
     #   moto
-    #   secretstorage
 dill==0.3.5.1
     # via pylint
 distlib==0.3.4
@@ -105,10 +104,6 @@ isort==5.10.1
     # via
     #   -r requirements/quality.in
     #   pylint
-jeepney==0.8.0
-    # via
-    #   keyring
-    #   secretstorage
 jinja2==3.1.2
     # via
     #   -r requirements/test.txt
@@ -232,8 +227,6 @@ s3transfer==0.6.0
     # via
     #   -r requirements/test.txt
     #   boto3
-secretstorage==3.3.2
-    # via keyring
 six==1.16.0
     # via
     #   -r requirements/test.txt

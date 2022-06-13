@@ -107,7 +107,7 @@ class FSExpirationsTest(TestCase):
             # Don't really care what __str__ is, just that it returns a string
             # of some variety and doesn't error
             try:
-                result = f.__str__()
+                result = str(f)
                 self.assertTrue(isinstance(result, str))
             except Exception as e:  # pylint: disable=broad-except
                 self.fail(f"__str__ raised an exception! {e}")
