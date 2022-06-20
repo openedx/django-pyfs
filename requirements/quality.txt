@@ -12,7 +12,7 @@ asgiref==3.5.2
     # via
     #   -r requirements/test.txt
     #   django
-astroid==2.11.5
+astroid==2.11.6
     # via
     #   pylint
     #   pylint-celery
@@ -26,12 +26,12 @@ bleach==5.0.0
     # via readme-renderer
 boto==2.49.0
     # via -r requirements/test.txt
-boto3==1.24.7
+boto3==1.24.12
     # via
     #   -r requirements/test.txt
     #   fs-s3fs
     #   moto
-botocore==1.27.7
+botocore==1.27.12
     # via
     #   -r requirements/test.txt
     #   boto3
@@ -39,7 +39,7 @@ botocore==1.27.7
     #   s3transfer
 caniusepython3==7.3.0
     # via -r requirements/quality.in
-certifi==2022.5.18.1
+certifi==2022.6.15
     # via
     #   -r requirements/test.txt
     #   requests
@@ -70,6 +70,7 @@ cryptography==37.0.2
     # via
     #   -r requirements/test.txt
     #   moto
+    #   secretstorage
 dill==0.3.5.1
     # via pylint
 distlib==0.3.4
@@ -104,12 +105,16 @@ isort==5.10.1
     # via
     #   -r requirements/quality.in
     #   pylint
+jeepney==0.8.0
+    # via
+    #   keyring
+    #   secretstorage
 jinja2==3.1.2
     # via
     #   -r requirements/test.txt
     #   code-annotations
     #   moto
-jmespath==1.0.0
+jmespath==1.0.1
     # via
     #   -r requirements/test.txt
     #   boto3
@@ -127,7 +132,7 @@ mccabe==0.7.0
     # via pylint
 mock==4.0.3
     # via -r requirements/test.txt
-moto==3.1.13
+moto==3.1.14
     # via -r requirements/test.txt
 packaging==21.3
     # via
@@ -160,7 +165,7 @@ pygments==2.12.0
     # via
     #   readme-renderer
     #   rich
-pylint==2.14.1
+pylint==2.14.3
     # via
     #   edx-lint
     #   pylint-celery
@@ -227,6 +232,8 @@ s3transfer==0.6.0
     # via
     #   -r requirements/test.txt
     #   boto3
+secretstorage==3.3.2
+    # via keyring
 six==1.16.0
     # via
     #   -r requirements/test.txt
