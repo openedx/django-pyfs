@@ -12,16 +12,16 @@ attrs==21.4.0
     # via pytest
 boto==2.49.0
     # via -r requirements/test.in
-boto3==1.24.7
+boto3==1.24.12
     # via
     #   fs-s3fs
     #   moto
-botocore==1.27.7
+botocore==1.27.12
     # via
     #   boto3
     #   moto
     #   s3transfer
-certifi==2022.5.18.1
+certifi==2022.6.15
     # via requests
 cffi==1.15.0
     # via cryptography
@@ -46,7 +46,7 @@ iniconfig==1.1.1
     # via pytest
 jinja2==3.1.2
     # via moto
-jmespath==1.0.0
+jmespath==1.0.1
     # via
     #   boto3
     #   botocore
@@ -56,7 +56,7 @@ markupsafe==2.1.1
     #   moto
 mock==4.0.3
     # via -r requirements/test.in
-moto==3.1.13
+moto==3.1.14
     # via -r requirements/test.in
 packaging==21.3
     # via pytest
