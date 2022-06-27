@@ -26,12 +26,12 @@ bleach==5.0.0
     # via readme-renderer
 boto==2.49.0
     # via -r requirements/test.txt
-boto3==1.24.12
+boto3==1.24.17
     # via
     #   -r requirements/test.txt
     #   fs-s3fs
     #   moto
-botocore==1.27.12
+botocore==1.27.17
     # via
     #   -r requirements/test.txt
     #   boto3
@@ -70,6 +70,7 @@ cryptography==37.0.2
     # via
     #   -r requirements/test.txt
     #   moto
+    #   secretstorage
 dill==0.3.5.1
     # via pylint
 distlib==0.3.4
@@ -92,7 +93,7 @@ idna==3.3
     # via
     #   -r requirements/test.txt
     #   requests
-importlib-metadata==4.11.4
+importlib-metadata==4.12.0
     # via
     #   keyring
     #   twine
@@ -104,6 +105,10 @@ isort==5.10.1
     # via
     #   -r requirements/quality.in
     #   pylint
+jeepney==0.8.0
+    # via
+    #   keyring
+    #   secretstorage
 jinja2==3.1.2
     # via
     #   -r requirements/test.txt
@@ -127,7 +132,7 @@ mccabe==0.7.0
     # via pylint
 mock==4.0.3
     # via -r requirements/test.txt
-moto==3.1.14
+moto==3.1.15
     # via -r requirements/test.txt
 packaging==21.3
     # via
@@ -227,6 +232,8 @@ s3transfer==0.6.0
     # via
     #   -r requirements/test.txt
     #   boto3
+secretstorage==3.3.2
+    # via keyring
 six==1.16.0
     # via
     #   -r requirements/test.txt
