@@ -22,16 +22,16 @@ attrs==21.4.0
     #   pytest
 backports-functools-lru-cache==1.6.4
     # via caniusepython3
-bleach==5.0.0
+bleach==5.0.1
     # via readme-renderer
 boto==2.49.0
     # via -r requirements/test.txt
-boto3==1.24.17
+boto3==1.24.22
     # via
     #   -r requirements/test.txt
     #   fs-s3fs
     #   moto
-botocore==1.27.17
+botocore==1.27.22
     # via
     #   -r requirements/test.txt
     #   boto3
@@ -43,11 +43,11 @@ certifi==2022.6.15
     # via
     #   -r requirements/test.txt
     #   requests
-cffi==1.15.0
+cffi==1.15.1
     # via
     #   -r requirements/test.txt
     #   cryptography
-charset-normalizer==2.0.12
+charset-normalizer==2.1.0
     # via
     #   -r requirements/test.txt
     #   requests
@@ -132,7 +132,7 @@ mccabe==0.7.0
     # via pylint
 mock==4.0.3
     # via -r requirements/test.txt
-moto==3.1.15
+moto==3.1.16
     # via -r requirements/test.txt
 packaging==21.3
     # via
@@ -165,7 +165,7 @@ pygments==2.12.0
     # via
     #   readme-renderer
     #   rich
-pylint==2.14.3
+pylint==2.14.4
     # via
     #   edx-lint
     #   pylint-celery
@@ -210,7 +210,7 @@ pyyaml==6.0
     # via code-annotations
 readme-renderer==35.0
     # via twine
-requests==2.28.0
+requests==2.28.1
     # via
     #   -r requirements/test.txt
     #   caniusepython3
@@ -262,7 +262,7 @@ tomlkit==0.11.0
     # via pylint
 twine==4.0.1
     # via -r requirements/quality.in
-typing-extensions==4.2.0
+typing-extensions==4.3.0
     # via
     #   astroid
     #   pylint
