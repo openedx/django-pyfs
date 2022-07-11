@@ -12,11 +12,11 @@ attrs==21.4.0
     # via pytest
 boto==2.49.0
     # via -r requirements/test.in
-boto3==1.24.22
+boto3==1.24.26
     # via
     #   fs-s3fs
     #   moto
-botocore==1.27.22
+botocore==1.27.26
     # via
     #   boto3
     #   moto
@@ -29,7 +29,7 @@ charset-normalizer==2.1.0
     # via requests
 coverage[toml]==6.4.1
     # via pytest-cov
-cryptography==37.0.2
+cryptography==37.0.4
     # via moto
     # via
     #   -c https://raw.githubusercontent.com/edx/edx-lint/master/edx_lint/files/common_constraints.txt
@@ -106,7 +106,7 @@ tomli==2.0.1
     # via
     #   coverage
     #   pytest
-urllib3==1.26.9
+urllib3==1.26.10
     # via
     #   botocore
     #   requests
