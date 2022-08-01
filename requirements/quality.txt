@@ -16,7 +16,7 @@ astroid==2.11.7
     # via
     #   pylint
     #   pylint-celery
-attrs==21.4.0
+attrs==22.1.0
     # via
     #   -r requirements/test.txt
     #   pytest
@@ -26,12 +26,12 @@ bleach==5.0.1
     # via readme-renderer
 boto==2.49.0
     # via -r requirements/test.txt
-boto3==1.24.36
+boto3==1.24.42
     # via
     #   -r requirements/test.txt
     #   fs-s3fs
     #   moto
-botocore==1.27.36
+botocore==1.27.42
     # via
     #   -r requirements/test.txt
     #   boto3
@@ -154,7 +154,7 @@ py==1.11.0
     # via
     #   -r requirements/test.txt
     #   pytest
-pycodestyle==2.8.0
+pycodestyle==2.9.0
     # via -r requirements/quality.in
 pycparser==2.21
     # via
@@ -268,7 +268,7 @@ typing-extensions==4.3.0
     #   astroid
     #   pylint
     #   rich
-urllib3==1.26.10
+urllib3==1.26.11
     # via
     #   -r requirements/test.txt
     #   botocore
@@ -277,7 +277,7 @@ urllib3==1.26.10
     #   twine
 webencodings==0.5.1
     # via bleach
-werkzeug==2.2.0
+werkzeug==2.2.1
     # via
     #   -r requirements/test.txt
     #   moto

@@ -8,15 +8,15 @@ appdirs==1.4.4
     # via fs
 asgiref==3.5.2
     # via django
-attrs==21.4.0
+attrs==22.1.0
     # via pytest
 boto==2.49.0
     # via -r requirements/test.in
-boto3==1.24.36
+boto3==1.24.42
     # via
     #   fs-s3fs
     #   moto
-botocore==1.27.36
+botocore==1.27.42
     # via
     #   boto3
     #   moto
@@ -107,12 +107,12 @@ tomli==2.0.1
     # via
     #   coverage
     #   pytest
-urllib3==1.26.10
+urllib3==1.26.11
     # via
     #   botocore
     #   requests
     #   responses
-werkzeug==2.2.0
+werkzeug==2.2.1
     # via moto
 xmltodict==0.13.0
     # via moto
