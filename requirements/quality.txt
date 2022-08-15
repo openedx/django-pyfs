@@ -26,12 +26,12 @@ bleach==5.0.1
     # via readme-renderer
 boto==2.49.0
     # via -r requirements/test.txt
-boto3==1.24.46
+boto3==1.24.51
     # via
     #   -r requirements/test.txt
     #   fs-s3fs
     #   moto
-botocore==1.27.46
+botocore==1.27.51
     # via
     #   -r requirements/test.txt
     #   boto3
@@ -119,7 +119,7 @@ jmespath==1.0.1
     #   -r requirements/test.txt
     #   boto3
     #   botocore
-keyring==23.8.1
+keyring==23.8.2
     # via twine
 lazy-object-proxy==1.7.1
     # via astroid
@@ -132,14 +132,14 @@ mccabe==0.7.0
     # via pylint
 mock==4.0.3
     # via -r requirements/test.txt
-moto==3.1.17
+moto==3.1.18
     # via -r requirements/test.txt
 packaging==21.3
     # via
     #   -r requirements/test.txt
     #   caniusepython3
     #   pytest
-pbr==5.9.0
+pbr==5.10.0
     # via stevedore
 pkginfo==1.8.3
     # via twine
@@ -201,7 +201,7 @@ python-dateutil==2.8.2
     #   moto
 python-slugify==6.1.2
     # via code-annotations
-pytz==2022.1
+pytz==2022.2.1
     # via
     #   -r requirements/test.txt
     #   django
@@ -232,7 +232,7 @@ s3transfer==0.6.0
     # via
     #   -r requirements/test.txt
     #   boto3
-secretstorage==3.3.2
+secretstorage==3.3.3
     # via keyring
 six==1.16.0
     # via
@@ -258,7 +258,7 @@ tomli==2.0.1
     #   coverage
     #   pylint
     #   pytest
-tomlkit==0.11.2
+tomlkit==0.11.4
     # via pylint
 twine==4.0.1
     # via -r requirements/quality.in
