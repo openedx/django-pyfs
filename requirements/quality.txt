@@ -12,7 +12,7 @@ asgiref==3.5.2
     # via
     #   -r requirements/test.txt
     #   django
-astroid==2.11.7
+astroid==2.12.4
     # via
     #   pylint
     #   pylint-celery
@@ -26,12 +26,12 @@ bleach==5.0.1
     # via readme-renderer
 boto==2.49.0
     # via -r requirements/test.txt
-boto3==1.24.56
+boto3==1.24.61
     # via
     #   -r requirements/test.txt
     #   fs-s3fs
     #   moto
-botocore==1.27.56
+botocore==1.27.61
     # via
     #   -r requirements/test.txt
     #   boto3
@@ -73,7 +73,7 @@ cryptography==37.0.4
     #   secretstorage
 dill==0.3.5.1
     # via pylint
-distlib==0.3.5
+distlib==0.3.6
     # via caniusepython3
 django==3.2.15
     # via
@@ -132,7 +132,7 @@ mccabe==0.7.0
     # via pylint
 mock==4.0.3
     # via -r requirements/test.txt
-moto==4.0.0
+moto==4.0.1
     # via -r requirements/test.txt
 packaging==21.3
     # via
@@ -165,7 +165,7 @@ pygments==2.13.0
     # via
     #   readme-renderer
     #   rich
-pylint==2.14.5
+pylint==2.15.0
     # via
     #   edx-lint
     #   pylint-celery
@@ -267,7 +267,7 @@ typing-extensions==4.3.0
     #   astroid
     #   pylint
     #   rich
-urllib3==1.26.11
+urllib3==1.26.12
     # via
     #   -r requirements/test.txt
     #   botocore
