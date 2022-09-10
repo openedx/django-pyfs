@@ -105,7 +105,7 @@ setup(
     author_email='pmitros@edx.org',
     packages=['djpyfs'],
     license="Apache 2.0",
-    url="https://github.com/edx/django-pyfs",
+    url="https://github.com/openedx/django-pyfs",
     long_description=ld,
     long_description_content_type='text/x-rst',
     classifiers=[

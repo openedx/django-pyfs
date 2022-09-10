@@ -81,8 +81,8 @@ and is currently deployed on edx.org.
     :target: https://pypi.python.org/pypi/django-pyfs/
     :alt: PyPI
 
-.. |ci-badge| image:: https://github.com/edx/django-pyfs/workflows/Python%20CI/badge.svg?branch=master
-    :target: https://github.com/edx/django-pyfs/actions?query=workflow%3A%22Python+CI%22
+.. |ci-badge| image:: https://github.com/openedx/django-pyfs/workflows/Python%20CI/badge.svg?branch=master
+    :target: https://github.com/openedx/django-pyfs/actions?query=workflow%3A%22Python+CI%22
     :alt: Github CI
 
 .. |codecov-badge| image:: http://codecov.io/github/edx/django-pyfs/coverage.svg?branch=master
@@ -94,5 +94,5 @@ and is currently deployed on edx.org.
     :alt: Supported Python versions
 
 .. |license-badge| image:: https://img.shields.io/github/license/edx/django-pyfs.svg
-    :target: https://github.com/edx/django-pyfs/blob/master/LICENSE.txt
+    :target: https://github.com/openedx/django-pyfs/blob/master/LICENSE.txt
     :alt: License
