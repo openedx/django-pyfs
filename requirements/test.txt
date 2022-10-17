@@ -12,11 +12,11 @@ attrs==22.1.0
     # via pytest
 boto==2.49.0
     # via -r requirements/test.in
-boto3==1.24.89
+boto3==1.24.91
     # via
     #   fs-s3fs
     #   moto
-botocore==1.27.89
+botocore==1.27.91
     # via
     #   boto3
     #   moto
@@ -91,7 +91,7 @@ requests==2.28.1
     # via
     #   moto
     #   responses
-responses==0.21.0
+responses==0.22.0
     # via moto
 s3transfer==0.6.0
     # via boto3
@@ -102,10 +102,14 @@ six==1.16.0
     #   python-dateutil
 sqlparse==0.4.3
     # via django
+toml==0.10.2
+    # via responses
 tomli==2.0.1
     # via
     #   coverage
     #   pytest
+types-toml==0.10.8
+    # via responses
 urllib3==1.26.12
     # via
     #   botocore
