@@ -12,11 +12,11 @@ attrs==22.1.0
     # via pytest
 boto==2.49.0
     # via -r requirements/test.in
-boto3==1.24.91
+boto3==1.24.96
     # via
     #   fs-s3fs
     #   moto
-botocore==1.27.91
+botocore==1.27.96
     # via
     #   boto3
     #   moto
@@ -54,9 +54,10 @@ markupsafe==2.1.1
     # via
     #   jinja2
     #   moto
+    #   werkzeug
 mock==4.0.3
     # via -r requirements/test.in
-moto==4.0.7
+moto==4.0.8
     # via -r requirements/test.in
 packaging==21.3
     # via pytest
@@ -83,7 +84,7 @@ python-dateutil==2.8.2
     # via
     #   botocore
     #   moto
-pytz==2022.4
+pytz==2022.5
     # via
     #   django
     #   moto
@@ -115,7 +116,7 @@ urllib3==1.26.12
     #   botocore
     #   requests
     #   responses
-werkzeug==2.1.2
+werkzeug==2.2.2
     # via moto
 xmltodict==0.13.0
     # via moto
