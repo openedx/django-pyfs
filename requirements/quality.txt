@@ -12,7 +12,7 @@ asgiref==3.5.2
     # via
     #   -r requirements/test.txt
     #   django
-astroid==2.12.11
+astroid==2.12.12
     # via
     #   pylint
     #   pylint-celery
@@ -26,12 +26,12 @@ bleach==5.0.1
     # via readme-renderer
 boto==2.49.0
     # via -r requirements/test.txt
-boto3==1.24.91
+boto3==1.25.4
     # via
     #   -r requirements/test.txt
     #   fs-s3fs
     #   moto
-botocore==1.27.91
+botocore==1.28.4
     # via
     #   -r requirements/test.txt
     #   boto3
@@ -71,7 +71,7 @@ cryptography==38.0.1
     #   -r requirements/test.txt
     #   moto
     #   secretstorage
-dill==0.3.5.1
+dill==0.3.6
     # via pylint
 distlib==0.3.6
     # via caniusepython3
@@ -83,6 +83,10 @@ docutils==0.19
     # via readme-renderer
 edx-lint==5.3.0
     # via -r requirements/quality.in
+exceptiongroup==1.0.0
+    # via
+    #   -r requirements/test.txt
+    #   pytest
 fs==2.4.16
     # via
     #   -r requirements/test.txt
@@ -123,37 +127,34 @@ jmespath==1.0.1
     #   botocore
 keyring==23.9.3
     # via twine
-lazy-object-proxy==1.7.1
+lazy-object-proxy==1.8.0
     # via astroid
 markupsafe==2.1.1
     # via
     #   -r requirements/test.txt
     #   jinja2
     #   moto
+    #   werkzeug
 mccabe==0.7.0
     # via pylint
 mock==4.0.3
     # via -r requirements/test.txt
-more-itertools==8.14.0
+more-itertools==9.0.0
     # via jaraco-classes
-moto==4.0.7
+moto==4.0.8
     # via -r requirements/test.txt
 packaging==21.3
     # via
     #   -r requirements/test.txt
     #   caniusepython3
     #   pytest
-pbr==5.10.0
+pbr==5.11.0
     # via stevedore
 pkginfo==1.8.3
     # via twine
 platformdirs==2.5.2
     # via pylint
 pluggy==1.0.0
-    # via
-    #   -r requirements/test.txt
-    #   pytest
-py==1.11.0
     # via
     #   -r requirements/test.txt
     #   pytest
@@ -169,7 +170,7 @@ pygments==2.13.0
     # via
     #   readme-renderer
     #   rich
-pylint==2.15.4
+pylint==2.15.5
     # via
     #   edx-lint
     #   pylint-celery
@@ -189,7 +190,7 @@ pyparsing==3.0.9
     #   packaging
 pypng==0.20220715.0
     # via -r requirements/test.txt
-pytest==7.1.3
+pytest==7.2.0
     # via
     #   -r requirements/test.txt
     #   pytest-cov
@@ -205,7 +206,7 @@ python-dateutil==2.8.2
     #   moto
 python-slugify==6.1.2
     # via code-annotations
-pytz==2022.4
+pytz==2022.5
     # via
     #   -r requirements/test.txt
     #   django
@@ -222,7 +223,7 @@ requests==2.28.1
     #   requests-toolbelt
     #   responses
     #   twine
-requests-toolbelt==0.10.0
+requests-toolbelt==0.10.1
     # via twine
 responses==0.22.0
     # via
@@ -252,7 +253,7 @@ sqlparse==0.4.3
     # via
     #   -r requirements/test.txt
     #   django
-stevedore==4.0.1
+stevedore==4.1.0
     # via code-annotations
 text-unidecode==1.3
     # via python-slugify
@@ -266,7 +267,7 @@ tomli==2.0.1
     #   coverage
     #   pylint
     #   pytest
-tomlkit==0.11.5
+tomlkit==0.11.6
     # via pylint
 twine==4.0.1
     # via -r requirements/quality.in
@@ -288,7 +289,7 @@ urllib3==1.26.12
     #   twine
 webencodings==0.5.1
     # via bleach
-werkzeug==2.1.2
+werkzeug==2.2.2
     # via
     #   -r requirements/test.txt
     #   moto
@@ -298,7 +299,7 @@ xmltodict==0.13.0
     # via
     #   -r requirements/test.txt
     #   moto
-zipp==3.9.0
+zipp==3.10.0
     # via importlib-metadata
 
 # The following packages are considered to be unsafe in a requirements file:
