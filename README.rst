@@ -1,6 +1,5 @@
-===========
-django-pyfs
-===========
+openedx-django-pyfs
+===================
 
 |pypi-badge| |ci-badge| |codecov-badge| |pyversions-badge|
 |license-badge|
@@ -32,7 +31,7 @@ Note that expired files are not automatically removed. To remove them,
 call ``expire_objects()``. In our system, we had a cron job do
 this for a while. Celery, manual removals, etc. are all options.
 
-To configure a django-pyfs to use static files, set a parameter in
+To configure a openedx-django-pyfs to use static files, set a parameter in
 Django settings:
 
 .. code-block::
@@ -64,35 +63,35 @@ To get your filesystem, call:
 Each module should pass a unique namespace. These will typically
 correspond to subdirectories within the filesystem.
 
-The django-pyfs interface is designed as a generic (non-Django
+The openedx-django-pyfs interface is designed as a generic (non-Django
 specific) extension to pyfilesystem2. However, the specific
 implementation is very Django-specific.
 
 Good next steps would be to:
 
 * Allow Django storages to act as a back-end for pyfilesystem
-* Allow django-pyfs to act as a back-end for Django storages
+* Allow openedx-django-pyfs to act as a back-end for Django storages
 * Support more types of pyfilesystems (esp. in-memory would be nice)
 
 State: This code is tested and has worked well in a range of settings,
 and is currently deployed on edx.org.
 
-.. |pypi-badge| image:: https://img.shields.io/pypi/v/django-pyfs.svg
-    :target: https://pypi.python.org/pypi/django-pyfs/
+.. |pypi-badge| image:: https://img.shields.io/pypi/v/openedx-django-pyfs.svg
+    :target: https://pypi.python.org/pypi/openedx-django-pyfs/
     :alt: PyPI
 
 .. |ci-badge| image:: https://github.com/openedx/django-pyfs/workflows/Python%20CI/badge.svg?branch=master
     :target: https://github.com/openedx/django-pyfs/actions?query=workflow%3A%22Python+CI%22
     :alt: Github CI
 
-.. |codecov-badge| image:: http://codecov.io/github/edx/django-pyfs/coverage.svg?branch=master
-    :target: http://codecov.io/github/edx/django-pyfs?branch=master
+.. |codecov-badge| image:: http://codecov.io/github/openedx/django-pyfs/coverage.svg?branch=master
+    :target: http://codecov.io/github/openedx/django-pyfs?branch=master
     :alt: Codecov
 
-.. |pyversions-badge| image:: https://img.shields.io/pypi/pyversions/django-pyfs.svg
-    :target: https://pypi.python.org/pypi/django-pyfs
+.. |pyversions-badge| image:: https://img.shields.io/pypi/pyversions/openedx-django-pyfs.svg
+    :target: https://pypi.python.org/pypi/openedx-django-pyfs
     :alt: Supported Python versions
 
-.. |license-badge| image:: https://img.shields.io/github/license/edx/django-pyfs.svg
+.. |license-badge| image:: https://img.shields.io/github/license/openedx/django-pyfs.svg
     :target: https://github.com/openedx/django-pyfs/blob/master/LICENSE.txt
     :alt: License
