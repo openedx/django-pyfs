@@ -98,11 +98,11 @@ VERSION = get_version("djpyfs", "__init__.py")
 
 
 setup(
-    name='django-pyfs',
+    name='openedx-django-pyfs',
     version=VERSION,
     description='Django pyfilesystem integration',
-    author='Piotr Mitros',
-    author_email='pmitros@edx.org',
+    author='Open edX',
+    author_email='oscm@tcril.org',
     packages=['djpyfs'],
     license="Apache 2.0",
     url="https://github.com/openedx/django-pyfs",
