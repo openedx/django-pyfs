@@ -12,7 +12,7 @@ asgiref==3.6.0
     # via
     #   -r requirements/test.txt
     #   django
-astroid==2.15.0
+astroid==2.15.1
     # via
     #   pylint
     #   pylint-celery
@@ -26,12 +26,12 @@ bleach==6.0.0
     # via readme-renderer
 boto==2.49.0
     # via -r requirements/test.txt
-boto3==1.26.94
+boto3==1.26.99
     # via
     #   -r requirements/test.txt
     #   fs-s3fs
     #   moto
-botocore==1.29.94
+botocore==1.29.99
     # via
     #   -r requirements/test.txt
     #   boto3
@@ -64,7 +64,7 @@ coverage[toml]==7.2.2
     # via
     #   -r requirements/test.txt
     #   pytest-cov
-cryptography==39.0.2
+cryptography==40.0.1
     # via
     #   -r requirements/test.txt
     #   moto
@@ -144,7 +144,7 @@ mock==5.0.1
     # via -r requirements/test.txt
 more-itertools==9.1.0
     # via jaraco-classes
-moto==4.1.5
+moto==4.1.6
     # via -r requirements/test.txt
 packaging==23.0
     # via
@@ -155,7 +155,7 @@ pbr==5.11.1
     # via stevedore
 pkginfo==1.9.6
     # via twine
-platformdirs==3.1.1
+platformdirs==3.2.0
     # via pylint
 pluggy==1.0.0
     # via
@@ -173,7 +173,7 @@ pygments==2.14.0
     # via
     #   readme-renderer
     #   rich
-pylint==2.17.0
+pylint==2.17.1
     # via
     #   edx-lint
     #   pylint-celery
@@ -205,7 +205,7 @@ python-dateutil==2.8.2
     #   moto
 python-slugify==8.0.1
     # via code-annotations
-pytz==2022.7.1
+pytz==2023.2
     # via
     #   -r requirements/test.txt
     #   django
