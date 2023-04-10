@@ -8,9 +8,9 @@ appdirs==1.4.4
     # via fs
 asgiref==3.6.0
     # via django
-boto3==1.26.94
+boto3==1.26.109
     # via fs-s3fs
-botocore==1.29.94
+botocore==1.29.109
     # via
     #   boto3
     #   s3transfer
@@ -24,7 +24,7 @@ django==3.2.18
     # via
     #   -c requirements/common_constraints.txt
     #   -r requirements/base.in
-filelock==3.10.0
+filelock==3.11.0
     # via
     #   tox
     #   virtualenv
@@ -42,9 +42,9 @@ packaging==23.0
     # via
     #   build
     #   tox
-pip-tools==6.12.3
+pip-tools==6.13.0
     # via -r requirements/dev.in
-platformdirs==3.1.1
+platformdirs==3.2.0
     # via virtualenv
 pluggy==1.0.0
     # via tox
@@ -54,7 +54,7 @@ pyproject-hooks==1.0.0
     # via build
 python-dateutil==2.8.2
     # via botocore
-pytz==2022.7.1
+pytz==2023.3
     # via django
 s3transfer==0.6.0
     # via boto3
