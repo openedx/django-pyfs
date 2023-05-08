@@ -10,16 +10,16 @@ asgiref==3.6.0
     # via django
 boto==2.49.0
     # via -r requirements/test.in
-boto3==1.26.123
+boto3==1.26.129
     # via
     #   fs-s3fs
     #   moto
-botocore==1.29.123
+botocore==1.29.129
     # via
     #   boto3
     #   moto
     #   s3transfer
-certifi==2022.12.7
+certifi==2023.5.7
     # via requests
 cffi==1.15.1
     # via cryptography
@@ -83,13 +83,13 @@ pytz==2023.3
     # via django
 pyyaml==6.0
     # via responses
-requests==2.29.0
+requests==2.30.0
     # via
     #   moto
     #   responses
 responses==0.23.1
     # via moto
-s3transfer==0.6.0
+s3transfer==0.6.1
     # via boto3
 six==1.16.0
     # via
@@ -109,7 +109,7 @@ urllib3==1.26.15
     #   botocore
     #   requests
     #   responses
-werkzeug==2.3.2
+werkzeug==2.3.3
     # via moto
 xmltodict==0.13.0
     # via moto
