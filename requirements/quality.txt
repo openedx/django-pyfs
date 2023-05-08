@@ -22,12 +22,12 @@ bleach==6.0.0
     # via readme-renderer
 boto==2.49.0
     # via -r requirements/test.txt
-boto3==1.26.123
+boto3==1.26.129
     # via
     #   -r requirements/test.txt
     #   fs-s3fs
     #   moto
-botocore==1.29.123
+botocore==1.29.129
     # via
     #   -r requirements/test.txt
     #   boto3
@@ -35,7 +35,7 @@ botocore==1.29.123
     #   s3transfer
 caniusepython3==7.3.0
     # via -r requirements/quality.in
-certifi==2022.12.7
+certifi==2023.5.7
     # via
     #   -r requirements/test.txt
     #   requests
@@ -69,7 +69,7 @@ dill==0.3.6
     # via pylint
 distlib==0.3.6
     # via caniusepython3
-django==3.2.18
+django==3.2.19
     # via
     #   -c requirements/common_constraints.txt
     #   -r requirements/test.txt
@@ -169,7 +169,7 @@ pygments==2.15.1
     # via
     #   readme-renderer
     #   rich
-pylint==2.17.3
+pylint==2.17.4
     # via
     #   edx-lint
     #   pylint-celery
@@ -212,7 +212,7 @@ pyyaml==6.0
     #   responses
 readme-renderer==37.3
     # via twine
-requests==2.29.0
+requests==2.30.0
     # via
     #   -r requirements/test.txt
     #   caniusepython3
@@ -230,7 +230,7 @@ rfc3986==2.0.0
     # via twine
 rich==13.3.5
     # via twine
-s3transfer==0.6.0
+s3transfer==0.6.1
     # via
     #   -r requirements/test.txt
     #   boto3
@@ -282,7 +282,7 @@ urllib3==1.26.15
     #   twine
 webencodings==0.5.1
     # via bleach
-werkzeug==2.3.2
+werkzeug==2.3.3
     # via
     #   -r requirements/test.txt
     #   moto
