@@ -13,7 +13,7 @@ import os
 import os.path
 import types
 
-from boto.s3.connection import S3Connection
+import boto3
 from django.conf import settings
 from fs.osfs import OSFS
 from fs_s3fs import S3FS
@@ -131,6 +131,7 @@ def get_s3fs(namespace):
 
     if 'prefix' in DJFS_SETTINGS:
         fullpath = os.path.join(DJFS_SETTINGS['prefix'], fullpath)
+
     s3fs = S3FS(DJFS_SETTINGS['bucket'], fullpath, aws_secret_access_key=key_id, aws_access_key_id=key_secret)
 
     def get_s3_url(self, filename, timeout=60):  # pylint: disable=unused-argument
@@ -153,17 +154,29 @@ def get_s3fs(namespace):
 
         try:
             if not S3CONN:
-                S3CONN = S3Connection(aws_access_key_id=key_id, aws_secret_access_key=key_secret)
-            return S3CONN.generate_url(
-                timeout, 'GET', bucket=DJFS_SETTINGS['bucket'], key=os.path.join(fullpath, filename)
+                S3CONN = boto3.client('s3', aws_access_key_id=key_id, aws_secret_access_key=key_secret)
+
+            return S3CONN.generate_presigned_url(
+                "get_object",
+                Params={
+                    "Bucket": DJFS_SETTINGS['bucket'],
+                    "Key": os.path.join(fullpath, filename),
+                },
+                ExpiresIn=timeout
             )
+
         except Exception:  # pylint: disable=broad-except
             # Retry on error; typically, if the connection has timed out, but
             # the broad except covers all errors.
-            S3CONN = S3Connection(aws_access_key_id=key_id, aws_secret_access_key=key_secret)
+            S3CONN = boto3.client('s3', aws_access_key_id=key_id, aws_secret_access_key=key_secret)
 
-            return S3CONN.generate_url(
-                timeout, 'GET', bucket=DJFS_SETTINGS['bucket'], key=os.path.join(fullpath, filename)
+            return S3CONN.generate_presigned_url(
+                "get_object",
+                Params={
+                    "Bucket": DJFS_SETTINGS['bucket'],
+                    "Key": os.path.join(fullpath, filename),
+                },
+                ExpiresIn=timeout
             )
 
     s3fs = patch_fs(s3fs, namespace, get_s3_url)
