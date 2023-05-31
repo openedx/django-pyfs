@@ -6,11 +6,11 @@
 #
 appdirs==1.4.4
     # via fs
-asgiref==3.6.0
+asgiref==3.7.2
     # via django
-boto3==1.26.129
+boto3==1.26.142
     # via fs-s3fs
-botocore==1.29.129
+botocore==1.29.142
     # via
     #   boto3
     #   s3transfer
@@ -44,7 +44,7 @@ packaging==23.1
     #   tox
 pip-tools==6.13.0
     # via -r requirements/dev.in
-platformdirs==3.5.0
+platformdirs==3.5.1
     # via virtualenv
 pluggy==1.0.0
     # via tox
@@ -78,7 +78,9 @@ tox==3.28.0
     #   tox-battery
 tox-battery==0.6.1
     # via -r requirements/dev.in
-urllib3==1.26.15
+typing-extensions==4.6.2
+    # via asgiref
+urllib3==1.26.16
     # via botocore
 virtualenv==20.23.0
     # via tox
