@@ -6,15 +6,13 @@
 #
 appdirs==1.4.4
     # via fs
-asgiref==3.6.0
+asgiref==3.7.2
     # via django
-boto==2.49.0
-    # via -r requirements/test.in
-boto3==1.26.129
+boto3==1.26.144
     # via
     #   fs-s3fs
     #   moto
-botocore==1.29.129
+botocore==1.29.144
     # via
     #   boto3
     #   moto
@@ -25,9 +23,9 @@ cffi==1.15.1
     # via cryptography
 charset-normalizer==3.1.0
     # via requests
-coverage[toml]==7.2.5
+coverage[toml]==7.2.7
     # via pytest-cov
-cryptography==40.0.2
+cryptography==41.0.0
     # via moto
     # via
     #   -c requirements/common_constraints.txt
@@ -56,7 +54,7 @@ markupsafe==2.1.2
     #   werkzeug
 mock==5.0.2
     # via -r requirements/test.in
-moto==4.1.8
+moto==4.1.10
     # via -r requirements/test.in
 packaging==23.1
     # via pytest
@@ -71,7 +69,7 @@ pytest==7.3.1
     #   -r requirements/test.in
     #   pytest-cov
     #   pytest-django
-pytest-cov==4.0.0
+pytest-cov==4.1.0
     # via -r requirements/test.in
 pytest-django==4.5.2
     # via -r requirements/test.in
@@ -83,7 +81,7 @@ pytz==2023.3
     # via django
 pyyaml==6.0
     # via responses
-requests==2.30.0
+requests==2.31.0
     # via
     #   moto
     #   responses
@@ -102,14 +100,16 @@ tomli==2.0.1
     # via
     #   coverage
     #   pytest
-types-pyyaml==6.0.12.9
+types-pyyaml==6.0.12.10
     # via responses
-urllib3==1.26.15
+typing-extensions==4.6.2
+    # via asgiref
+urllib3==1.26.16
     # via
     #   botocore
     #   requests
     #   responses
-werkzeug==2.3.3
+werkzeug==2.3.4
     # via moto
 xmltodict==0.13.0
     # via moto
