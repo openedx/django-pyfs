@@ -3,7 +3,6 @@
 -c constraints.txt
 
 mock           # For setup of testing corner cases
-boto           # TODO: required for some tests, needs to be removed after updating tests
 moto           # For mocking the boto3 Amazon S3 API
 pypng          # For the sample app
 pytest         # Test runner

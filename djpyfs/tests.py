@@ -6,7 +6,7 @@ Database models for django-pyfs
 import os
 import shutil
 import unittest
-from unittest import mock
+from unittest.mock import patch
 
 import boto3
 from django.test import TestCase
@@ -304,7 +304,7 @@ class S3Test(_BaseFs):
     def setUp(self):
         super().setUp()
 
-        self.expected_url_prefix = (f"https://{djpyfs.DJFS_SETTINGS['bucket']}.s3.amazonaws.com:443/"
+        self.expected_url_prefix = (f"https://s3.amazonaws.com/{djpyfs.DJFS_SETTINGS['bucket']}/"
                                     f"{self.namespace}/{self.relative_path_to_test_file}")
 
         self._setUpS3()
@@ -323,12 +323,13 @@ class S3Test(_BaseFs):
     # This test is only relevant for S3. Generate some fake errors to make
     # sure we cover the retry code.
     def test_get_url_retry(self):
-        with mock.patch("boto.s3.connection.S3Connection.generate_url") as mock_exception:
-            mock_exception.side_effect = AttributeError("test mock exception")
-            fs = djpyfs.get_filesystem(self.namespace)
-
-            with self.assertRaises(AttributeError):
-                fs.get_url(self.relative_path_to_test_file).startswith(self.expected_url_prefix)
+        with patch('boto3.client') as mock_client:
+            mock_client.side_effect = AttributeError("Some attribute error occurred")
+            with patch.object(djpyfs.S3CONN, "generate_presigned_url") as mock_client:
+                    mock_client.side_effect = AttributeError("Some attribute error occurred")
+                    fs = djpyfs.get_filesystem(self.namespace)
+                    with self.assertRaises(AttributeError):
+                        fs.get_url(self.relative_path_to_test_file).startswith(self.expected_url_prefix)
 
     def tearDown(self):
         self.mock_s3.stop()
@@ -354,7 +355,7 @@ class S3TestPrefix(S3Test):
     def setUp(self):
         super().setUp()
 
-        self.expected_url_prefix = (f"https://{djpyfs.DJFS_SETTINGS['bucket']}.s3.amazonaws.com:443/"
+        self.expected_url_prefix = (f"https://s3.amazonaws.com/{djpyfs.DJFS_SETTINGS['bucket']}/"
                                     f"{djpyfs.DJFS_SETTINGS['prefix']}/{self.namespace}/"
                                     f"{self.relative_path_to_test_file}")
         self._setUpS3()
