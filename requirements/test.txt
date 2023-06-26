@@ -8,11 +8,11 @@ appdirs==1.4.4
     # via fs
 asgiref==3.7.2
     # via django
-boto3==1.26.155
+boto3==1.26.160
     # via
     #   fs-s3fs
     #   moto
-botocore==1.29.155
+botocore==1.29.160
     # via
     #   boto3
     #   moto
@@ -54,17 +54,17 @@ markupsafe==2.1.3
     #   werkzeug
 mock==5.0.2
     # via -r requirements/test.in
-moto==4.1.11
+moto==4.1.12
     # via -r requirements/test.in
 packaging==23.1
     # via pytest
-pluggy==1.0.0
+pluggy==1.2.0
     # via pytest
 pycparser==2.21
     # via cffi
 pypng==0.20220715.0
     # via -r requirements/test.in
-pytest==7.3.2
+pytest==7.4.0
     # via
     #   -r requirements/test.in
     #   pytest-cov
