@@ -20,12 +20,12 @@ backports-functools-lru-cache==1.6.6
     # via caniusepython3
 bleach==6.0.0
     # via readme-renderer
-boto3==1.28.9
+boto3==1.28.15
     # via
     #   -r requirements/test.txt
     #   fs-s3fs
     #   moto
-botocore==1.31.9
+botocore==1.31.15
     # via
     #   -r requirements/test.txt
     #   boto3
@@ -136,9 +136,9 @@ mdurl==0.1.2
     # via markdown-it-py
 mock==5.1.0
     # via -r requirements/test.txt
-more-itertools==9.1.0
+more-itertools==10.0.0
     # via jaraco-classes
-moto==4.1.13
+moto==4.1.14
     # via -r requirements/test.txt
 packaging==23.1
     # via
@@ -149,13 +149,13 @@ pbr==5.11.1
     # via stevedore
 pkginfo==1.9.6
     # via twine
-platformdirs==3.9.1
+platformdirs==3.10.0
     # via pylint
 pluggy==1.2.0
     # via
     #   -r requirements/test.txt
     #   pytest
-pycodestyle==2.10.0
+pycodestyle==2.11.0
     # via -r requirements/quality.in
 pycparser==2.21
     # via
@@ -167,7 +167,7 @@ pygments==2.15.1
     # via
     #   readme-renderer
     #   rich
-pylint==2.17.4
+pylint==2.17.5
     # via
     #   edx-lint
     #   pylint-celery
@@ -226,7 +226,7 @@ responses==0.23.1
     #   moto
 rfc3986==2.0.0
     # via twine
-rich==13.4.2
+rich==13.5.0
     # via twine
 s3transfer==0.6.1
     # via
@@ -258,7 +258,7 @@ tomli==2.0.1
     #   coverage
     #   pylint
     #   pytest
-tomlkit==0.11.8
+tomlkit==0.12.1
     # via pylint
 twine==4.0.2
     # via -r requirements/quality.in
