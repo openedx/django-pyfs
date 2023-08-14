@@ -8,9 +8,9 @@ appdirs==1.4.4
     # via fs
 asgiref==3.7.2
     # via django
-boto3==1.28.9
+boto3==1.28.25
     # via fs-s3fs
-botocore==1.31.9
+botocore==1.31.25
     # via
     #   boto3
     #   s3transfer
@@ -42,9 +42,9 @@ packaging==23.1
     # via
     #   build
     #   tox
-pip-tools==7.1.0
+pip-tools==7.3.0
     # via -r requirements/dev.in
-platformdirs==3.9.1
+platformdirs==3.10.0
     # via virtualenv
 pluggy==1.2.0
     # via tox
@@ -83,9 +83,9 @@ typing-extensions==4.7.1
     # via asgiref
 urllib3==1.26.16
     # via botocore
-virtualenv==20.24.1
+virtualenv==20.24.3
     # via tox
-wheel==0.41.0
+wheel==0.41.1
     # via pip-tools
 
 # The following packages are considered to be unsafe in a requirements file:
