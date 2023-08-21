@@ -8,15 +8,15 @@ appdirs==1.4.4
     # via fs
 asgiref==3.7.2
     # via django
-boto3==1.28.9
+boto3==1.28.30
     # via fs-s3fs
-botocore==1.31.9
+botocore==1.31.30
     # via
     #   boto3
     #   s3transfer
 build==0.10.0
     # via pip-tools
-click==8.1.6
+click==8.1.7
     # via pip-tools
 distlib==0.3.7
     # via virtualenv
@@ -42,9 +42,9 @@ packaging==23.1
     # via
     #   build
     #   tox
-pip-tools==7.1.0
+pip-tools==7.3.0
     # via -r requirements/dev.in
-platformdirs==3.9.1
+platformdirs==3.10.0
     # via virtualenv
 pluggy==1.2.0
     # via tox
@@ -56,7 +56,7 @@ python-dateutil==2.8.2
     # via botocore
 pytz==2023.3
     # via django
-s3transfer==0.6.1
+s3transfer==0.6.2
     # via boto3
 six==1.16.0
     # via
@@ -77,15 +77,15 @@ tox==3.28.0
     #   -c requirements/common_constraints.txt
     #   -r requirements/dev.in
     #   tox-battery
-tox-battery==0.6.1
+tox-battery==0.6.2
     # via -r requirements/dev.in
 typing-extensions==4.7.1
     # via asgiref
 urllib3==1.26.16
     # via botocore
-virtualenv==20.24.1
+virtualenv==20.24.3
     # via tox
-wheel==0.41.0
+wheel==0.41.1
     # via pip-tools
 
 # The following packages are considered to be unsafe in a requirements file:
