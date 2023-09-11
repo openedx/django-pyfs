@@ -18,14 +18,12 @@ astroid==2.15.6
     #   pylint-celery
 backports-functools-lru-cache==1.6.6
     # via caniusepython3
-bleach==6.0.0
-    # via readme-renderer
-boto3==1.28.40
+boto3==1.28.44
     # via
     #   -r requirements/test.txt
     #   fs-s3fs
     #   moto
-botocore==1.31.40
+botocore==1.31.44
     # via
     #   -r requirements/test.txt
     #   boto3
@@ -54,7 +52,7 @@ click-log==0.4.0
     # via edx-lint
 code-annotations==1.5.0
     # via edx-lint
-coverage[toml]==7.3.0
+coverage[toml]==7.3.1
     # via
     #   -r requirements/test.txt
     #   pytest-cov
@@ -140,6 +138,8 @@ more-itertools==10.1.0
     # via jaraco-classes
 moto==4.2.2
     # via -r requirements/test.txt
+nh3==0.2.14
+    # via readme-renderer
 packaging==23.1
     # via
     #   -r requirements/test.txt
@@ -183,7 +183,7 @@ pylint-plugin-utils==0.8.2
     #   pylint-django
 pypng==0.20220715.0
     # via -r requirements/test.txt
-pytest==7.4.1
+pytest==7.4.2
     # via
     #   -r requirements/test.txt
     #   pytest-cov
@@ -199,7 +199,7 @@ python-dateutil==2.8.2
     #   moto
 python-slugify==8.0.1
     # via code-annotations
-pytz==2023.3
+pytz==2023.3.post1
     # via
     #   -r requirements/test.txt
     #   django
@@ -208,7 +208,7 @@ pyyaml==6.0.1
     #   -r requirements/test.txt
     #   code-annotations
     #   responses
-readme-renderer==41.0
+readme-renderer==42.0
     # via twine
 requests==2.31.0
     # via
@@ -237,7 +237,6 @@ secretstorage==3.3.3
 six==1.16.0
     # via
     #   -r requirements/test.txt
-    #   bleach
     #   edx-lint
     #   fs
     #   fs-s3fs
@@ -280,8 +279,6 @@ urllib3==1.26.16
     #   requests
     #   responses
     #   twine
-webencodings==0.5.1
-    # via bleach
 werkzeug==2.3.7
     # via
     #   -r requirements/test.txt
