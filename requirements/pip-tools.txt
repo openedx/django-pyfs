@@ -4,7 +4,7 @@
 #
 #    pip-compile --output-file=requirements/pip-tools.txt requirements/pip-tools.in
 #
-build==1.0.0
+build==1.0.3
     # via pip-tools
 click==8.1.7
     # via pip-tools
