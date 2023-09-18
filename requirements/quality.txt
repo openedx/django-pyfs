@@ -18,12 +18,12 @@ astroid==2.15.6
     #   pylint-celery
 backports-functools-lru-cache==1.6.6
     # via caniusepython3
-boto3==1.28.44
+boto3==1.28.49
     # via
     #   -r requirements/test.txt
     #   fs-s3fs
     #   moto
-botocore==1.31.44
+botocore==1.31.49
     # via
     #   -r requirements/test.txt
     #   boto3
@@ -136,7 +136,7 @@ mock==5.1.0
     # via -r requirements/test.txt
 more-itertools==10.1.0
     # via jaraco-classes
-moto==4.2.2
+moto==4.2.3
     # via -r requirements/test.txt
 nh3==0.2.14
     # via readme-renderer
@@ -226,7 +226,7 @@ responses==0.23.3
     #   moto
 rfc3986==2.0.0
     # via twine
-rich==13.5.2
+rich==13.5.3
     # via twine
 s3transfer==0.6.2
     # via
@@ -265,7 +265,7 @@ types-pyyaml==6.0.12.11
     # via
     #   -r requirements/test.txt
     #   responses
-typing-extensions==4.7.1
+typing-extensions==4.8.0
     # via
     #   -r requirements/test.txt
     #   asgiref
