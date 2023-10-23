@@ -8,11 +8,11 @@ appdirs==1.4.4
     # via fs
 asgiref==3.7.2
     # via django
-boto3==1.28.62
+boto3==1.28.68
     # via
     #   fs-s3fs
     #   moto
-botocore==1.31.62
+botocore==1.31.68
     # via
     #   boto3
     #   moto
@@ -21,10 +21,12 @@ certifi==2023.7.22
     # via requests
 cffi==1.16.0
     # via cryptography
-charset-normalizer==3.3.0
+charset-normalizer==3.3.1
     # via requests
 coverage[toml]==7.3.2
-    # via pytest-cov
+    # via
+    #   coverage
+    #   pytest-cov
 cryptography==41.0.4
     # via moto
     # via
@@ -54,7 +56,7 @@ markupsafe==2.1.3
     #   werkzeug
 mock==5.1.0
     # via -r requirements/test.in
-moto==4.2.5
+moto==4.2.6
     # via -r requirements/test.in
 packaging==23.2
     # via pytest
@@ -104,7 +106,7 @@ types-pyyaml==6.0.12.12
     # via responses
 typing-extensions==4.8.0
     # via asgiref
-urllib3==1.26.17
+urllib3==1.26.18
     # via
     #   botocore
     #   requests
