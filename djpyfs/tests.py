@@ -320,6 +320,11 @@ class S3Test(_BaseFs):
         self.conn = boto3.resource('s3')
         self.conn.create_bucket(Bucket=djpyfs.DJFS_SETTINGS['bucket'])
 
+    def test_aws_credentials(self):
+        fs = djpyfs.get_filesystem(self.namespace)
+        self.assertEqual(fs.aws_access_key_id, 'foo')
+        self.assertEqual(fs.aws_secret_access_key, 'bar')
+
     # This test is only relevant for S3. Generate some fake errors to make
     # sure we cover the retry code.
     def test_get_url_retry(self):
