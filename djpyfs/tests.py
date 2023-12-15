@@ -312,6 +312,8 @@ class S3Test(_BaseFs):
     def _setUpS3(self):
         """setup class"""
 
+        djpyfs.S3CONN = None
+
         # Start mocking S3
         self.mock_s3 = mock_s3()
         self.mock_s3.start()
@@ -320,19 +322,23 @@ class S3Test(_BaseFs):
         self.conn = boto3.resource('s3')
         self.conn.create_bucket(Bucket=djpyfs.DJFS_SETTINGS['bucket'])
 
-    def test_aws_credentials(self):
+    def test_aws_options(self):
         fs = djpyfs.get_filesystem(self.namespace)
         self.assertEqual(fs.aws_access_key_id, 'foo')
         self.assertEqual(fs.aws_secret_access_key, 'bar')
+        self.assertEqual(fs.region, djpyfs.DJFS_SETTINGS.get('region', None))
 
     # This test is only relevant for S3. Generate some fake errors to make
     # sure we cover the retry code.
     def test_get_url_retry(self):
+        fs = djpyfs.get_filesystem(self.namespace)
+        # Call get_url() once to initialise global S3CONN so we can patch its
+        # generate_presigned_url() method below.
+        fs.get_url(self.relative_path_to_test_file)
         with patch('boto3.client') as mock_client:
             mock_client.side_effect = AttributeError("Some attribute error occurred")
             with patch.object(djpyfs.S3CONN, "generate_presigned_url") as mock_client:
                     mock_client.side_effect = AttributeError("Some attribute error occurred")
-                    fs = djpyfs.get_filesystem(self.namespace)
                     with self.assertRaises(AttributeError):
                         fs.get_url(self.relative_path_to_test_file).startswith(self.expected_url_prefix)
 
@@ -362,5 +368,30 @@ class S3TestPrefix(S3Test):
 
         self.expected_url_prefix = (f"https://s3.amazonaws.com/{djpyfs.DJFS_SETTINGS['bucket']}/"
                                     f"{djpyfs.DJFS_SETTINGS['prefix']}/{self.namespace}/"
+                                    f"{self.relative_path_to_test_file}")
+        self._setUpS3()
+
+
+# pylint: disable=test-inherits-tests
+class S3TestRegion(S3Test):
+    """
+    Same as S3Test above, but specifies AWS region.
+    """
+
+    djfs_settings = {
+        'type': 's3fs',
+        'directory_root': 'django-pyfs/static/django-pyfs-test',
+        'url_root': '/static/django-pyfs-test',
+        'aws_access_key_id': 'foo',
+        'aws_secret_access_key': 'bar',
+        'bucket': 'test_bucket',
+        'region': 'me-south-1'
+    }
+
+    def setUp(self):
+        super().setUp()
+
+        self.expected_url_prefix = (f"https://s3.{djpyfs.DJFS_SETTINGS['region']}.amazonaws.com/"
+                                    f"{djpyfs.DJFS_SETTINGS['bucket']}/{self.namespace}/"
                                     f"{self.relative_path_to_test_file}")
         self._setUpS3()

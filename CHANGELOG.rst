@@ -14,6 +14,11 @@ Change Log
 Unreleased
 **********
 
+Added
+=====
+
+* feat: support for specifying AWS region
+
 3.4.1
 *****
 
