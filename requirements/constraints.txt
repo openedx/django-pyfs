@@ -10,3 +10,7 @@
 
 # This file contains all common constraints for edx-repos
 -c common_constraints.txt
+
+# moto>5.0.0 contains breaking changes with mock_s3 testing
+# needs to fixed separately
+moto<5.0.0
