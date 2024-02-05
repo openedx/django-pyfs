@@ -12,22 +12,22 @@ asgiref==3.7.2
     # via
     #   -r requirements/test.txt
     #   django
-astroid==3.0.2
+astroid==3.0.3
     # via
     #   pylint
     #   pylint-celery
-boto3==1.34.29
+boto3==1.34.34
     # via
     #   -r requirements/test.txt
     #   fs-s3fs
     #   moto
-botocore==1.34.29
+botocore==1.34.34
     # via
     #   -r requirements/test.txt
     #   boto3
     #   moto
     #   s3transfer
-certifi==2023.11.17
+certifi==2024.2.2
     # via
     #   -r requirements/test.txt
     #   requests
@@ -46,17 +46,18 @@ click==8.1.7
     #   edx-lint
 click-log==0.4.0
     # via edx-lint
-code-annotations==1.5.0
+code-annotations==1.6.0
     # via edx-lint
 coverage[toml]==7.4.1
     # via
     #   -r requirements/test.txt
     #   coverage
     #   pytest-cov
-cryptography==42.0.1
+cryptography==42.0.2
     # via
     #   -r requirements/test.txt
     #   moto
+    #   secretstorage
 dill==0.3.8
     # via pylint
 django==3.2.23
@@ -97,6 +98,10 @@ isort==5.13.2
     #   pylint
 jaraco-classes==3.3.0
     # via keyring
+jeepney==0.8.0
+    # via
+    #   keyring
+    #   secretstorage
 jinja2==3.1.3
     # via
     #   -r requirements/test.txt
@@ -111,7 +116,7 @@ keyring==24.3.0
     # via twine
 markdown-it-py==3.0.0
     # via rich
-markupsafe==2.1.4
+markupsafe==2.1.5
     # via
     #   -r requirements/test.txt
     #   jinja2
@@ -138,7 +143,7 @@ pbr==6.0.0
     # via stevedore
 pkginfo==1.9.6
     # via twine
-platformdirs==4.1.0
+platformdirs==4.2.0
     # via pylint
 pluggy==1.4.0
     # via
@@ -179,16 +184,16 @@ pytest==8.0.0
     #   pytest-django
 pytest-cov==4.1.0
     # via -r requirements/test.txt
-pytest-django==4.7.0
+pytest-django==4.8.0
     # via -r requirements/test.txt
 python-dateutil==2.8.2
     # via
     #   -r requirements/test.txt
     #   botocore
     #   moto
-python-slugify==8.0.2
+python-slugify==8.0.3
     # via code-annotations
-pytz==2023.4
+pytz==2024.1
     # via
     #   -r requirements/test.txt
     #   django
@@ -220,6 +225,8 @@ s3transfer==0.10.0
     # via
     #   -r requirements/test.txt
     #   boto3
+secretstorage==3.3.3
+    # via keyring
 six==1.16.0
     # via
     #   -r requirements/test.txt
