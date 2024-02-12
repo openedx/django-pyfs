@@ -126,13 +126,16 @@ def get_s3fs(namespace):
     """
     key_id = DJFS_SETTINGS.get('aws_access_key_id', None)
     key_secret = DJFS_SETTINGS.get('aws_secret_access_key', None)
+    region = DJFS_SETTINGS.get('region', None)
 
     fullpath = namespace
 
     if 'prefix' in DJFS_SETTINGS:
         fullpath = os.path.join(DJFS_SETTINGS['prefix'], fullpath)
 
-    s3fs = S3FS(DJFS_SETTINGS['bucket'], fullpath, aws_access_key_id=key_id, aws_secret_access_key=key_secret)
+    s3fs = S3FS(DJFS_SETTINGS['bucket'], fullpath,
+                aws_access_key_id=key_id, aws_secret_access_key=key_secret,
+                region=region)
 
     def get_s3_url(self, filename, timeout=60):  # pylint: disable=unused-argument
         """
@@ -154,7 +157,9 @@ def get_s3fs(namespace):
 
         try:
             if not S3CONN:
-                S3CONN = boto3.client('s3', aws_access_key_id=key_id, aws_secret_access_key=key_secret)
+                S3CONN = boto3.client('s3', aws_access_key_id=key_id,
+                                      aws_secret_access_key=key_secret,
+                                      region_name=region)
 
             return S3CONN.generate_presigned_url(
                 "get_object",
@@ -168,7 +173,9 @@ def get_s3fs(namespace):
         except Exception:  # pylint: disable=broad-except
             # Retry on error; typically, if the connection has timed out, but
             # the broad except covers all errors.
-            S3CONN = boto3.client('s3', aws_access_key_id=key_id, aws_secret_access_key=key_secret)
+            S3CONN = boto3.client('s3', aws_access_key_id=key_id,
+                                  aws_secret_access_key=key_secret,
+                                  region_name=region)
 
             return S3CONN.generate_presigned_url(
                 "get_object",
