@@ -8,13 +8,15 @@ appdirs==1.4.4
     # via fs
 asgiref==3.7.2
     # via django
-backports-zoneinfo==0.2.1
-    # via django
-boto3==1.34.54
+backports-zoneinfo==0.2.1 ; python_version < "3.9"
+    # via
+    #   -c requirements/constraints.txt
+    #   django
+boto3==1.34.61
     # via
     #   fs-s3fs
     #   moto
-botocore==1.34.54
+botocore==1.34.61
     # via
     #   boto3
     #   moto
@@ -60,7 +62,7 @@ moto==4.2.14
     # via
     #   -c requirements/constraints.txt
     #   -r requirements/test.in
-packaging==23.2
+packaging==24.0
     # via pytest
 pluggy==1.4.0
     # via pytest
@@ -68,7 +70,7 @@ pycparser==2.21
     # via cffi
 pypng==0.20220715.0
     # via -r requirements/test.in
-pytest==8.1.0
+pytest==8.1.1
     # via
     #   -r requirements/test.in
     #   pytest-cov
