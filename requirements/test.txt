@@ -8,11 +8,13 @@ appdirs==1.4.4
     # via fs
 asgiref==3.7.2
     # via django
-boto3==1.34.49
+backports-zoneinfo==0.2.1
+    # via django
+boto3==1.34.54
     # via
     #   fs-s3fs
     #   moto
-botocore==1.34.49
+botocore==1.34.54
     # via
     #   boto3
     #   moto
@@ -66,7 +68,7 @@ pycparser==2.21
     # via cffi
 pypng==0.20220715.0
     # via -r requirements/test.in
-pytest==8.0.2
+pytest==8.1.0
     # via
     #   -r requirements/test.in
     #   pytest-cov
@@ -75,12 +77,10 @@ pytest-cov==4.1.0
     # via -r requirements/test.in
 pytest-django==4.8.0
     # via -r requirements/test.in
-python-dateutil==2.8.2
+python-dateutil==2.9.0.post0
     # via
     #   botocore
     #   moto
-pytz==2024.1
-    # via django
 pyyaml==6.0.1
     # via responses
 requests==2.31.0

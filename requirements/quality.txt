@@ -16,12 +16,16 @@ astroid==3.1.0
     # via
     #   pylint
     #   pylint-celery
-boto3==1.34.49
+backports-zoneinfo==0.2.1
+    # via
+    #   -r requirements/test.txt
+    #   django
+boto3==1.34.54
     # via
     #   -r requirements/test.txt
     #   fs-s3fs
     #   moto
-botocore==1.34.49
+botocore==1.34.54
     # via
     #   -r requirements/test.txt
     #   boto3
@@ -59,7 +63,7 @@ cryptography==42.0.5
     #   secretstorage
 dill==0.3.8
     # via pylint
-django==3.2.24
+django==4.2.10
     # via
     #   -c requirements/common_constraints.txt
     #   -r requirements/test.txt
@@ -111,7 +115,7 @@ jmespath==1.0.1
     #   -r requirements/test.txt
     #   boto3
     #   botocore
-keyring==24.3.0
+keyring==24.3.1
     # via twine
 markdown-it-py==3.0.0
     # via rich
@@ -140,7 +144,7 @@ packaging==23.2
     #   pytest
 pbr==6.0.0
     # via stevedore
-pkginfo==1.9.6
+pkginfo==1.10.0
     # via twine
 platformdirs==4.2.0
     # via pylint
@@ -176,7 +180,7 @@ pylint-plugin-utils==0.8.2
     #   pylint-django
 pypng==0.20220715.0
     # via -r requirements/test.txt
-pytest==8.0.2
+pytest==8.1.0
     # via
     #   -r requirements/test.txt
     #   pytest-cov
@@ -185,23 +189,19 @@ pytest-cov==4.1.0
     # via -r requirements/test.txt
 pytest-django==4.8.0
     # via -r requirements/test.txt
-python-dateutil==2.8.2
+python-dateutil==2.9.0.post0
     # via
     #   -r requirements/test.txt
     #   botocore
     #   moto
 python-slugify==8.0.4
     # via code-annotations
-pytz==2024.1
-    # via
-    #   -r requirements/test.txt
-    #   django
 pyyaml==6.0.1
     # via
     #   -r requirements/test.txt
     #   code-annotations
     #   responses
-readme-renderer==42.0
+readme-renderer==43.0
     # via twine
 requests==2.31.0
     # via
@@ -218,7 +218,7 @@ responses==0.25.0
     #   moto
 rfc3986==2.0.0
     # via twine
-rich==13.7.0
+rich==13.7.1
     # via twine
 s3transfer==0.10.0
     # via
@@ -249,7 +249,7 @@ tomli==2.0.1
     #   coverage
     #   pylint
     #   pytest
-tomlkit==0.12.3
+tomlkit==0.12.4
     # via pylint
 twine==5.0.0
     # via -r requirements/quality.in
