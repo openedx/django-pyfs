@@ -10,9 +10,9 @@ asgiref==3.7.2
     # via django
 backports-zoneinfo==0.2.1
     # via django
-boto3==1.34.54
+boto3==1.34.59
     # via fs-s3fs
-botocore==1.34.54
+botocore==1.34.59
     # via
     #   boto3
     #   s3transfer
@@ -28,7 +28,7 @@ colorama==0.4.6
     # via tox
 distlib==0.3.8
     # via virtualenv
-django==4.2.10
+django==4.2.11
     # via
     #   -c requirements/common_constraints.txt
     #   -r requirements/base.in
@@ -42,18 +42,18 @@ fs==2.4.16
     #   fs-s3fs
 fs-s3fs==1.1.1
     # via -r requirements/base.in
-importlib-metadata==7.0.1
+importlib-metadata==7.0.2
     # via build
 jmespath==1.0.1
     # via
     #   boto3
     #   botocore
-packaging==23.2
+packaging==24.0
     # via
     #   build
     #   pyproject-api
     #   tox
-pip-tools==7.4.0
+pip-tools==7.4.1
     # via -r requirements/dev.in
 platformdirs==4.2.0
     # via
@@ -85,7 +85,7 @@ tomli==2.0.1
     #   pyproject-api
     #   pyproject-hooks
     #   tox
-tox==4.13.0
+tox==4.14.1
     # via -r requirements/dev.in
 typing-extensions==4.10.0
     # via asgiref
