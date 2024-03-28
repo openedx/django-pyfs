@@ -14,3 +14,5 @@
 # moto>5.0.0 contains breaking changes with mock_s3 testing
 # needs to fixed separately
 moto<5.0.0
+
+backports.zoneinfo;python_version<"3.9"

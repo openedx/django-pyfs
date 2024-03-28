@@ -14,6 +14,14 @@ Change Log
 Unreleased
 **********
 
+3.6.0
+*****
+
+Added
+=====
+
+* feat: support for python3.12.
+
 3.5.0
 *****
 
