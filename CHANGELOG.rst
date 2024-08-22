@@ -14,6 +14,12 @@ Change Log
 Unreleased
 **********
 
+3.7.0
+*****
+
+* feat: support for Django 5.1
+* chore: drop support for python 3.8
+
 3.6.0
 *****
 

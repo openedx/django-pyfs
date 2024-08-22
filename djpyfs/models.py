@@ -70,8 +70,8 @@ class FSExpirations(models.Model):
         # We'd like to create an index first on expiration than on expires (so
         # we can search for objects where expires=True and expiration is before
         # now).
-        index_together = [
-            ["expiration", "expires"],
+        indexes = [
+            models.Index(fields=["expiration", "expires"]),
         ]
 
     def __str__(self):
