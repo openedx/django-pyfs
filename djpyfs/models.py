@@ -22,7 +22,7 @@ class FSExpirations(models.Model):
     expiration = models.DateTimeField(db_index=True)  # If so, when?
 
     @classmethod
-    def create_expiration(cls, module, filename, seconds, days=0, expires=True):
+    def create_expiration(cls, module, filename, seconds, days=0, expires=True):  # pylint: disable=too-many-positional-arguments
         """
         May be used instead of the constructor to create a new expiration.
 

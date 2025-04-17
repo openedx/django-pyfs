@@ -14,6 +14,11 @@ Change Log
 Unreleased
 **********
 
+3.8.0
+*****
+
+* feat: Added support for Django 5.2
+
 3.7.0
 *****
 
