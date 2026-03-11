@@ -109,5 +109,7 @@ xmltodict==1.0.4
     # via moto
 
 # The following packages are considered to be unsafe in a requirements file:
-setuptools==82.0.1
-    # via fs
+setuptools==81.0.0
+    # via
+    #   -c requirements/constraints.txt
+    #   fs
