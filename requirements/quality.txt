@@ -18,12 +18,12 @@ astroid==4.0.4
     #   pylint-celery
 backports-tarfile==1.2.0
     # via jaraco-context
-boto3==1.42.68
+boto3==1.42.75
     # via
     #   -r requirements/test.txt
     #   fs-s3fs
     #   moto
-botocore==1.42.68
+botocore==1.42.75
     # via
     #   -r requirements/test.txt
     #   boto3
@@ -50,7 +50,7 @@ click-log==0.4.0
     # via edx-lint
 code-annotations==2.3.2
     # via edx-lint
-coverage[toml]==7.13.4
+coverage[toml]==7.13.5
     # via
     #   -r requirements/test.txt
     #   pytest-cov
@@ -58,7 +58,6 @@ cryptography==46.0.5
     # via
     #   -r requirements/test.txt
     #   moto
-    #   secretstorage
 dill==0.4.1
     # via pylint
 django==5.2.12
@@ -81,7 +80,7 @@ idna==3.11
     # via
     #   -r requirements/test.txt
     #   requests
-importlib-metadata==8.7.1
+importlib-metadata==9.0.0
     # via keyring
 iniconfig==2.3.0
     # via
@@ -93,14 +92,10 @@ isort==8.0.1
     #   pylint
 jaraco-classes==3.4.0
     # via keyring
-jaraco-context==6.1.1
+jaraco-context==6.1.2
     # via keyring
 jaraco-functools==4.4.0
     # via keyring
-jeepney==0.9.0
-    # via
-    #   keyring
-    #   secretstorage
 jinja2==3.1.6
     # via
     #   -r requirements/test.txt
@@ -134,7 +129,7 @@ moto==4.2.14
     # via
     #   -c requirements/constraints.txt
     #   -r requirements/test.txt
-nh3==0.3.3
+nh3==0.3.4
     # via readme-renderer
 packaging==26.0
     # via
@@ -183,7 +178,7 @@ pytest==9.0.2
     #   -r requirements/test.txt
     #   pytest-cov
     #   pytest-django
-pytest-cov==7.0.0
+pytest-cov==7.1.0
     # via -r requirements/test.txt
 pytest-django==4.12.0
     # via -r requirements/test.txt
@@ -201,7 +196,7 @@ pyyaml==6.0.3
     #   responses
 readme-renderer==44.0
     # via twine
-requests==2.32.5
+requests==2.33.0
     # via
     #   -r requirements/test.txt
     #   moto
@@ -222,8 +217,6 @@ s3transfer==0.16.0
     # via
     #   -r requirements/test.txt
     #   boto3
-secretstorage==3.5.0
-    # via keyring
 six==1.17.0
     # via
     #   -r requirements/test.txt
@@ -253,7 +246,7 @@ urllib3==2.6.3
     #   requests
     #   responses
     #   twine
-werkzeug==3.1.6
+werkzeug==3.1.7
     # via
     #   -r requirements/test.txt
     #   moto

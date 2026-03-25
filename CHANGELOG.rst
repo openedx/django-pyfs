@@ -14,6 +14,8 @@ Change Log
 Unreleased
 **********
 
+* Dropped Django 4.2 from CI test matrix; bumped boto3/botocore, tox, virtualenv
+
 3.8.0
 *****
 
