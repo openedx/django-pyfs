@@ -8,11 +8,11 @@ appdirs==1.4.4
     # via fs
 asgiref==3.11.1
     # via django
-boto3==1.42.68
+boto3==1.42.75
     # via
     #   fs-s3fs
     #   moto
-botocore==1.42.68
+botocore==1.42.75
     # via
     #   boto3
     #   moto
@@ -23,7 +23,7 @@ cffi==2.0.0
     # via cryptography
 charset-normalizer==3.4.6
     # via requests
-coverage[toml]==7.13.4
+coverage[toml]==7.13.5
     # via pytest-cov
 cryptography==46.0.5
     # via moto
@@ -73,7 +73,7 @@ pytest==9.0.2
     #   -r requirements/test.in
     #   pytest-cov
     #   pytest-django
-pytest-cov==7.0.0
+pytest-cov==7.1.0
     # via -r requirements/test.in
 pytest-django==4.12.0
     # via -r requirements/test.in
@@ -83,7 +83,7 @@ python-dateutil==2.9.0.post0
     #   moto
 pyyaml==6.0.3
     # via responses
-requests==2.32.5
+requests==2.33.0
     # via
     #   moto
     #   responses
@@ -103,7 +103,7 @@ urllib3==2.6.3
     #   botocore
     #   requests
     #   responses
-werkzeug==3.1.6
+werkzeug==3.1.7
     # via moto
 xmltodict==1.0.4
     # via moto
