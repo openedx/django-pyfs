@@ -1,0 +1,139 @@
+[build-system]
+requires = ["setuptools", "setuptools-scm>8.1"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "openedx-django-pyfs"
+description = "Django pyfilesystem integration"
+requires-python = ">=3.12"
+license = "Apache-2.0"
+license-files = ["LICENSE*"]
+authors = [
+    {name = "Open edX Project", email = "oscm@openedx.org"},
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Framework :: Django",
+    "Framework :: Django :: 4.2",
+    "Framework :: Django :: 5.2",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+keywords = [
+    "Python",
+    "edx",
+]
+
+dynamic = ["readme", "version"]
+
+dependencies = [
+    "django",
+    "fs>=2.0.1",
+    "fs-s3fs",
+]
+
+[project.urls]
+Homepage = "https://github.com/openedx/django-pyfs"
+Repository = "https://github.com/openedx/django-pyfs"
+
+[dependency-groups]
+test-base = [
+    "mock",
+    "moto",
+    "pypng",
+    "pytest",
+    "pytest-django",
+    "pytest-cov",
+]
+test = [
+    {include-group = "test-base"},
+    "Django>=5.2,<6.0",
+]
+django42 = [
+    {include-group = "test-base"},
+    "Django>=4.2,<5.0",
+]
+quality = [
+    {include-group = "test"},
+    "build",
+    "edx-lint",
+    "isort",
+    "pycodestyle",
+    "pydocstyle",
+    "twine",
+]
+ci = [
+    "tox",
+    "tox-uv",
+]
+dev = [
+    {include-group = "quality"},
+    {include-group = "ci"},
+]
+
+[tool.setuptools]
+# Parity with master setup.py (include_package_data unset): djpyfs/static/ was never shipped.
+include-package-data = false
+
+[tool.setuptools.dynamic]
+readme = {file = ["README.rst"], content-type = "text/x-rst"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.semantic_release]
+build_command = "pip install build && SETUPTOOLS_SCM_PRETEND_VERSION=$NEW_VERSION python -m build"
+
+[tool.setuptools_scm]
+version_scheme = 'only-version'
+local_scheme = 'no-local-version'
+fallback_version = "0.0.0.dev0"
+
+[tool.uv]
+conflicts = [
+    [{group = "test"}, {group = "django42"}],
+]
+constraint-dependencies = [
+    "Django<6.0",
+    "elasticsearch<7.14.0",
+    "social-auth-app-django<6.0.0",
+    "social-auth-core<5.0.0",
+    "pip<26.2.1",
+    "moto<5.0.0",
+    "setuptools<82",
+]
+
+[tool.edx_lint]
+uv_constraints = [
+    # moto>5.0.0 contains breaking changes with mock_s3 testing
+    # needs to fixed separately
+    "moto<5.0.0",
+    # setuptools 82+ removed pkg_resources, which fs (pyfilesystem2) uses for
+    # namespace package declarations in fs/__init__.py. Pin until fs is updated.
+    # See: https://github.com/PyFilesystem/pyfilesystem2/issues/577
+    "setuptools<82",
+]
+
+[tool.coverage.run]
+branch = true
+source = ["src"]
+data_file = ".coverage"
+omit = [
+    "*/djpyfs/tests.py",
+]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "raise NotImplementedError",
+]
+
+[tool.pytest.ini_options]
+python_files = ["djpyfs/tests.py"]
+addopts = "--cov --cov-report term-missing"
+
+[tool.pydocstyle]
+# error codes: https://pycodestyle.readthedocs.io/en/latest/intro.html#error-codes
+ignore = "D100,D101,D102,D104,D105,D106,D107,D200,D202,D203,D204,D205,D210,D212,D213,D400,D401,D403,D404,D406,D407,D408,D409,D410,D411,D413"
