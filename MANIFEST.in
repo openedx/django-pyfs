@@ -14,3 +14,4 @@ global-exclude coverage.xml
 
 # Exclude dev/CI lockfile (pip never reads it during sdist install)
 exclude uv.lock
+exclude CHANGELOG.rst
