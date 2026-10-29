@@ -1,6 +1,17 @@
-include README.rst
-include requirements/base.in
-include requirements/test.in
-recursive-include djpyfs *py
-recursive-include example *py
-include requirements/constraints.txt
+# Exclude development and test folders
+prune .github
+
+# Exclude root level configuration and build files
+exclude Makefile
+exclude conftest.py
+exclude .gitignore
+exclude tox.ini
+
+# Exclude test/coverage artifacts
+prune htmlcov
+global-exclude .coverage
+global-exclude coverage.xml
+
+# Exclude dev/CI lockfile (pip never reads it during sdist install)
+exclude uv.lock
+exclude CHANGELOG.rst
